@@ -1,3 +1,24 @@
+function getCardUnderToken(tokenObject)
+    local pos = tokenObject.getPosition()
+    local hitList = Physics.cast({
+        origin       = pos,
+        direction    = {0,-1,0},
+        type         = 3,
+        size         = { 1.3, 1, 3.10},
+        max_distance = 1
+    })
+
+    local timeCount = 0;
+
+    for key, value in ipairs(hitList) do
+        if value.hit_object.type == 'Card' then
+            return value.hit_object
+        end
+    end
+
+    return nil
+end
+
 function getTokenCount(card, valueType)
     local pos = getTokenPosition(card, valueType)
     local hitList = Physics.cast({
