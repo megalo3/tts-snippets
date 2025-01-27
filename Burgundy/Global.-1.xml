@@ -1,0 +1,837 @@
+<Defaults>
+    <Panel
+        class="score"
+        height="50"
+        width="50"
+        rectAlignment="UpperLeft" />
+    <Panel
+        class="itemannouncePanel"
+        active="false"
+        rectAlignment="LowerRight"
+        showAnimation="FadeIn"
+        hideAnimation="FadeOut"
+        animationDuration="0.6"
+        hideAnimationDelay="0.5"
+        height="100"
+        width="300" />
+    <Text
+        class="itemannounceText"
+        fontSize="25"
+        color="#FFFFFF"
+        fontstyle="Bold"
+        outline="#000000"
+        alignment="LowerRight"
+        outlinesize="1 -1" />
+    <text
+        class="plusminus"
+        fontSize="30"
+        fontStyle="Bold"
+        color="#000000"></text>
+    <Button
+        class="spawnbutton"
+        onClick="spawnitem()"></Button>
+    <Button
+        class="spawnbutton5"
+        onClick="spawnitem5()"></Button>
+    <Button
+        class="despawnbutton"
+        onClick="despawnitem()"></Button>
+    <Button
+        class="transmutebutton"
+        onClick="transmuteitem()"></Button>
+    <Button
+        class="tipbutton"
+        rectAlignment="UpperLeft"
+        preferredHeight="50"
+        preferredWidth="50"
+        tooltipPosition="Above"
+        tooltipBackgroundColor="rgba(0,0,0,1)">
+    </Button>
+    <Button
+        class="bluebutton"
+        colors="rgb(0.11,0.52,1)|rgb(0.09,0.40,0.9)|rgb(0.05,0.25,0.8)|rgba(0.78,0.78,0.78,0.5)">
+    </Button>
+    <Button
+        class="redbutton"
+        colors="rgb(0.85,0.08,0.08)|rgb(0.75,0.06,0.06)|rgb(0.65,0.05,0.05)|rgba(0.78,0.78,0.78,0.5)">
+    </Button>
+    <Button
+        class="Greenbutton"
+        colors="rgb(0.19,0.7,0.16)|rgb(0.12,0.6,0.12)|rgb(0.09,0.5,0.09)|rgba(0.78,0.78,0.78,0.5)">
+    </Button>
+    <Button
+        class="yellowbutton"
+        colors="rgb(0.9,0.9,0.16)|rgb(0.8,0.8,0.12)|rgb(0.7,0.7,0.09)|rgba(0.78,0.78,0.78,0.5)">
+    </Button>
+    <Button
+        class="graybutton1"
+        colors="rgb(0.8,0.8,0.8)|rgb(0.7,0.7,0.7)|rgb(0.6,0.6,0.6)|rgba(0.78,0.78,0.78,0.5)">
+    </Button>
+    <Button
+        class="graybutton2"
+        colors="rgb(0.6,0.6,0.6)|rgb(0.5,0.5,0.5)|rgb(0.4,0.4,0.4)|rgba(0.78,0.78,0.78,0.5)">
+    </Button>
+
+
+    <Cell
+        class="whiteBackground"
+        color="White"
+        dontUseTableCellBackground="true"></Cell>
+    <Cell
+        class="pinkBackground"
+        color="Pink"
+        dontUseTableCellBackground="true">
+    </Cell>
+    <Cell
+        class="orangeBackground"
+        color="Orange"
+        dontUseTableCellBackground="true">
+    </Cell>
+    <Cell
+        class="yellowBackground"
+        color="Yellow"
+        dontUseTableCellBackground="true">
+    </Cell>
+    <Text
+        class="whitetext"
+        color="White"
+        fontSize="18"></Text>
+    <image
+        class="elementimage"
+        height="40"
+        width="40"
+        tooltipPosition="Above"
+        tooltipBackgroundColor="rgba(0,0,0,1)"
+        preserveAspect="true">
+    </image>
+    <image
+        class="transmuteimage"
+        image="transmute"
+        height="30"
+        width="30"
+        tooltipPosition="Above"
+        tooltipBackgroundColor="rgba(0,0,0,1)"
+        preserveAspect="true">
+    </image>
+</Defaults>
+
+<TableLayout
+    id="optionsMenu1"
+    active="true"
+    rectAlignment="LowerRight"
+    offsetXY="0 885"
+    height="40"
+    width="380"
+    rowBackgroundColor="rgba(0, 0.39, 0.65)">
+    <Row preferredHeight="40">
+        <Cell>
+            <Text
+                color="white"
+                fontSize="16">Game Options</Text>
+        </Cell>
+    </Row>
+</TableLayout>
+<TableLayout
+    id="optionsMenu2"
+    active="true"
+    rectAlignment="LowerRight"
+    offsetXY="0 40"
+    height="845"
+    width="380"
+    cellPadding="24 0 12 12"
+    cellBackgroundColor="clear"
+    rowBackgroundColor="rgba(1, 1, 1, 0.85)">
+    <Row preferredHeight="95">
+        <Cell>
+            <VerticalLayout childForceExpandWidth="false">
+                <Text
+                    fontStyle="Bold"
+                    alignment="MiddleLeft">Play Style</Text>
+                <Dropdown id="playStyle" onValueChanged="playStyleSelected" preferredWidth="300">
+                    <Option selected="true">Normal Game</Option>
+                    <Option>Max 3 Players and AI Player</Option>
+                    <Option>Solo Game (Beginner)</Option>
+                    <Option>Solo Game (Advanced)</Option>
+                    <Option>Team Game (2v2, Beginner)</Option>
+                    <Option>Team Game (2v2, Advanced)</Option>
+                </Dropdown>
+            </VerticalLayout>
+        </Cell>
+    </Row>
+    <Row preferredHeight="200">
+        <Cell>
+            <VerticalLayout>
+                <Text
+                    fontStyle="Bold"
+                    alignment="MiddleLeft">AI Player (Chateauma) Modifiers</Text>
+                <VerticalLayout>
+                    <Text alignment="UpperLeft">Gateway: no modifiers; Midweight: 1 modifier;
+                        Heavy: 2+ modifiers</Text>
+                    <Toggle
+                        isOn="False"
+                        onValueChanged="uiToggle"
+                        id="aimoda">A. Less tiles needed to claim bonus tiles</Toggle>
+                    <Toggle
+                        isOn="False"
+                        onValueChanged="uiToggle"
+                        id="aimodb">B. Less bonus tiles to claim and free mine</Toggle>
+                    <Toggle
+                        isOn="False"
+                        onValueChanged="uiToggle"
+                        id="aimodc">C. Starting Player</Toggle>
+                    <Toggle
+                        isOn="False"
+                        onValueChanged="uiToggle"
+                        id="aimodd">D. Possible extra turns</Toggle>
+                </VerticalLayout>
+            </VerticalLayout>
+        </Cell>
+    </Row>
+    <Row preferredHeight="180">
+        <Cell>
+            <VerticalLayout>
+                <Text
+                    fontStyle="Bold"
+                    alignment="MiddleLeft">Board Selection</Text>
+                <VerticalLayout>
+                    <Toggle
+                        isOn="True"
+                        onValueChanged="uiToggle"
+                        id="randomboard">Randomly Select Player Board</Toggle>
+                    <Toggle
+                        isOn="True"
+                        onValueChanged="uiToggle"
+                        id="boards0110">Include Boards 1-10 (Base Game)</Toggle>
+                    <Toggle
+                        isOn="False"
+                        onValueChanged="uiToggle"
+                        id="boards1118">Include Boards 11-18 (1st Expansion)</Toggle>
+                    <Toggle
+                        isOn="False"
+                        onValueChanged="uiToggle"
+                        id="boards1922">Include Boards 19-22 (3rd Expansion)</Toggle>
+                    <Toggle
+                        isOn="False"
+                        onValueChanged="uiToggle"
+                        id="boards2330">Include Boards 23-30 (4th Expansion)</Toggle>
+                </VerticalLayout>
+            </VerticalLayout>
+        </Cell>
+    </Row>
+    <Row preferredHeight="160">
+        <Cell>
+            <VerticalLayout>
+                <Text
+                    fontStyle="Bold"
+                    alignment="MiddleLeft">Components</Text>
+                <HorizontalLayout>
+                    <VerticalLayout alignment="UpperLeft">
+                        <Toggle
+                            isOn="False"
+                            onValueChanged="uiToggle"
+                            id="shields">Shields</Toggle>
+                        <Toggle
+                            isOn="False"
+                            onValueChanged="uiToggle"
+                            id="traderoutes">Trade Routes</Toggle>
+                        <Toggle
+                            isOn="False"
+                            onValueChanged="uiToggle"
+                            id="vineyards">Vineyards</Toggle>
+                        <Toggle
+                            isOn="True"
+                            onValueChanged="uiToggle"
+                            id="monastery2728">Monsteries 27 and 28</Toggle>
+                    </VerticalLayout>
+                    <VerticalLayout alignment="UpperLeft">
+                        <Toggle
+                            isOn="True"
+                            onValueChanged="uiToggle"
+                            id="cranes">Cranes</Toggle>
+                        <Toggle
+                            isOn="True"
+                            onValueChanged="uiToggle"
+                            id="whitecastles">White Castles</Toggle>
+                        <Toggle
+                            isOn="True"
+                            onValueChanged="uiToggle"
+                            id="geese">Geese</Toggle>
+                        <Toggle
+                            isOn="True"
+                            onValueChanged="uiToggle"
+                            id="inns">Inns</Toggle>
+                    </VerticalLayout>
+                </HorizontalLayout>
+            </VerticalLayout>
+        </Cell>
+    </Row>
+    <Row preferredHeight="200">
+        <Cell>
+            <VerticalLayout>
+                <Text
+                    fontStyle="Bold"
+                    alignment="MiddleLeft">Rules and Settings</Text>
+                <VerticalLayout>
+                    <Toggle
+                        isOn="False"
+                        onValueChanged="uiToggle"
+                        id="castleplacement">Boards 11-18 Placement Rule*</Toggle>
+                    <Toggle
+                        isOn="False"
+                        onValueChanged="uiToggle"
+                        id="borderposts">Connect Border Posts</Toggle>
+                    <Toggle
+                        isOn="True"
+                        onValueChanged="uiToggle"
+                        id="vineyardrandomness">Limit Vineyard Randomness with 2-3 players</Toggle>
+                    <Toggle
+                        isOn="False"
+                        onValueChanged="uiToggle"
+                        id="advancedsolo">Advanced Solo Mode</Toggle>
+                </VerticalLayout>
+                <Text alignment="MiddleLeft">*Must place new tiles next to a castle or next to the same color. Spend both actions and 5 victory points to purchase a prior round's unclaimed castle.</Text>
+            </VerticalLayout>
+        </Cell>
+    </Row>
+
+    <Row preferredHeight="10">
+    </Row>
+</TableLayout>
+<TableLayout
+    id="optionsMenu3"
+    active="true"
+    rectAlignment="LowerRight"
+    height="40"
+    width="380"
+    cellBackgroundColor="clear"
+    rowBackgroundColor="rgba(1, 1, 1, 0.85)">
+    <Row preferredHeight="40">
+        <Cell>
+            <Button
+                onClick="setup()"
+                color="Green"
+                textColor="white"
+                fontSize="16">Start</Button>
+        </Cell>
+    </Row>
+</TableLayout>
+
+<TableLayout
+    id="startPlayerMenu"
+    active="false"
+    rectAlignment="LowerRight"
+    offsetXY="0 80"
+    height="152"
+    width="290"
+    cellPadding="15 15 15 15"
+    cellBackgroundColor="clear"
+    rowBackgroundColor="rgba(1, 1, 1, 0.85)">
+    <Row preferredHeight="115">
+        <Cell>
+            <Text alignment="UpperLeft">Everyone must finish selecting their Library II and Library III cards.
+
+                Then, select the youngest player as the starting player and click Start Tournament.</Text>
+        </Cell>
+    </Row>
+    <Row preferredHeight="77">
+        <Cell>
+            <Dropdown id="StartingPlayer-wpoy" onValueChanged="startingPlayerSelected" active="false">
+                <Option>White</Option>
+                <Option>Pink</Option>
+                <Option>Orange</Option>
+                <Option>Yellow</Option>
+            </Dropdown>
+            <Dropdown id="StartingPlayer-woy" onValueChanged="startingPlayerSelected" active="false">
+                <Option>White</Option>
+                <Option>Orange</Option>
+                <Option>Yellow</Option>
+            </Dropdown>
+            <Dropdown id="StartingPlayer-wpy" onValueChanged="startingPlayerSelected" active="false">
+                <Option>White</Option>
+                <Option>Pink</Option>
+                <Option>Yellow</Option>
+            </Dropdown>
+            <Dropdown id="StartingPlayer-wpo" onValueChanged="startingPlayerSelected" active="false">
+                <Option>White</Option>
+                <Option>Pink</Option>
+                <Option>Orange</Option>
+            </Dropdown>
+            <Dropdown id="StartingPlayer-poy" onValueChanged="startingPlayerSelected" active="false">
+                <Option>Pink</Option>
+                <Option>Orange</Option>
+                <Option>Yellow</Option>
+            </Dropdown>
+            <Dropdown id="StartingPlayer-wp" onValueChanged="startingPlayerSelected" active="false">
+                <Option>White</Option>
+                <Option>Pink</Option>
+            </Dropdown>
+            <Dropdown id="StartingPlayer-wo" onValueChanged="startingPlayerSelected" active="false">
+                <Option>White</Option>
+                <Option>Orange</Option>
+            </Dropdown>
+            <Dropdown id="StartingPlayer-wy" onValueChanged="startingPlayerSelected" active="false">
+                <Option>White</Option>
+                <Option>Yellow</Option>
+            </Dropdown>
+            <Dropdown id="StartingPlayer-po" onValueChanged="startingPlayerSelected" active="false">
+                <Option>Pink</Option>
+                <Option>Orange</Option>
+            </Dropdown>
+            <Dropdown id="StartingPlayer-py" onValueChanged="startingPlayerSelected" active="false">
+                <Option>Pink</Option>
+                <Option>Yellow</Option>
+            </Dropdown>
+            <Dropdown id="StartingPlayer-oy" onValueChanged="startingPlayerSelected" active="false">
+                <Option>Orange</Option>
+                <Option>Yellow</Option>
+            </Dropdown>
+        </Cell>
+    </Row>
+</TableLayout>
+<TableLayout
+    id="startPlayerMenuButtons"
+    active="false"
+    rectAlignment="LowerRight"
+    height="40"
+    width="290"
+    cellBackgroundColor="clear"
+    rowBackgroundColor="rgba(1, 1, 1, 0.85)">
+    <Row preferredHeight="40">
+        <Cell columnSpan="3">
+            <Button
+                onClick="startTournament()"
+                color="Green"
+                textColor="white"
+                fontSize="16">Start Tournament</Button>
+        </Cell>
+    </Row>
+</TableLayout>
+
+<TableLayout
+    active="false"
+    id="gatherItemsMenu"
+    rectAlignment="LowerRight"
+    height="265"
+    width="170"
+    allowDragging="true"
+    returnToOriginalPositionWhenReleased="false"
+    automaticallyAddColumns="false"
+    cellBackgroundColor="rgba(1,1,1,0.4)"
+    columnWidths="50 40 40 40"
+    rowBackgroundColor="rgba(1, 1, 1, 0.85)">
+    <Row
+        preferredHeight="25"
+        dontUseTableRowBackground="true"
+        color="rgba(0.2,0.2,0.2,0.8)">
+        <Cell columnSpan="4">
+            <Text
+                fontStyle="bold"
+                color="White">Player Aid</Text>
+        </Cell>
+    </Row>
+    <Row
+        preferredHeight="40"
+        dontUseTableRowBackground="true"
+        color="rgba(0.11,0.52,1,0.95)">
+        <Cell>
+            <image
+                image="water"
+                class="elementimage"
+                tooltip="Water"></image>
+        </Cell>
+        <Cell>
+            <Button
+                id="water"
+                class="despawnbutton tipbutton bluebutton"
+                tooltip="Spend Water">
+                <Text class="whitetext">-</Text>
+            </Button>
+        </Cell>
+        <Cell>
+            <Button
+                id="water"
+                class="spawnbutton tipbutton bluebutton"
+                tooltip="Gain Water">
+                <Text class="whitetext">+</Text>
+            </Button>
+        </Cell>
+        <Cell>
+            <Button
+                id="water"
+                class="transmutebutton tipbutton bluebutton"
+                tooltip="Transmute Water">
+                <image class="transmuteimage"></image>
+            </Button>
+        </Cell>
+    </Row>
+    <Row
+        preferredHeight="40"
+        dontUseTableRowBackground="true"
+        color="rgba(0.19,0.7,0.16,0.95)">
+        <Cell>
+            <image
+                image="earth"
+                class="elementimage"
+                tooltip="Earth"></image>
+        </Cell>
+        <Cell>
+            <Button
+                id="earth"
+                class="despawnbutton tipbutton Greenbutton"
+                tooltip="Spend Earth">
+                <Text class="whitetext">-</Text>
+            </Button>
+        </Cell>
+        <Cell>
+            <Button
+                id="earth"
+                class="spawnbutton tipbutton Greenbutton"
+                tooltip="Gain Earth">
+                <Text class="whitetext">+</Text>
+            </Button>
+        </Cell>
+        <Cell>
+            <Button
+                id="earth"
+                class="transmutebutton tipbutton Greenbutton"
+                tooltip="Transmute Earth">
+                <image class="transmuteimage"></image>
+            </Button>
+        </Cell>
+    </Row>
+    <Row
+        preferredHeight="40"
+        dontUseTableRowBackground="true"
+        color="rgba(0.9,0.9,0.16,0.95)">
+        <Cell>
+            <image
+                image="fire"
+                class="elementimage"
+                tooltip="Fire"></image>
+        </Cell>
+        <Cell>
+            <Button
+                id="fire"
+                class="despawnbutton tipbutton yellowbutton"
+                tooltip="Spend Fire">
+                <Text fontSize="18">-</Text>
+            </Button>
+        </Cell>
+        <Cell>
+            <Button
+                id="fire"
+                class="spawnbutton tipbutton yellowbutton"
+                tooltip="Gain Fire">
+                <Text fontSize="18">+</Text>
+            </Button>
+        </Cell>
+        <Cell>
+            <Button
+                id="fire"
+                class="transmutebutton tipbutton yellowbutton"
+                tooltip="Transmute Fire">
+                <image class="transmuteimage"></image>
+            </Button>
+        </Cell>
+    </Row>
+    <Row
+        preferredHeight="40"
+        dontUseTableRowBackground="true"
+        color="rgba(0.85,0.08,0.08,0.95)">
+        <Cell>
+            <image
+                image="air"
+                class="elementimage"
+                tooltip="Air"></image>
+        </Cell>
+        <Cell>
+            <Button
+                id="air"
+                class="despawnbutton tipbutton redbutton"
+                tooltip="Spend Air">
+                <Text class="whitetext">-</Text>
+            </Button>
+        </Cell>
+        <Cell>
+            <Button
+                id="air"
+                class="spawnbutton tipbutton redbutton"
+                tooltip="Gain Air">
+                <Text class="whitetext">+</Text>
+            </Button>
+        </Cell>
+        <Cell>
+            <Button
+                id="air"
+                class="transmutebutton tipbutton redbutton"
+                tooltip="Transmute Air">
+                <image class="transmuteimage"></image>
+            </Button>
+        </Cell>
+    </Row>
+    <Row
+        preferredHeight="40"
+        dontUseTableRowBackground="true"
+        color="rgba(0.8,0.8,0.8,0.95)">
+        <Cell>
+            <image
+                image="crystal"
+                class="elementimage"
+                tooltip="Crystal"></image>
+        </Cell>
+        <Cell>
+            <Button
+                id="crystal"
+                class="despawnbutton tipbutton graybutton1"
+                tooltip="Spend Crystal">
+                <Text fontSize="18">-</Text>
+            </Button>
+        </Cell>
+        <Cell>
+            <Button
+                id="crystal"
+                class="spawnbutton tipbutton graybutton1"
+                tooltip="Gain Crystal">
+                <Text fontSize="18">+</Text>
+            </Button>
+        </Cell>
+        <Cell>
+            <Button
+                id="crystal"
+                class="spawnbutton5 tipbutton graybutton1"
+                tooltip="Gain 5 Crystals">
+                <Text fontSize="16">+5</Text>
+            </Button>
+        </Cell>
+    </Row>
+    <Row
+        preferredHeight="40"
+        dontUseTableRowBackground="true"
+        color="rgba(0.6,0.6,0.6,0.95)">
+        <Cell>
+            <image
+                image="summongauge"
+                class="elementimage"
+                tooltip="Summon Gauge"></image>
+        </Cell>
+        <Cell>
+            <Button
+                id="summongauge"
+                class="despawnbutton tipbutton graybutton2"
+                tooltip="Decrease Summon Gauge">
+                <Text fontSize="18">-</Text>
+            </Button>
+        </Cell>
+        <Cell>
+            <Button
+                id="summongauge"
+                class="spawnbutton tipbutton graybutton2"
+                tooltip="Increase Summon Gauge">
+                <Text fontSize="18">+</Text>
+            </Button>
+        </Cell>
+    </Row>
+</TableLayout>
+
+<!-- Scorepad Big -->
+<Panel
+    id="ScorepadMenu"
+    height="360"
+    width="525"
+    rectAlignment="Center"
+    allowDragging="true"
+    returnToOriginalPositionWhenReleased="false"
+    outline="#000000"
+    padding="2,2,2,2"
+    outlineSize="1 -1"
+    color="rgb(0.95,0.95,0.95)"
+    active="false">
+    <TableLayout
+        cellPadding="5,5,5,5"
+        cellSpacing="2"
+        columnWidths="225, 75, 75, 75, 75"
+        cellBackgroundColor="rgba(1,1,1,0.8)">
+        <Row>
+            <Cell
+                columnSpan="5"
+                color="rgb(0, 0.39, 0.65)"
+                dontUseTableCellBackground="true">
+                <Text
+                    fontStyle="bold"
+                    color="White"
+                    fontSize="18">Score Pad</Text>
+            </Cell>
+        </Row>
+        <Row>
+            <Cell dontUseTableCellBackground="true"></Cell>
+            <Cell class="whiteBackground">
+                <Text>White</Text>
+            </Cell>
+            <Cell class="pinkBackground">
+                <Text>Pink</Text>
+            </Cell>
+            <Cell class="orangeBackground">
+                <Text>Orange</Text>
+            </Cell>
+            <Cell class="yellowBackground">
+                <Text>Yellow</Text>
+            </Cell>
+        </Row>
+
+        <Row>
+            <Cell>
+                <Text alignment="MiddleLeft"><b>Card Prestige</b>: Gain prestige value of every card in your tableau.</Text>
+            </Cell>
+            <Cell class="whiteBackground">
+                <InputField
+                    id="prestige-White"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="pinkBackground">
+                <InputField
+                    id="prestige-Pink"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="orangeBackground">
+                <InputField
+                    id="prestige-Orange"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="yellowBackground">
+                <InputField
+                    id="prestige-Yellow"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+        </Row>
+
+        <Row>
+            <Cell>
+                <Text alignment="MiddleLeft"><b>End of Game</b>: Gain/Lose Prestige for any end of game effects.</Text>
+            </Cell>
+            <Cell class="whiteBackground">
+                <InputField
+                    id="endofgame-White"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="pinkBackground">
+                <InputField
+                    id="endofgame-Pink"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="orangeBackground">
+                <InputField
+                    id="endofgame-Orange"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="yellowBackground">
+                <InputField
+                    id="endofgame-Yellow"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+        </Row>
+
+        <Row>
+            <Cell>
+                <Text alignment="MiddleLeft"><b>Crystals</b>: Gain prestige for all remaining crystals.</Text>
+            </Cell>
+            <Cell class="whiteBackground">
+                <InputField
+                    id="crystals-White"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="pinkBackground">
+                <InputField
+                    id="crystals-Pink"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="orangeBackground">
+                <InputField
+                    id="crystals-Orange"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="yellowBackground">
+                <InputField
+                    id="crystals-Yellow"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+        </Row>
+
+        <Row>
+            <Cell>
+                <Text alignment="MiddleLeft"><b>Unplayed Cards</b>: Lose 5 Prestige for every card left in your hand.</Text>
+            </Cell>
+            <Cell class="whiteBackground">
+                <InputField
+                    id="unplayed-White"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="pinkBackground">
+                <InputField
+                    id="unplayed-Pink"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="orangeBackground">
+                <InputField
+                    id="unplayed-Orange"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="yellowBackground">
+                <InputField
+                    id="unplayed-Yellow"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+        </Row>
+
+        <Row>
+            <Cell>
+                <Text alignment="MiddleLeft"><b>Bonus Track</b>: Lose Prestige for your bonus track use.</Text>
+            </Cell>
+            <Cell class="whiteBackground">
+                <InputField
+                    id="bonus-White"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="pinkBackground">
+                <InputField
+                    id="bonus-Pink"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="orangeBackground">
+                <InputField
+                    id="bonus-Orange"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+            <Cell class="yellowBackground">
+                <InputField
+                    id="bonus-Yellow"
+                    onValueChanged="scoreChange">0</InputField>
+            </Cell>
+        </Row>
+
+        <Row>
+            <Cell alignment="UpperLeft">
+                <Text fontStyle="bold">Total</Text>
+            </Cell>
+            <Cell class="whiteBackground">
+                <InputField
+                    id="total-White"
+                    fontStyle="bold">0</InputField>
+            </Cell>
+            <Cell class="pinkBackground">
+                <InputField
+                    id="total-Pink"
+                    fontStyle="bold">0</InputField>
+            </Cell>
+            <Cell class="orangeBackground">
+                <InputField
+                    id="total-Orange"
+                    fontStyle="bold">0</InputField>
+            </Cell>
+            <Cell class="yellowBackground">
+                <InputField
+                    id="total-Yellow"
+                    fontStyle="bold">0</InputField>
+            </Cell>
+        </Row>
+    </TableLayout>
+</Panel>
