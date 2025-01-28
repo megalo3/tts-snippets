@@ -12,6 +12,9 @@ function setup()
     if settings.rules.castleplacement == false then
         SetupBag.putObject(getObjectFromGUID(Guids.Text.boardrule))
     end
+    if settings.rules.borderpostscoring == false then
+        SetupBag.putObject(getObjectFromGUID(Guids.Text.borderscoring))
+    end
 
     setIncludedHexes()
     removeUnusedTurnOrderTokens()

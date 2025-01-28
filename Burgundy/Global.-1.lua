@@ -70,8 +70,8 @@ function uiToggle(player,value,id)
         geese = function() settings.components.geese = coerceBoolean(value) end,
         inns = function() settings.components.inns = coerceBoolean(value) end,
         castleplacement = function() settings.rules.castleplacement = coerceBoolean(value) end,
-        borderposts = function() settings.rules.borderposts = coerceBoolean(value) end,
         vineyardrandomness = function() settings.rules.vineyardrandomness = coerceBoolean(value) end,
+        borderpostscoring = function() settings.rules.borderpostscoring = coerceBoolean(value) end,
     }
     case[id]()
 end

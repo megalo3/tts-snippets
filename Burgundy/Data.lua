@@ -1,12 +1,5 @@
 WorkshopId = '3281151120'
 
--- 4th Expansion: Border Post Duchy Boards 23-30
-    -- Add border post bonus tile
-    -- Must use 23-30 boards
-    -- When a player manages to connect two border posts in their duchy with hex tiles, they score victory points according to the current phase (i.e. 10, 8, 6, 4, or 2).
-    -- The first and second players to connect all three border posts get to take and immediately score the corresponding border post bonus tile from the game board (the first player scores 5/6/7 victory points in a 2/3/4-player game, the second player scores 2/3/4 victory points).
-    -- Note: Since border posts are on theplayer board and not on theduchy you may also use all other duchies to play with this expansion. Meaning you can connect the posts with duchy boards other than 23-30
-
 settings = {
     playercount = 1,
     playstyle = 'normal',
@@ -39,9 +32,8 @@ settings = {
     },
     rules = {
         castleplacement = false,
-        borderposts = false,
         vineyardrandomness = true,
-        advancedsolo = false,
+        borderpostscoring = false
     },
     mapNumberIndex = {
         Red = 1,
@@ -157,7 +149,8 @@ Guids = {
     },
     Text = {
         phase = '21f255',
-        boardrule = '923383'
+        boardrule = '923383',
+        borderscoring = '7d9ac6'
     },
     PlayerDie = '8fe639',
     AiCheatSheet = '3e20e0',
