@@ -100,8 +100,8 @@ function spawnNumberTiles(obj)
     end
 end
 
-function despawnNumberTiles()
-    for key, object in ipairs(getObjectsWithTag('Map')) do
+function despawnNumberTiles(color)
+    for key, object in ipairs(getObjectsWithAllTags({'Map', color})) do
         object.destruct()
     end
 end

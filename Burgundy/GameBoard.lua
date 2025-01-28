@@ -58,6 +58,7 @@ end
 function setPlayerBoards()
     if settings.playstyle == 'normal' or settings.playstyle == 'ai' then
         setPlayerDuchyNumber()
+        removeUnusedPlayerBoards()
     else
         removePlayerDuchies()
     end
@@ -101,6 +102,12 @@ end
 function setGameBoard()
     settings.gameboard = '2p'
     if settings.playercount > 2 then
+        settings.gameboard = '34p'
+    end
+    if settings.playstyle == 'beginnersolo' or settings.playstyle == 'advancedsolo' then
+        settings.gameboard = '2p'
+    end
+     if settings.playstyle == 'beginnerteamgame' or settings.playstyle == 'advancedteamgame' then
         settings.gameboard = '34p'
     end
 
@@ -170,6 +177,24 @@ function setPlayerDuchyNumber()
     end
 end
 
+function removeUnusedPlayerBoards()
+    for _, color in ipairs(getNonSeatedPlayerColors()) do
+        removePlayerDuchy(color)
+    end
+end
+
+function removePlayerDuchy(color)
+    despawnNumberTiles(color)
+    for _, item in ipairs(getObjectsWithAllTags({'playerboard', color})) do
+        item.setLock(false)
+        SetupBag.putObject(item)
+    end
+    for _, item in ipairs(getObjectsWithAllTags({'victory100', color})) do
+        item.setLock(false)
+        SetupBag.putObject(item)
+    end
+end
+
 function setPlayerBoardDuchyButtons()
     for _, color in ipairs(Colors) do
         local board = getObjectsWithAllTags({color, 'playerboard'})[1]
@@ -179,9 +204,7 @@ function setPlayerBoardDuchyButtons()
 end
 
 function removePlayerDuchies()
-    despawnNumberTiles()
-    for _, item in ipairs(getObjectsWithTag('playerboard')) do
-        item.setLock(false)
-        SetupBag.putObject(item)
+    for _, color in ipairs(Colors) do
+        removePlayerDuchy(color)
     end
 end

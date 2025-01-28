@@ -13,11 +13,11 @@ WorkshopId = '3281151120'
 --     If the number of a tile matches the number of the trade route space, you immediately gain the indicated bonus.
 --     (Once your trade route is full, place any sold tiles in your stack of sold goods.)
 
--- SOLO GAME
--- start with 1 silver, 2 workers, 3 goods, and castle.
-
 -- CHATEAUMA
+-- Remove unused player spots
+-- use 2 or 34p board as normal
 -- Keep 1 of each trade good type to the side
+-- will use unused color dice
 settings = {
     playercount = 1,
     playstyle = 'normal',

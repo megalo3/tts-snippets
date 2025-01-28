@@ -105,7 +105,11 @@ function setInitialPlayerOrder()
         settings.turnTrack[1] = {'Blue', 'Yellow', 'Purple', 'Red'}
         yellowPrint('Setting teams variant player order to Red -> Purple -> Yellow -> Blue')
     end
-    updatePlayerTurnOrder()
+    if settings.playstyle == 'beginnersolo' or settings.playstyle == 'advancedsolo' then
+        Turns.enable = false
+    else
+        updatePlayerTurnOrder()
+    end
 
 end
 
@@ -129,7 +133,7 @@ end
 
 function moveWhiteDie(color)
     local playerBoard = getObjectsWithAllTags({color, 'playerboard'})[1]
-    pos = getSnapPositionsWithAnyTagsPositionedToWorld(playerBoard, {'whitedie'})[1]
+    pos = getSnapPositionsWithAllTagsPositionedToWorld(playerBoard, {'whitedie', color})[1]
     getObjectsWithTag('whitedie')[1].setPositionSmooth(pos)
 end
 

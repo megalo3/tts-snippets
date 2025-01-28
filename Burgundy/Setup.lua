@@ -72,7 +72,7 @@ function giveStartingItems()
         local function spawnDie(position)
             spawnObject({
                 type = 'Die_6_Rounded',
-                position = position,
+                position = {position[1],position[2]+1,position[3]},
                 rotation = rotation,
                 callback_function = function(die)
                     die.setColorTint(ColorTint[color])
@@ -86,14 +86,18 @@ function giveStartingItems()
 
     if settings.playstyle == 'beginnersolo' then
         supplyBoard(getObjectFromGUID(Guids.Boards.beginnersolo), 2, {'Yellow'})
+        moveWhiteDie('Yellow')
     elseif settings.playstyle == 'advancedsolo' then
         supplyBoard(getObjectFromGUID(Guids.Boards.advancedsolo), 2, {'Yellow'})
+        moveWhiteDie('Yellow')
     elseif settings.playstyle == 'beginnerteamgame' then
         supplyBoard(getObjectFromGUID(Guids.Boards.teams31yr), 3, {'Yellow', 'Red'})
         supplyBoard(getObjectFromGUID(Guids.Boards.teams31pb), 5, {'Purple', 'Blue'})
+        moveWhiteDie('Yellow')
     elseif settings.playstyle == 'advancedteamgame' then
         supplyBoard(getObjectFromGUID(Guids.Boards.teams32yr), 3, {'Yellow', 'Red'})
         supplyBoard(getObjectFromGUID(Guids.Boards.teams32pb), 5, {'Purple', 'Blue'})
+        moveWhiteDie('Yellow')
     else
         local order = getPlayerTurnOrder()
         for index, color in ipairs(order) do

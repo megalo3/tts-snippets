@@ -47,6 +47,16 @@ function has_value(tab, val)
     return false
 end
 
+function has_all_values(tab, values)
+    local valueCount = 0
+    for _, value in ipairs(values) do
+        if has_value(tab, value) then
+            valueCount = valueCount + 1
+        end
+    end
+    return valueCount == #values
+end
+
 function has_any_value(tab, values)
     for _, value in ipairs(values) do
         if has_value(tab, value) then
@@ -99,6 +109,28 @@ function getSeatedPlayerColorsOrdered()
         end
     end
     return ordered
+end
+
+function getSnapPositionsWithAllTagsPositionedToWorld(obj, tags)
+    local snaps = getSnapPositionsWithAllTags(obj, tags)
+    local positions = {}
+    for _, snap in ipairs(snaps) do
+        table.insert(positions, obj.positionToWorld(snap))
+    end
+    return positions
+end
+
+function getSnapPositionsWithAllTags(obj, tags)
+    local snaps = obj.getSnapPoints()
+    local positions = {}
+    for _, snap in ipairs(snaps) do
+        if #snap.tags > 0 then
+            if has_all_values(snap.tags, tags) then
+                table.insert(positions, snap.position)
+            end
+        end
+    end
+    return positions
 end
 
 function getSnapPositionsWithAnyTagsPositionedToWorld(obj, tags)
