@@ -7,12 +7,6 @@ WorkshopId = '3281151120'
     -- The first and second players to connect all three border posts get to take and immediately score the corresponding border post bonus tile from the game board (the first player scores 5/6/7 victory points in a 2/3/4-player game, the second player scores 2/3/4 victory points).
     -- Note: Since border posts are on theplayer board and not on theduchy you may also use all other duchies to play with this expansion. Meaning you can connect the posts with duchy boards other than 23-30
 
---     Each player receives a number of randomly selected trade route tiles (4 players: 3 trade route tiles each; 3 players: 4 tiles each; 2 players: 5 tiles each). Each trade route tile has 3 spaces. Place your tiles in a random order below your player board to form a trade route.
---     Optional rules: If you want more diverse gameplay, you may place your trade route tiles in achosen order.
---     Whenever you sell a stack of goods, instead of placing them in your stack of sold goods, place them one by one from left to right on the spaces of your trade route.
---     If the number of a tile matches the number of the trade route space, you immediately gain the indicated bonus.
---     (Once your trade route is full, place any sold tiles in your stack of sold goods.)
-
 settings = {
     playercount = 1,
     playstyle = 'normal',

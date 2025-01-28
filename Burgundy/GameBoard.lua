@@ -229,6 +229,10 @@ function removePlayerDuchy(color)
         item.setLock(false)
         SetupBag.putObject(item)
     end
+    for _, item in ipairs(getObjectsWithAllTags({'vineyard', color})) do
+        item.setLock(false)
+        SetupBag.putObject(item)
+    end
 end
 
 function setPlayerBoardDuchyButtons()
