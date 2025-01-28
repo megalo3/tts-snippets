@@ -13,11 +13,6 @@ WorkshopId = '3281151120'
 --     If the number of a tile matches the number of the trade route space, you immediately gain the indicated bonus.
 --     (Once your trade route is full, place any sold tiles in your stack of sold goods.)
 
--- CHATEAUMA
--- Remove unused player spots
--- use 2 or 34p board as normal
--- Keep 1 of each trade good type to the side
--- will use unused color dice
 settings = {
     playercount = 1,
     playstyle = 'normal',
@@ -28,6 +23,7 @@ settings = {
         c = false,
         d = false,
     },
+    aiPlayerColor = '',
     randomboard = true,
     boards = {
         b0110 = true,
@@ -82,14 +78,18 @@ Guids = {
         teams31yr = 'c8e5f5',
         teams32pb = 'edc374',
         teams32yr = '158d3a',
-        chateauma35 = '8b4626',
-        chateauma36 = '977deb',
+        aiboard35 = '8b4626',
+        aiboard36 = '977deb',
         vineyarddepot = 'b4e585',
         vineyard23p = '9806c3',
         vineyard4p = '56368e',
         traderoute4 = 'd3eb55',
         traderoute3 = 'ef6fcf',
         traderoute2 = 'fc3766',
+    },
+    Decks = {
+        aibasic = 'd7db3d',
+        aivineyard = '3b9757'
     },
     AllHexesToken = '6cb7b0',
     Bags = {
@@ -110,7 +110,8 @@ Guids = {
     },
     Zones = {
         gameboard = '82f251',
-        vineyard = '58f596'
+        vineyard = '58f596',
+        aideck = '71e23f'
     },
     Hands = {
         Red = '727836',
@@ -164,7 +165,8 @@ Guids = {
         phase = '21f255',
         boardrule = '923383'
     },
-    PlayerDie = '8fe639'
+    PlayerDie = '8fe639',
+    AiCheatSheet = '3e20e0'
 }
 
 Positions = {
@@ -191,22 +193,23 @@ Positions = {
         1.57,
         1.93,
         2.30,
+    },
+    PlayerBoards = {
+        Red = {-30.00, 0.97, -14.00},
+        Blue = {30.00, 0.97, -14.00},
+        Purple = {-30.00, 0.97, 17.44},
+        Yellow = {30.00, 0.97, 17.44}
+    },
+    PlayerVine = {
+        Red = {-49.08, 1.5, -6.61},
+        Yellow = {42.85, 1.5, 25},
+        Purple = {-49.08, 1.5, 25},
+        Blue = {42.85, 1.5, -6.61}
     }
 }
 
-PlayerBoards = {
-    Red = {-30.00, 0.97, -14.00},
-    Blue = {30.00, 0.97, -14.00},
-    Purple = {-30.00, 0.97, 14.00},
-    Yellow = {30.00, 0.97, 14.00}
-}
 Vines = {'Orange', 'Yellow', 'Green', 'Red', 'Black', 'Blue'}
-PlayerVinePos = {
-    Red = {-49.08, 1.5, -6.61},
-    Yellow = {42.85, 1.5, 25},
-    Purple = {-49.08, 1.5, 25},
-    Blue = {42.85, 1.5, -6.61}
-}
+
 
 Descriptions = {}
 Descriptions['Market'] = 'Take a livestock or ship tile.'

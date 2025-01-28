@@ -154,3 +154,20 @@ function getSnapPositionsWithAnyTags(obj, tags)
     end
     return positions
 end
+
+function objectHasTag(objInfo, tag)
+    for _, t in ipairs(objInfo.tags) do
+        if t == tag then
+            return true
+        end
+    end
+    return false
+end
+
+function getObjectGuidWithTag(container, tag)
+    for _, obj in ipairs(container.getObjects()) do
+        if objectHasTag(obj, tag) then
+            return obj.guid
+        end
+    end
+end

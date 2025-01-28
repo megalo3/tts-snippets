@@ -31,7 +31,7 @@ function setVineyards()
 
     for index, color in ipairs(getSeatedPlayers()) do
         local token = getObjectsWithAllTags({vines[index], 'vinebonus'})[1]
-        token.setPositionSmooth(PlayerVinePos[color])
+        token.setPositionSmooth(Positions.PlayerVine[color])
     end
 
     Wait.time(function() resupplyVineyards() end, 2)

@@ -59,6 +59,9 @@ function setPlayerBoards()
     if settings.playstyle == 'normal' or settings.playstyle == 'ai' then
         setPlayerDuchyNumber()
         removeUnusedPlayerBoards()
+        if settings.playstyle == 'ai' then
+            setAiPlayerBoard()
+        end
     else
         removePlayerDuchies()
     end
@@ -181,6 +184,23 @@ function removeUnusedPlayerBoards()
     for _, color in ipairs(getNonSeatedPlayerColors()) do
         removePlayerDuchy(color)
     end
+end
+
+function setAiPlayerBoard()
+    local nonSeated = getNonSeatedPlayerColors()
+    if #nonSeated < 1 then return end
+    settings.aiPlayerColor = nonSeated[1]
+    local guid = Guids.Boards.aiboard35
+    if settings.aimodes.a == true or settings.aimodes.b == true or settings.aimodes.d == true then
+        guid = Guids.Boards.aiboard36
+    end
+    local aiBoard = SetupBag.takeObject({
+        guid = guid,
+        position = Positions.PlayerBoards[settings.aiPlayerColor],
+        rotation = {0,180,0},
+        smooth = false
+    })
+    aiBoard.setLock(true)
 end
 
 function removePlayerDuchy(color)
