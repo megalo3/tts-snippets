@@ -66,10 +66,6 @@ function spawnNumberTiles(obj)
 
     startX = x - 6.2
     startY = y + 4.5
-    if isReverse(color) then
-        startY = y - 4.5
-        startX = x + 6.2
-    end
     hStep = 1.76
     vStep = 1.53
 
@@ -83,26 +79,19 @@ function spawnNumberTiles(obj)
 
             local x = startX + (hStep * (a-1+xSkipStep[b])) + (((b+1)%2) * hStep/2)
             local y = startY - vStep * (b-1)
-            if isReverse(color) then
-                x = startX - (hStep * (a-1+xSkipStep[b])) - (((b+1)%2) * hStep/2)
-                y = startY + vStep * (b-1)
-            end
+
             local tokenTypeColor = map[b][a]
             local tokenTypeNumber = MapNumbers[b][a]
             local tokenType = tokenTypeColor .. tokenTypeNumber
 
             local cloned = sampleToken.clone({position = {x,0,y}})
 
-            if isReverse(color) then
-                cloned.setRotation({0.00, 330.00, 0.00})
-            else
-                cloned.setRotation({0.00, 150.00, 0.00})
-            end
+            cloned.setRotation({0.00, 150.00, 0.00})
 
             if MapStates[tokenType] ~= 1 then
                 cloned = cloned.setState(MapStates[tokenType])
             end
-            cloned.setLock(true)
+            cloned.setLock(false)
             cloned.addTag('Map')
 
             cloned.addTag('map-slot-' .. b .. a)
@@ -144,19 +133,9 @@ end
 function setBoardPosition(x, y, color)
     local board = getObjectsWithAllTags({color, 'playerboard'})[1]
 
-    if isReverse(color) then
-        board.setPosition({x, 0.97, y-6.8})
-        board.setRotation({0,0,0})
-    else
-        board.setRotation({0,180,0})
-        board.setPosition({x, 0.97, y+6.8})
-    end
+    board.setRotation({0,180,0})
+    board.setPosition({x, 0.97, y+6.8})
     board.setLock(true)
-end
-
-function isReverse(color)
-    -- return color == 'Purple' or color == 'Yellow'
-    return false
 end
 
 function setColor(obj, color)

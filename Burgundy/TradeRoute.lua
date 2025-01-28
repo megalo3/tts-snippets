@@ -13,9 +13,6 @@ function setTradeRoutes()
             cloned.addTag('traderouteboard')
             cloned.setLock(true)
             local rotationY = 180
-            if isReverse(color) then
-                rotationY = 0
-            end
             local snaps = cloned.getSnapPoints()
             for _, snap in ipairs(snaps) do
                 local pos = cloned.positionToWorld(snap.position)

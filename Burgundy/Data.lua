@@ -13,9 +13,6 @@ WorkshopId = '3281151120'
 --     If the number of a tile matches the number of the trade route space, you immediately gain the indicated bonus.
 --     (Once your trade route is full, place any sold tiles in your stack of sold goods.)
 
--- TEAM GAME
--- Each TEAM receives - a castle on central space. Team chooses if you advanced side, 3 random trade goods, 3 workers for team 1 and 5 for team 2. Two silver coins per team.
-
 -- SOLO GAME
 -- start with 1 silver, 2 workers, 3 goods, and castle.
 

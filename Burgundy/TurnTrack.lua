@@ -127,6 +127,12 @@ function updatePlayerTurnOrder()
     Turns.turn_color = turns[1]
 end
 
+function moveWhiteDie(color)
+    local playerBoard = getObjectsWithAllTags({color, 'playerboard'})[1]
+    pos = getSnapPositionsWithAnyTagsPositionedToWorld(playerBoard, {'whitedie'})[1]
+    getObjectsWithTag('whitedie')[1].setPositionSmooth(pos)
+end
+
 function startNewRound()
     updatePlayerTurnOrder()
     moveWhiteDie(Turns.order[1])

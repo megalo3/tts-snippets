@@ -73,7 +73,6 @@ function setPlayerBoards()
     if settings.playstyle == 'beginnerteamgame' then
         local board = SetupBag.takeObject({guid = Guids.Boards.teams31pb, position = {34.5, 0.97, 0}})
         board.setRotation({0,180,0})
-        board.setLock(true)
         board = SetupBag.takeObject({guid = Guids.Boards.teams31yr, position = {-34.5, 0.97, 0}})
         board.setRotation({0,180,0})
         board.setLock(true)
@@ -81,12 +80,11 @@ function setPlayerBoards()
     if settings.playstyle == 'advancedteamgame' then
         local board = SetupBag.takeObject({guid = Guids.Boards.teams32pb, position = {34.5, 0.97, 0}})
         board.setRotation({0,180,0})
-        board.setLock(true)
         board = SetupBag.takeObject({guid = Guids.Boards.teams32yr, position = {-34.5, 0.97, 0}})
         board.setRotation({0,180,0})
         board.setLock(true)
     end
-    if settings.playstyle == 'beginnerteamgame' or settings.playstyle == 'advancedteamgame' then
+    if settings.playstyle == 'beginnerteamgame' or settings.playstyle == 'advancedteamgame' or settings.playstyle == 'beginnersolo' or settings.playstyle == 'advancedsolo' then
         local hand = getObjectFromGUID(Guids.Hands.Red)
         hand.setPosition({-26.5,3.35, -36})
         hand.setRotation({0,0,0})

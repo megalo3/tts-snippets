@@ -32,9 +32,6 @@ function setVineyards()
     for index, color in ipairs(getSeatedPlayers()) do
         local token = getObjectsWithAllTags({vines[index], 'vinebonus'})[1]
         token.setPositionSmooth(PlayerVinePos[color])
-        -- if isReverse(color) then
-        --     token.setRotationSmooth({0,0,0})
-        -- end
     end
 
     Wait.time(function() resupplyVineyards() end, 2)
