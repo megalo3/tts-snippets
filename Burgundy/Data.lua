@@ -12,6 +12,15 @@ WorkshopId = '3281151120'
 --     Whenever you sell a stack of goods, instead of placing them in your stack of sold goods, place them one by one from left to right on the spaces of your trade route.
 --     If the number of a tile matches the number of the trade route space, you immediately gain the indicated bonus.
 --     (Once your trade route is full, place any sold tiles in your stack of sold goods.)
+
+-- TEAM GAME
+-- Each TEAM receives - a castle on central space. Team chooses if you advanced side, 3 random trade goods, 3 workers for team 1 and 5 for team 2. Two silver coins per team.
+
+-- SOLO GAME
+-- start with 1 silver, 2 workers, 3 goods, and castle.
+
+-- CHATEAUMA
+-- Keep 1 of each trade good type to the side
 settings = {
     playercount = 1,
     playstyle = 'normal',
@@ -99,7 +108,8 @@ Guids = {
         vineyard = '6394c8',
         shield = 'bf2a10',
         setup = 'f8f2fb',
-        worker = '240f8b'
+        worker = '240f8b',
+        coin = 'c94dda'
     },
     Zones = {
         gameboard = '82f251',
@@ -156,7 +166,8 @@ Guids = {
     Text = {
         phase = '21f255',
         boardrule = '923383'
-    }
+    },
+    PlayerDie = '8fe639'
 }
 
 Positions = {
@@ -219,6 +230,18 @@ Descriptions['Inn'] = 'Place on any area. Increase the size of this area by 1.'
 Descriptions['Geese'] = 'Treat geese as any livestock.'
 
 Colors = {'Yellow','Purple','Red','Blue'}
+ColorTint = {
+    Red = {0.96, 0.5, 0.35},
+    Yellow = {0.8, 0.71, 0.16},
+    Purple = {0.57, 0.47, 0.73},
+    Blue = {0.38, 0.58, 0.87}
+}
+-- ColorTint = {
+--     Red = 'F57F59',
+--     Yellow = 'CBB529',
+--     Purple = '9178BA',
+--     Blue = '6095DE'
+-- }
 Phases = {'A', 'B', 'C', 'D', 'E'}
 
 MapStates = {

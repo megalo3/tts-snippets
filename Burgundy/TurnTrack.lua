@@ -1,4 +1,4 @@
-TurnPositionKeys = {'advance1','advance2','advance3','advance4','advance5','advance6','advance7'}
+TurnPositionKeys = {'advance'}
 
 -- num,color,selfref
 function moveTurnTrack(input)
@@ -6,8 +6,7 @@ function moveTurnTrack(input)
     local originalNum = removeColor(input.color)
     table.insert(settings.turnTrack[input.num], input.color)
 
-    local gameBoard = getGameBoard()
-    local turnPos = getSnapPositionsWithAnyTagsPositionedToWorld(gameBoard, TurnPositionKeys)
+    local turnPos = getAdvancementButtonLocs()
     local pos = turnPos[input.num]
 
     local token = getObjectsWithAllTags({input.color, 'turnordertoken'})[1]
@@ -19,6 +18,8 @@ end
 function setAdvanceButtons()
     local gameBoard = getGameBoard()
     local positions = getSnapPositionsWithAnyTags(gameBoard, TurnPositionKeys)
+    local function sortingFunction(pos1, pos2) return pos1[3] > pos2[3] end
+    table.sort(positions, sortingFunction)
     for index, pos in ipairs(positions) do
         gameBoard.createButton({
             click_function = "moveTrack" ..  index,
@@ -58,13 +59,18 @@ function removeColor(color)
     return returnIndex
 end
 
-function resetHeights(spot)
+function getAdvancementButtonLocs()
     local gameBoard = getGameBoard()
     local turnPos = getSnapPositionsWithAnyTagsPositionedToWorld(gameBoard, TurnPositionKeys)
+    local function sortingFunction(pos1, pos2) return pos1[3] < pos2[3] end
+    table.sort(turnPos, sortingFunction)  local gameBoard = getGameBoard()
+    return turnPos
+end
 
+function resetHeights(spot)
+    local turnPos = getAdvancementButtonLocs()
     for index, color in ipairs(settings.turnTrack[spot]) do
         local token = getObjectsWithAllTags({color, 'turnordertoken'})[1]
-        -- local pos = token.getPosition()
         local pos = turnPos[spot]
         token.setPositionSmooth({pos[1],Positions.TurnOrderY[index],pos[3]})
     end
@@ -75,26 +81,32 @@ function removeUnusedTurnOrderTokens()
         local token = getObjectsWithAllTags({color, 'turnordertoken'})[1]
         SetupBag.putObject(token)
     end
-    settings.turnTrack[1] = shuffleArray(getSeatedPlayerColors())
+    settings.turnTrack[1] = getSeatedPlayerColors()
 end
 
 function setInitialPlayerOrder()
-    local colors = getSeatedPlayerColorsOrdered()
-    local playerCount = #colors
-    local start = rand(playerCount)
-    local newOrder = {}
+     if settings.playstyle == 'normal' or settings.playstyle == 'ai' then
+        local colors = getSeatedPlayerColorsOrdered()
+        local playerCount = #colors
+        local start = rand(playerCount)
+        local newOrder = {}
 
-    for index = start, start + playerCount - 1 do
-        local num = index;
-        if index > playerCount then
-            num = index%playerCount
+        for index = start, start + playerCount - 1 do
+            local num = index;
+            if index > playerCount then
+                num = index%playerCount
+            end
+            table.insert(newOrder, colors[num])
         end
-        table.insert(newOrder, colors[num])
-    end
 
-    settings.turnTrack[1] = newOrder
+        settings.turnTrack[1] = newOrder
+        yellowPrint('Randomly selecting starting player...  ' .. newOrder[playerCount] .. '!')
+    elseif settings.playstyle == 'beginnerteamgame' or settings.playstyle == 'advancedteamgame' then
+        settings.turnTrack[1] = {'Blue', 'Yellow', 'Purple', 'Red'}
+        yellowPrint('Setting teams variant player order to Red -> Purple -> Yellow -> Blue')
+    end
     updatePlayerTurnOrder()
-    yellowPrint('Randomly selecting starting player...  ' .. newOrder[playerCount] .. '!')
+
 end
 
 function getPlayerTurnOrder()
@@ -110,8 +122,6 @@ function getPlayerTurnOrder()
 end
 
 function updatePlayerTurnOrder()
-    -- removePlayerBoardHexes()
-    -- setPlayerBoardInitialHexes()
     local turns = getPlayerTurnOrder()
     Turns.order = turns
     Turns.turn_color = turns[1]
