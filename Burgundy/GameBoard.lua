@@ -61,6 +61,9 @@ function setPlayerBoards()
         removeUnusedPlayerBoards()
         if settings.playstyle == 'ai' then
             setAiPlayerBoard()
+            -- Players random first player. The Châteauma is always the last player.
+            -- Add AI player token back to order track
+            settings.turnTrack[1] = tableConcat({settings.aiPlayerColor},settings.turnTrack[1])
         end
     else
         removePlayerDuchies()

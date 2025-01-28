@@ -88,8 +88,8 @@ Guids = {
         traderoute2 = 'fc3766',
     },
     Decks = {
-        aibasic = 'd7db3d',
-        aivineyard = '3b9757'
+        aibasic = 'a36dac',
+        aivineyard = '4c280f'
     },
     AllHexesToken = '6cb7b0',
     Bags = {
@@ -235,6 +235,18 @@ ColorTint = {
     Yellow = {0.8, 0.71, 0.16},
     Purple = {0.57, 0.47, 0.73},
     Blue = {0.38, 0.58, 0.87}
+}
+ColorTintAlpha = {
+    Red = {0.96, 0.5, 0.35, 0.85},
+    Yellow = {0.8, 0.71, 0.16, 0.85},
+    Purple = {0.57, 0.47, 0.73, 0.85},
+    Blue = {0.38, 0.58, 0.87, 0.85}
+}
+ColorTintAlphaHover = {
+    Red = {0.96, 0.5, 0.35, 1},
+    Yellow = {0.8, 0.71, 0.16, 1},
+    Purple = {0.57, 0.47, 0.73, 1},
+    Blue = {0.38, 0.58, 0.87, 1}
 }
 -- ColorTint = {
 --     Red = 'F57F59',

@@ -1,49 +1,53 @@
-TurnPositionKeys = {'advance'}
-
--- num,color,selfref
-function moveTurnTrack(input)
+function moveTurnTrack(position, color)
     if settings.setupComplete == false then return end
-    local originalNum = removeColor(input.color)
-    table.insert(settings.turnTrack[input.num], input.color)
+    local originalNum = removeColor(color)
+    table.insert(settings.turnTrack[position], color)
 
     local turnPos = getAdvancementButtonLocs()
-    local pos = turnPos[input.num]
+    local pos = turnPos[position]
 
-    local token = getObjectsWithAllTags({input.color, 'turnordertoken'})[1]
-    token.setPositionSmooth({pos[1], 3, pos[3]})
-    Wait.time(function() resetHeights(input.num) end, 1)
-    Wait.time(function() resetHeights(originalNum) end, 1)
+    local token = getObjectsWithAllTags({color, 'turnordertoken'})[1]
+    if token ~= nil then
+        token.setPositionSmooth({pos[1], 3, pos[3]})
+        Wait.time(function() resetHeights(position) end, 1)
+        if position ~= originalNum then
+            Wait.time(function() resetHeights(originalNum) end, 1)
+        end
+    end
 end
 
 function setAdvanceButtons()
     local gameBoard = getGameBoard()
-    local positions = getSnapPositionsWithAnyTags(gameBoard, TurnPositionKeys)
+    local positions = getSnapPositionsWithAnyTags(gameBoard, {'advance'})
     local function sortingFunction(pos1, pos2) return pos1[3] > pos2[3] end
     table.sort(positions, sortingFunction)
-    for index, pos in ipairs(positions) do
-        gameBoard.createButton({
-            click_function = "moveTrack" ..  index,
-            function_owner = Global,
-            position       = {pos[1]*-1,pos[2],pos[3]},
-            rotation       = {0, 0, 0},
-            width          = 125,
-            height         = 125,
-            color          = {1, 1, 1, 0.5},
-            hover_color    = {1, 1, 1, 0.5},
-            font_color     = {1, 1, 1},
-            tooltip        = 'Advance'
-        })
+
+    for colorIndex, color in ipairs(settings.turnTrack[1]) do
+        for positionIndex, p in ipairs(positions) do
+            local x = p[1]*-1+0.12+(colorIndex%2*0.08)
+            if positionIndex > 5 then
+                x = x - 0.32
+            end
+            local z = p[3]+0.12-(colorIndex*0.04)-(colorIndex%2*0.04)
+            gameBoard.createButton({
+                click_function = "moveTrack" .. color ..  positionIndex,
+                function_owner = Global,
+                position       = {x, p[2], z},
+                rotation       = {0, 0, 0},
+                width          = 40,
+                height         = 40,
+                color          = ColorTintAlpha[color],
+                hover_color    = ColorTintAlphaHover[color],
+                tooltip        = 'Advance ' .. color .. ' to ' .. positionIndex,
+            })
+        end
     end
 end
-function moveTrack1(a,b,c) moveTrack(1,a,b,c,self) end
-function moveTrack2(a,b,c) moveTrack(2,a,b,c,self) end
-function moveTrack3(a,b,c) moveTrack(3,a,b,c,self) end
-function moveTrack4(a,b,c) moveTrack(4,a,b,c,self) end
-function moveTrack5(a,b,c) moveTrack(5,a,b,c,self) end
-function moveTrack6(a,b,c) moveTrack(6,a,b,c,self) end
-function moveTrack7(a,b,c) moveTrack(7,a,b,c,self) end
-function moveTrack(num,object,color,altclick,obj)
-    moveTurnTrack({num = num,color = color,selfref = self})
+
+for _, color in ipairs(Colors) do
+    for position = 1, 7 do
+        _G['moveTrack' .. color .. position] = function() moveTurnTrack(position, color) end
+    end
 end
 
 function removeColor(color)
@@ -61,7 +65,7 @@ end
 
 function getAdvancementButtonLocs()
     local gameBoard = getGameBoard()
-    local turnPos = getSnapPositionsWithAnyTagsPositionedToWorld(gameBoard, TurnPositionKeys)
+    local turnPos = getSnapPositionsWithAnyTagsPositionedToWorld(gameBoard, {'advance'})
     local function sortingFunction(pos1, pos2) return pos1[3] < pos2[3] end
     table.sort(turnPos, sortingFunction)  local gameBoard = getGameBoard()
     return turnPos
@@ -71,15 +75,22 @@ function resetHeights(spot)
     local turnPos = getAdvancementButtonLocs()
     for index, color in ipairs(settings.turnTrack[spot]) do
         local token = getObjectsWithAllTags({color, 'turnordertoken'})[1]
-        local pos = turnPos[spot]
-        token.setPositionSmooth({pos[1],Positions.TurnOrderY[index],pos[3]})
+        if token ~= nil then
+            local pos = turnPos[spot]
+            token.setPositionSmooth({pos[1],Positions.TurnOrderY[index],pos[3]})
+        end
     end
 end
 
 function removeUnusedTurnOrderTokens()
-    for _, color in ipairs(getNonSeatedPlayerColors()) do
-        local token = getObjectsWithAllTags({color, 'turnordertoken'})[1]
-        SetupBag.putObject(token)
+    for index, color in ipairs(getNonSeatedPlayerColors()) do
+        if settings.playstyle == 'ai' and index == 1 then
+        else
+            local token = getObjectsWithAllTags({color, 'turnordertoken'})[1]
+            SetupBag.putObject(token)
+            token = getObjectsWithAllTags({color, 'victorytoken'})[1]
+            SetupBag.putObject(token)
+        end
     end
     settings.turnTrack[1] = getSeatedPlayerColors()
 end

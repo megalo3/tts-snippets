@@ -25,7 +25,7 @@ function setup()
 end
 
 function giveStartingItems()
-    function supplyWorker(playerBoard, workerAmount)
+    local function supplyWorker(playerBoard, workerAmount)
         local workerPos = getSnapPositionsWithAnyTagsPositionedToWorld(playerBoard, {'worker'})[1]
         local rotation = {0,180,0}
         for i = 1, workerAmount do
@@ -33,7 +33,7 @@ function giveStartingItems()
         end
     end
 
-    function supplyAiTradeGoods(playerBoard)
+    local function supplyAiTradeGoods(playerBoard)
         -- Get 1 of each type of good and place on each trade good spot
         local tradeGoodBag = getObjectsWithTag('tradegoodbag')[1]
         for _, key in ipairs({'tradegood1','tradegood2','tradegood3','tradegood4','tradegood5','tradegood6'}) do
@@ -44,7 +44,7 @@ function giveStartingItems()
         end
     end
 
-    function supplyTradeGoods(playerBoard)
+    local function supplyTradeGoods(playerBoard)
         local tradeGoodBag = getObjectsWithTag('tradegoodbag')[1]
         local rotation = {0,150,0}
         if settings.playstyle == 'beginnerteamgame' or settings.playstyle == 'advancedteamgame' or settings.playstyle == 'beginnersolo' or settings.playstyle == 'advancedsolo' then rotation = {0,0,0} end
@@ -53,7 +53,7 @@ function giveStartingItems()
         end
     end
 
-    function supplyCastle(playerBoard)
+    local function supplyCastle(playerBoard)
         local castleBag = getObjectFromGUID(Guids.Bags.castle)
         local storagePos
         if settings.playstyle == 'beginnerteamgame' then
@@ -64,7 +64,7 @@ function giveStartingItems()
         castleBag.takeObject({position = storagePos, rotation = {0,180,0}})
     end
 
-    function supplyCoin(playerBoard)
+    local function supplyCoin(playerBoard)
         local coinBag = getObjectFromGUID(Guids.Bags.coin)
         local storagePos = getSnapPositionsWithAnyTagsPositionedToWorld(playerBoard, {'coin'})[1]
         coinBag.takeObject({position = storagePos, rotation = {0,180,0}})
@@ -73,7 +73,7 @@ function giveStartingItems()
         end
     end
 
-    function supplyDice(playerBoard, color, amount)
+    local function supplyDice(playerBoard, color, amount)
         local playerDicePos = getSnapPositionsWithAnyTagsPositionedToWorld(playerBoard, {color})
         local function sortingFunction(pos1, pos2) return pos1[3] > pos2[3] end
         table.sort(playerDicePos, sortingFunction)
@@ -96,7 +96,7 @@ function giveStartingItems()
         end
     end
 
-    if settings.playstyle == 'ai' then
+    local function supplyAiBoard()
         getObjectFromGUID(Guids.Hands[settings.aiPlayerColor]).setPosition({0.00, -15.00, 0.00})
 
         local aiBoard = getObjectFromGUID(Guids.Boards.aiboard35)
@@ -112,17 +112,42 @@ function giveStartingItems()
         if settings.components.vineyards == true then
             aiDeckGuid = Guids.Decks.aivineyard
         end
+
         local aiDeck = SetupBag.takeObject({guid = aiDeckGuid, position = aiDeckPosition, rotation = {0,180,180}})
         aiDeck.shuffle()
-        -- CHATEAUMA
-        -- Reveal one card at a time until you draw one with a castle (burgundy) space on it. Place that card face up beneath
-        -- the 1-4 slot.
-
+        local castleCardGuid = getObjectGuidWithTag(aiDeck, 'castle')
+        Wait.time(function()
+            aiDeck.takeObject({
+                guid = castleCardGuid,
+                position = {aiDeckPosition[1]+7.15, 1.1, aiDeckPosition[3]},
+                flip = true,
+                callback_function = function(spawnedObject)
+                    local castlePos = getSnapPositionsWithAnyTagsPositionedToWorld(spawnedObject, {'castle'})[1]
+                    local castleBag = getObjectFromGUID(Guids.Bags.castle)
+                    castleBag.takeObject({position = castlePos, rotation = {0,180,0}})
+                end
+            })
+        end, 2)
+        Wait.time(function()
+            aiDeck.takeObject({position = {aiDeckPosition[1]+12.86, 1.1, aiDeckPosition[3]}, flip = true})
+        end, 2.4)
 
         SetupBag.takeObject({guid = Guids.AiCheatSheet, position = {p[1], 1.1, p[3]+13.5}, rotation = {0,180,0}})
-
     end
 
+    local function supplyBoard(playerBoard, workerAmount, colors)
+        supplyWorker(playerBoard, workerAmount)
+        supplyTradeGoods(playerBoard)
+        supplyCastle(playerBoard)
+        supplyCoin(playerBoard)
+        for _, color in ipairs(colors) do
+            supplyDice(playerBoard, color, 2)
+        end
+    end
+
+    if settings.playstyle == 'ai' then
+        supplyAiBoard()
+    end
     if settings.playstyle == 'beginnersolo' then
         supplyBoard(getObjectFromGUID(Guids.Boards.beginnersolo), 2, {'Yellow'})
         moveWhiteDie('Yellow')
@@ -140,26 +165,18 @@ function giveStartingItems()
     else
         local order = getPlayerTurnOrder()
         for index, color in ipairs(order) do
-            local playerBoard = getObjectsWithAllTags({color, 'playerboard'})[1]
-            supplyBoard(playerBoard, index, {color})
+            if settings.aiPlayerColor ~= color then
+                local playerBoard = getObjectsWithAllTags({color, 'playerboard'})[1]
+                supplyBoard(playerBoard, index, {color})
 
-            if index == 1 then
-                -- Give first player the white die
-                yellowPrint('Giving the ' .. color .. ' player the white die, 3 trade goods, 1 castle, and 1 worker.')
-                moveWhiteDie(color)
-            else
-                yellowPrint('Giving the ' .. color .. ' player 3 trade goods, 1 castle, and ' .. index .. ' workers.')
+                if index == 1 then
+                    -- Give first player the white die
+                    yellowPrint('Giving the ' .. color .. ' player the white die, 3 trade goods, 1 castle, and 1 worker.')
+                    moveWhiteDie(color)
+                else
+                    yellowPrint('Giving the ' .. color .. ' player 3 trade goods, 1 castle, and ' .. index .. ' workers.')
+                end
             end
         end
-    end
-end
-
-function supplyBoard(playerBoard, workerAmount, colors)
-    supplyWorker(playerBoard, workerAmount)
-    supplyTradeGoods(playerBoard)
-    supplyCastle(playerBoard)
-    supplyCoin(playerBoard)
-    for _, color in ipairs(colors) do
-        supplyDice(playerBoard, color, 2)
     end
 end
