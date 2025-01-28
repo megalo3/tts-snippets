@@ -211,5 +211,6 @@ function giveStartingItems()
                 end
             end
         end
+        yellowPrint('All players may place their starting castle in their duchy.')
     end
 end
