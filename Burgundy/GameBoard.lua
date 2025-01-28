@@ -25,6 +25,11 @@ function switchGameBoard()
 end
 
 function setShields()
+    -- Remove Shield #2 if playing AI
+    if settings.playstyle == 'ai' then
+        local shield2 = ShieldBag.takeObject({guid = Guids.Shield2})
+        SetupBag.putObject(shield2)
+    end
     if settings.components.shields == true then
         local tgplacements = {'tgplace11','tgplace21','tgplace31','tgplace41','tgplace51','tgplace61'}
         if settings.playercount == 3 or settings.playercount == 4 then
@@ -63,7 +68,11 @@ function setPlayerBoards()
             setAiPlayerBoard()
             -- Players random first player. The Châteauma is always the last player.
             -- Add AI player token back to order track
-            settings.turnTrack[1] = tableConcat({settings.aiPlayerColor},settings.turnTrack[1])
+            if settings.aimodes.c == true then
+                settings.turnTrack[1] = tableConcat(settings.turnTrack[1],{settings.aiPlayerColor})
+            else
+                settings.turnTrack[1] = tableConcat({settings.aiPlayerColor},settings.turnTrack[1])
+            end
         end
     else
         removePlayerDuchies()
@@ -189,16 +198,20 @@ function removeUnusedPlayerBoards()
     end
 end
 
-function setAiPlayerBoard()
-    local nonSeated = getNonSeatedPlayerColors()
-    if #nonSeated < 1 then return end
-    settings.aiPlayerColor = nonSeated[1]
+function getAiBoardGuid()
     local guid = Guids.Boards.aiboard35
     if settings.aimodes.a == true or settings.aimodes.b == true or settings.aimodes.d == true then
         guid = Guids.Boards.aiboard36
     end
+    return guid
+end
+
+function setAiPlayerBoard()
+    local nonSeated = getNonSeatedPlayerColors()
+    if #nonSeated < 1 then return end
+    settings.aiPlayerColor = nonSeated[1]
     local aiBoard = SetupBag.takeObject({
-        guid = guid,
+        guid = getAiBoardGuid(),
         position = Positions.PlayerBoards[settings.aiPlayerColor],
         rotation = {0,180,0},
         smooth = false

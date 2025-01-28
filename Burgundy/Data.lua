@@ -166,7 +166,8 @@ Guids = {
         boardrule = '923383'
     },
     PlayerDie = '8fe639',
-    AiCheatSheet = '3e20e0'
+    AiCheatSheet = '3e20e0',
+    Shield2 = '6b83d8'
 }
 
 Positions = {

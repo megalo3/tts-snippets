@@ -96,15 +96,7 @@ function giveStartingItems()
         end
     end
 
-    local function supplyAiBoard()
-        getObjectFromGUID(Guids.Hands[settings.aiPlayerColor]).setPosition({0.00, -15.00, 0.00})
-
-        local aiBoard = getObjectFromGUID(Guids.Boards.aiboard35)
-        supplyAiTradeGoods(aiBoard)
-        supplyCastle(aiBoard)
-        supplyCoin(aiBoard)
-        supplyDice(aiBoard, settings.aiPlayerColor, 1)
-        local p = aiBoard.getPosition()
+    local function supplyAiDeck(p)
         local aiDeckPosition = {p[1]-12.6, 1.1, p[3]-10.8}
         local aiDeckZone = getObjectFromGUID(Guids.Zones.aideck)
         aiDeckZone.setPosition(aiDeckPosition)
@@ -131,6 +123,44 @@ function giveStartingItems()
         Wait.time(function()
             aiDeck.takeObject({position = {aiDeckPosition[1]+12.86, 1.1, aiDeckPosition[3]}, flip = true})
         end, 2.4)
+    end
+
+    local function supplyAiBoard()
+        getObjectFromGUID(Guids.Hands[settings.aiPlayerColor]).setPosition({0.00, -15.00, 0.00})
+
+        local aiBoard = getObjectFromGUID(getAiBoardGuid())
+        supplyAiTradeGoods(aiBoard)
+        supplyCastle(aiBoard)
+        supplyCoin(aiBoard)
+        supplyDice(aiBoard, settings.aiPlayerColor, 1)
+        local p = aiBoard.getPosition()
+        supplyAiDeck(p)
+
+        if settings.aimodes.a == true then
+            local modeAPositions = getSnapPositionsWithAnyTagsPositionedToWorld(aiBoard, {'modea'})
+            local blackBag = getObjectFromGUID(Guids.Bags.blackmarket)
+            for _, modeAPos in ipairs(modeAPositions) do
+                blackBag.takeObject({
+                    position = modeAPos,
+                    rotation = {0,180,180}
+                })
+            end
+        end
+
+        if settings.aimodes.b == true then
+            getObjectFromGUID(Guids.Bags.mine).takeObject({
+                position = getSnapPositionsWithAnyTagsPositionedToWorld(aiBoard, {'mine'})[1],
+                rotation = {0,180,0}
+            })
+            getObjectFromGUID(Guids.Bags.castle).takeObject({
+                position = getSnapPositionsWithAnyTagsPositionedToWorld(aiBoard, {'castle'})[1],
+                rotation = {0,180,0}
+            })
+            getObjectFromGUID(Guids.Bags.building).takeObject({
+                position = getSnapPositionsWithAnyTagsPositionedToWorld(aiBoard, {'building'})[1],
+                rotation = {0,180,0}
+            })
+        end
 
         SetupBag.takeObject({guid = Guids.AiCheatSheet, position = {p[1], 1.1, p[3]+13.5}, rotation = {0,180,0}})
     end
