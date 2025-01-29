@@ -32,7 +32,7 @@ function setAdvanceButtons()
             gameBoard.createButton({
                 click_function = "moveTrack" .. color ..  positionIndex,
                 function_owner = Global,
-                position       = {x, p[2], z},
+                position       = {x, p[2]+0.02, z},
                 rotation       = {0, 0, 0},
                 width          = 40,
                 height         = 40,
