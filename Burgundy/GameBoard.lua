@@ -238,8 +238,10 @@ end
 function setPlayerBoardDuchyButtons()
     for _, color in ipairs(Colors) do
         local board = getObjectsWithAllTags({color, 'playerboard'})[1]
-        board.setVar('Color', color)
-        setDuchyButtons(board)
+        if board ~= nil then
+            board.setVar('Color', color)
+            setDuchyButtons(board)
+        end
     end
 end
 
