@@ -146,6 +146,7 @@ function moveWhiteDie(color)
     local playerBoard = getObjectsWithAllTags({color, 'playerboard'})[1]
     pos = getSnapPositionsWithAllTagsPositionedToWorld(playerBoard, {'whitedie', color})[1]
     getObjectsWithTag('whitedie')[1].setPositionSmooth(pos)
+    createWhiteRollButton(playerBoard, color)
 end
 
 function startNewRound()
