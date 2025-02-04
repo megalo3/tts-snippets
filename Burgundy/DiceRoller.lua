@@ -23,7 +23,8 @@ function clickRollDice(color)
 
         local value = getDieValue(die)
         RollInProgress = false
-        yellowPrint('The white die is a ' .. value)
+        yellowPrint('Deploying a trade good to depot ' .. value .. '.')
+        deployTradeGood(value)
         return 1
     end
 

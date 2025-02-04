@@ -155,6 +155,19 @@ function getSnapPositionsWithAnyTags(obj, tags)
     return positions
 end
 
+function getObjectSnapsWithTag(obj, tag)
+    local snaps = obj.getSnapPoints()
+    local taggedSnaps = {}
+    for _, snap in ipairs(snaps) do
+        if #snap.tags > 0 then
+            if has_value(snap.tags, tag) then
+                table.insert(taggedSnaps, snap)
+            end
+        end
+    end
+    return taggedSnaps
+end
+
 function objectHasTag(objInfo, tag)
     for _, t in ipairs(objInfo.tags) do
         if t == tag then

@@ -53,7 +53,7 @@ settings = {
         {}
     }
 }
-DeploySpeed = 0.18
+DeploySpeed = 0.14
 Guids = {
     Boards = {
         mainboard2p = '61fa13',

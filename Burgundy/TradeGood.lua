@@ -38,3 +38,28 @@ function deployTradeGoods(phase)
         end
     end
 end
+
+function deployTradeGood(depot)
+    local board = getGameBoard()
+    local phaseTag = 'tgslot' .. string.lower(settings.phase)
+    local tradeGoods = getObjectsWithAllTags({phaseTag})
+
+    if #tradeGoods > 0 then
+        local function sortingFunction(good1, good2) return good1.getPosition()[3] < good2.getPosition()[3] end
+        table.sort(tradeGoods, sortingFunction)
+
+        local tileValue = tradeGoods[1].getRotationValue()
+        local placeTag = 'tgplace' .. depot .. tileValue
+        local pos = getSnapPositionsWithAnyTagsPositionedToWorld(board, {placeTag})[1]
+        pos[2] = 2
+
+        tradeGoods[1].setPositionSmooth(pos)
+        if depot == 4 or depot == 1 then
+            tradeGoods[1].setRotationSmooth({0, 150, 0})
+        end
+        if depot == 6 or depot == 3 then
+            tradeGoods[1].setRotationSmooth({0, 210, 0})
+        end
+        tradeGoods[1].removeTag(phaseTag)
+    end
+end
