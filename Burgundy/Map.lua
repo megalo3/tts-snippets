@@ -123,6 +123,8 @@ function setMap(value, color, obj)
                 mapTile = mapTile.setState(stateId)
                 mapTile.addTag(mapTileTag)
                 mapTile.addTag(color)
+                mapTile.tooltip = false
+                Wait.time(function() mapTile.setLock(true) end, 5)
             end
         end
     end
