@@ -1,8 +1,12 @@
 RollInProgress = false
 
-function clickRollWhiteDie()
+function clickRollWhiteDie(_, color)
     local die = getObjectsWithTag('whitedie')[1]
     die.roll()
+    local playerDice = getObjectsWithAllTags({'playerdice', color})
+    for _, d in ipairs(playerDice) do
+        d.roll()
+    end
 
     function coroutine_monitorWhiteDie()
         repeat
