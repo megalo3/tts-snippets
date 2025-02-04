@@ -6,8 +6,8 @@ function clickRollDice(color)
         d.roll()
     end
 
-    -- Only roll the white die if the color is first playerr
-    if Turns.order[1] ~= color then return end
+    -- Only roll the white die if the color is first player
+    if Turns.order[1] ~= color and not (settings.playstyle == 'beginnersolo' or settings.playstyle == 'advancedsolo') then return end
 
     local die = getObjectsWithTag('whitedie')[1]
     die.roll()
@@ -46,13 +46,17 @@ for _, color in ipairs(Colors) do
     _G["clickRollDice" .. color] = function() clickRollDice(color) end
 end
 
-function createDiceRollButton(color, playerBoard)
+function createDiceRollButton(color, playerBoard, altPosition)
     local p = getSnapPositionsWithAllTags(playerBoard, {'whitedie', color})[1]
+    local pos = {p[1] * -1 + 0.3, p[2]+0.1, p[3] - 0.25}
+    if altPosition == true then
+        pos[1] = pos[1] - 0.6
+    end
     playerBoard.createButton({
         click_function = "clickRollDice" .. color,
         function_owner = Global,
         label          = "Roll Dice",
-        position       = {p[1] * -1 + 0.3, p[2]+0.1, p[3] - 0.25},
+        position       = pos,
         rotation       = {0, 0, 0},
         width          = 500,
         height         = 200,

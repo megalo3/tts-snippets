@@ -203,11 +203,11 @@ function giveStartingItems()
     elseif settings.playstyle == 'beginnerteamgame' then
         supplyBoard(getObjectFromGUID(Guids.Boards.teams31yr), 3, {'Yellow', 'Red'})
         supplyBoard(getObjectFromGUID(Guids.Boards.teams31pb), 5, {'Purple', 'Blue'})
-        moveWhiteDie('Yellow')
+        moveWhiteDie('Red')
     elseif settings.playstyle == 'advancedteamgame' then
         supplyBoard(getObjectFromGUID(Guids.Boards.teams32yr), 3, {'Yellow', 'Red'})
         supplyBoard(getObjectFromGUID(Guids.Boards.teams32pb), 5, {'Purple', 'Blue'})
-        moveWhiteDie('Yellow')
+        moveWhiteDie('Red')
     else
         local order = getPlayerTurnOrder()
         for index, color in ipairs(order) do
