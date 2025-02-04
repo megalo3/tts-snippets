@@ -198,24 +198,52 @@ Positions = {
 
 Vines = {'Orange', 'Yellow', 'Green', 'Red', 'Black', 'Blue'}
 
-
 Descriptions = {}
-Descriptions['Market'] = 'Take a livestock or ship tile.'
-Descriptions["Carpenter's Workshop"] = 'Take a building tile.'
-Descriptions['Church'] = 'Take a mine, monastery, or castle tile.'
-Descriptions['Warehouse'] = 'Sell 1 type of good.'
-Descriptions['Boarding House'] = 'Gain 4 workers.'
-Descriptions['Bank'] = 'Gain 2 silver coins.'
-Descriptions['Town Hall'] = 'Place an additional hex tile.'
-Descriptions['Watchtower'] = 'Score 4 VP.'
-Descriptions['Mine'] = 'Gain 1 silver coin at the end of each phase.'
+Descriptions['Bank'] = 'When you place a bank in your duchy, immediately gain 2 silver coins from the supply.'
+Descriptions['Boarding House'] = 'When you place a boarding house in your duchy, immediately gain 4 worker tokens from the supply.'
+Descriptions["Carpenter's Workshop"] = "When you place a carpenter's workshop in your duchy, you may immediately take a beige building tile from any of the six depots on the game board (except the central black depot) and place it on an empty key space in the bottom right of your player board."
+Descriptions['Castle'] = 'Whenever you place a castle tile in your duchy, you immediately take an additional action, just as if you had another die with your choice of result at your disposal.'
+Descriptions['Church'] = 'When you place a church in your duchy, you may immediately take a mine (gray), monastery (yellow), or castle (burgundy) tile from any of the six depots on the game board (except the central black depot) and place it on an empty key space in the bottom right of your player board.'
+Descriptions['Crane'] = 'When you place a crane in your duchy, you may immediately trigger the effect of any building (beige) tile you want, even if that building is not in your duchy.\n\nFor example, you could sell goods (warehouse), or gain 2 silver coins (bank), or take a castle tile from the game board (church), etc.\n\n Additionally, during final scoring at the end of the game, the crane counts as a building of your choice for the corresponding monastery tiles (16-23 + 29).\n\nThis may be a different building from the one you triggered when placing the crane.'
+Descriptions['Geese'] = 'When you place the two geese in your duchy, you score 2 victory points as normal, plus victory points for one other type of livestock that is in the same pasture. Later, whenever you place another livestock tile in the same pasture, you score 2 victory points for the geese tile. In addition, geese count as additional type of livestock for monastery tiles #7 and #24.\n\nExample: Carla places the geese tile on a pasture that already has a 2 and a 3 cow tile. Carla scores 2+2+3 = 7 victory points. During a later turn, she places a 4 pig tile in the same pasture and scores 4+2 = 6 victory points.'
+Descriptions['Inn'] = "At the beginning of each phase, place one inn on the indicated space next to the central black depot. Unlike other hex tiles, inns are not removed from the board at the end of each phase. If there is already an inn next to the central black depot, stack the new one on top.\n\nLike every other hex tile from the black depot, inns may be bought by paying 2 silver coins, and placed on a key space on the player's board.\n\nAn inn may be placed on any empty hex space on your duchy (according to the regular rules). However, you may only place up to one inn per color area!\n\nThe inn itself has no effect, its only function is to complete an area.\n\nImportant: By placing an inn, you increase the size of that area by 1. A 9-space area scores 45 victory points."
+Descriptions['Livestock'] = 'Whenever you place a livestock tile in your duchy, you immediately score victory points. Each tile shows 2-4 livestock, which is the amount of victory points you score.\n\nAdditionally, if you already have at least one other tile with the same livestock in the same pasture (a contiguous area of green hex spaces), you also score victory points for those other tiles.'
+Descriptions['Mine'] = 'Mines are tiles with no immediate effect when they are placed. At the end of each phase you gain one silver coin from the supply for each mine in your duchy.'
+Descriptions['Market'] = 'When you place a market in your duchy, you may immediately take a ship (blue) or livestock (green) tile from any of the six depots (except the central black depot) and place it on an empty key space in the bottom right of your player board.'
+Descriptions['Monastery 1'] = 'You are no longer limited to one building (beige) tile per type in each of your towns. In other words, you may build more than one building of the same type within a single town.'
+Descriptions['Monastery 2'] = 'For each mine you have placed, you gain a worker in addition to the silver coin at the end of each phase.'
+Descriptions['Monastery 3'] = 'You gain 2 silver coins instead of 1 whenever you sell goods (either when taking the die action or when placing a warehouse).'
+Descriptions['Monastery 4'] = 'Whenever you sell a type of goods (either when taking the die action or when placing a warehouse), you gain a worker in addition to the silver coin you normally receive.'
+Descriptions['Monastery 5'] = 'Whenever you place a ship tile, in addition to taking all goods tiles from a depot of your choice, you may also take all goods tiles from an adjacent depot.'
+Descriptions['Monastery 6'] = 'Once per turn, you may spend 2 worker tokens to immediately take a building (beige) tile from any of the six depots on the game board (except the central black depot) and place it on an empty key space in the bottom right of your player board.'
+Descriptions['Monastery 7'] = 'Whenever you place a livestock tile, in addition to the usual bonus for existing livestock of the same type in the same pasture, you also score 1 victory point for each livestock tile that scores at that time.\n\nExample: Ben places a 3 sheep tile on the pasture that already contains a 4 sheep tile: He gains (3+1) + (4+1) = 9 victory points. If he places a 2 pig tile, he gets 3 victory points.'
+Descriptions['Monastery 8'] = 'Whenever you use a worker to change the result of a die, you may add or subtract 2 instead of 1.\n\nExample: To change a 3 to a 6, Carla only needs to use 2 workers instead of 3.'
+Descriptions['Monastery 9'] = 'Whenever you want to place a building (beige) tile in your duchy, you may change the die result by 1 (just as if you were using a worker).'
+Descriptions['Monastery 10'] = 'Whenever you want to place a ship or a livestock tile (blue and green tiles) in your duchy, you may change the die result by 1 (just as if you were using a worker).'
+Descriptions['Monastery 11'] = 'Whenever you want to place a castle, mine, or monastery tile (burgundy, gray, and yellow tiles) in your duchy, you may change the die result by 1 (just as if you were using a worker).'
+Descriptions['Monastery 12'] = 'Whenever you want to take a hex tile from the game board, you may change the die result by 1 (just as if you were using a worker).'
+Descriptions['Monastery 13'] = 'Whenever you use the "Take 2 worker tokens" action, you gain 1 silver coin in addition to the 2 worker tokens from the supply.\n\nNote: This and the next tile have no effect when placing a Boarding house.'
+Descriptions['Monastery 14'] = 'Whenever you use the "Take 2 worker tokens" action, you gain 4 worker tokens instead of the usual 2.'
+Descriptions['Monastery 15'] = 'At the end of the game, you score 2 victory points for each different type of goods tile in your sold goods pile. Unsold goods are ignored.\n\nNote: You may look at your sold goods pile at any time during the game.\n\nExample: Dario has sold the following goods tiles: 4x red, 3x purple, 3x pink and 1x orange. He scores 4 types x 2 = 8 victory points.'
+Descriptions['Monastery 16'] = 'At the end of the game, you score 4 victory points for each Warehouse that you placed in your duchy.'
+Descriptions['Monastery 17'] = 'At the end of the game, you score 4 victory points for each Watchtower that you placed in your duchy.'
+Descriptions['Monastery 18'] = "At the end of the game, you score 4 victory points for each Carpenter's Workshop that you placed in your duchy."
+Descriptions['Monastery 19'] = 'At the end of the game, you score 4 victory points for each Church that you placed in your duchy.'
+Descriptions['Monastery 20'] = 'At the end of the game, you score 4 victory points for each Market that you placed in your duchy.'
+Descriptions['Monastery 21'] = 'At the end of the game, you score 4 victory points for each Boarding House that you placed in your duchy.'
+Descriptions['Monastery 22'] = 'At the end of the game, you score 4 victory points for each Bank that you placed in your duchy.'
+Descriptions['Monastery 23'] = 'At the end of the game, you score 4 victory points for each Town Hall that you placed in your duchy.'
+Descriptions['Monastery 24'] = 'At the end of the game, you score 4 victory points for each different livestock type that you placed in your duchy.\n\nExample: Anna has placed 3 sheep, 1 cow, and 1 pig tile in her duchy. At the end of the game she scores 3 types x 4 = 12 victory points.'
+Descriptions['Monastery 25'] = 'At the end of the game, you score 1 victory point for each goods tile you sold. Unsold goods are ignored.\n\nExample: If Dario had placed this tile as well, he would score 11 additional victory points.\n\nExample: Dario has sold the following goods tiles: 4x red, 3x purple, 3x pink and 1x orange. He scores 4 types x 2 = 8 victory points.'
+Descriptions['Monastery 26'] = 'At the end of the game, you score 3 victory points for each bonus tile (large and small) you own.'
+Descriptions['Monastery 27'] = 'If your turn order marker is in a stack with other markers, it is always placed on top. This applies both actively and passively (i.e. whenever another marker is moved onto the same space, yours is placed on top).'
+Descriptions['Monastery 28'] = 'If this tile is in your duchy, you can buy workers from the supply at any time. 2 workers cost 1 silver coin.'
+Descriptions['Monastery 29'] = 'At the end of the game, you score 4 victory points for each White Castle that you placed in your duchy.'
 Descriptions['Ships'] = 'Take all goods from 1 depot. Advance 1 space on the turn order track.'
-Descriptions['Castle'] = 'Take an additional turn.'
-Descriptions['Livestock'] = 'Score VP for the livestock type on this tile and all previous ones.'
-Descriptions['Crane'] = 'Trigger the effect of any building.'
-Descriptions['White Castle'] = 'Take an action using the white die.'
-Descriptions['Inn'] = 'Place on any area. Increase the size of this area by 1.'
-Descriptions['Geese'] = 'Treat geese as any livestock.'
+Descriptions['Town Hall'] = 'When you place a town hall in your duchy, you may immediately choose a second hex tile from your storage and place it in your duchy. Placing the tile triggers its effect, as usual.'
+Descriptions['Watchtower'] = 'When you place a watchtower in your duchy, you immediately score 4 victory points.'
+Descriptions['Warehouse'] = ' When you place a warehouse in your duchy, you may immediately (without having to use a die) choose a type of goods tile you own and sell that stack, just as if you had taken the “Sell goods” action.'
+Descriptions['White Castle'] = "When you place a white castle in your duchy, immediately take an action using the current result of the white die. You are allowed to use workers to change the rolled number (don't change the actual white die result)."
 
 Colors = {'Yellow','Purple','Red','Blue'}
 ColorTint = {
