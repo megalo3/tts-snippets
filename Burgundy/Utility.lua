@@ -83,8 +83,12 @@ function yellowPrint(message)
     printToAll(message, stringColorToRGB('Yellow'))
 end
 
-function GreenPrint(message)
+function greenPrint(message)
     printToAll(message, stringColorToRGB('Green'))
+end
+
+function redPrint(message)
+    printToAll(message, stringColorToRGB('Red'))
 end
 
 function getSeatedPlayerColors()

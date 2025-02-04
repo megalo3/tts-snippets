@@ -1,11 +1,8 @@
 function setup()
     setupMenu('false')
     local playerCount = #(getSeatedPlayers())
-    if settings.playstyle == 'ai'then
+    if settings.playstyle == 'ai' and playerCount < 4 then
         playerCount = playerCount + 1
-    end
-    if playerCount > 4 then
-        playerCount = 4
     end
     settings.playercount = playerCount
 
@@ -193,7 +190,8 @@ function giveStartingItems()
         end
     end
 
-    if settings.playstyle == 'ai' then
+    local playerCount = #(getSeatedPlayers())
+    if settings.playstyle == 'ai' and playerCount < 4 then
         supplyAiBoard()
     end
     if settings.playstyle == 'beginnersolo' then

@@ -73,10 +73,14 @@ function setPlayerBoards()
 end
 
 function setNormalPlayerBoards()
+    local playerCount = #(getSeatedPlayers())
     if settings.playstyle == 'normal' or settings.playstyle == 'ai' then
         setPlayerDuchyNumber()
         removeUnusedPlayerBoards()
-        if settings.playstyle == 'ai' then
+        if settings.playstyle == 'ai' and playerCount == 4 then
+            redPrint('You cannot play Chateauma with 4 players. Setting up the game normally.')
+        end
+        if settings.playstyle == 'ai' and playerCount < 4 then
             setAiPlayerBoard()
             -- Players random first player. The Châteauma is always the last player.
             -- Add AI player token back to order track
