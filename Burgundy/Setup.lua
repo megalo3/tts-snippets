@@ -31,18 +31,28 @@ function giveStartingItems()
     local function supplyWorker(playerBoard, workerAmount)
         local workerPos = getSnapPositionsWithAnyTagsPositionedToWorld(playerBoard, {'worker'})[1]
         local rotation = {0,180,0}
+        local waitCounter = 1
+
         for i = 1, workerAmount do
-            WorkerBag.takeObject({position = workerPos, rotation = rotation})
+            Wait.time(function()
+                WorkerBag.takeObject({position = workerPos, rotation = rotation})
+            end, waitCounter * DeploySpeed)
+            waitCounter = waitCounter + 1
         end
     end
 
     local function supplyAiTradeGoods(playerBoard)
         -- Get 1 of each type of good and place on each trade good spot
         local tradeGoodBag = getObjectsWithTag('tradegoodbag')[1]
+        local waitCounter = 1
+
         for _, key in ipairs({'tradegood1','tradegood2','tradegood3','tradegood4','tradegood5','tradegood6'}) do
             for _, tradeGoodPos in ipairs(getSnapPositionsWithAnyTagsPositionedToWorld(playerBoard, {key})) do
-                local tradeGuid = getObjectGuidWithTag(tradeGoodBag, key)
-                tradeGoodBag.takeObject({position = tradeGoodPos, guid = tradeGuid})
+                Wait.time(function()
+                    local tradeGuid = getObjectGuidWithTag(tradeGoodBag, key)
+                    tradeGoodBag.takeObject({position = tradeGoodPos, guid = tradeGuid})
+                end, waitCounter * DeploySpeed)
+                waitCounter = waitCounter + 1
             end
         end
     end
@@ -50,9 +60,14 @@ function giveStartingItems()
     local function supplyTradeGoods(playerBoard)
         local tradeGoodBag = getObjectsWithTag('tradegoodbag')[1]
         local rotation = {0,150,0}
+        local waitCounter = 1
+
         if settings.playstyle == 'beginnerteamgame' or settings.playstyle == 'advancedteamgame' or settings.playstyle == 'beginnersolo' or settings.playstyle == 'advancedsolo' then rotation = {0,0,0} end
         for _, tradeGoodPos in ipairs(getSnapPositionsWithAnyTagsPositionedToWorld(playerBoard, {'tradegood'})) do
-            tradeGoodBag.takeObject({position = tradeGoodPos, rotation = rotation})
+            Wait.time(function()
+                tradeGoodBag.takeObject({position = tradeGoodPos, rotation = rotation})
+            end, waitCounter * DeploySpeed)
+            waitCounter = waitCounter + 2
         end
     end
 

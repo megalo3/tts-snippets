@@ -47,6 +47,8 @@ function supplyGameBoardHexes()
 
     GameBoard = getGameBoard()
     local snaps = GameBoard.getSnapPoints()
+
+    local waitCounter = 1
     for _, snap in ipairs(snaps) do
         if #snap.tags > 0 then
             local deployHex = true
@@ -74,12 +76,15 @@ function supplyGameBoardHexes()
                 if has_value(snap.tags, 'Ship') then bag = getObjectFromGUID(Guids.Bags.Ship) end
 
                 if bag ~= nil then
-                    local pos = GameBoard.positionToWorld(snap.position)
-                    pos[2] = 1.5
-                    local hex = bag.takeObject({position = pos, rotation = {0, snap.rotation.y - 180, 0}})
-                    if not hex.hasTag('monastery') then
-                        hex.setDescription(Descriptions[hex.getName()])
-                    end
+                    Wait.time(function()
+                        local pos = GameBoard.positionToWorld(snap.position)
+                        pos[2] = 1.5
+                        local hex = bag.takeObject({position = pos, rotation = {0, snap.rotation.y - 180, 0}})
+                        if Descriptions[hex.getName()] ~= nil then
+                            hex.setDescription(Descriptions[hex.getName()])
+                        end
+                    end, waitCounter * DeploySpeed)
+                    waitCounter = waitCounter + 1
                 end
             end
         end

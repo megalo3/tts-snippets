@@ -45,13 +45,18 @@ function setShields()
 
         local gameBoard = getGameBoard()
         local snaps = gameBoard.getSnapPoints()
+        local waitCounter = 1
+
         for _, snap in ipairs(snaps) do
             if #snap.tags > 0 then
                 if has_any_value(snap.tags, tgplacements) then
-                    local pos = gameBoard.positionToWorld(snap.position)
-                    local shield = ShieldBag.takeObject({position = pos})
-                    shield.setRotationSmooth({0, snap.rotation.y - 180, 0})
-                    shield.addTag('shield')
+                    Wait.time(function()
+                        local pos = gameBoard.positionToWorld(snap.position)
+                        local shield = ShieldBag.takeObject({position = pos})
+                        shield.setRotationSmooth({0, snap.rotation.y - 180, 0})
+                        shield.addTag('shield')
+                    end, waitCounter * DeploySpeed)
+                    waitCounter = waitCounter + 1
                 end
             end
         end
@@ -168,15 +173,20 @@ end
 function setVictoryTokens()
     local board = getGameBoard()
     local snaps = board.getSnapPoints()
+    local waitCounter = 1
+
     for _, snap in ipairs(snaps) do
         if #snap.tags > 0 then
-            setVictoryToken(board, snap, 'borderpost')
-            setVictoryToken(board, snap, 'Tan')
-            setVictoryToken(board, snap, 'Red')
-            setVictoryToken(board, snap, 'Blue')
-            setVictoryToken(board, snap, 'Black')
-            setVictoryToken(board, snap, 'Green')
-            setVictoryToken(board, snap, 'Yellow')
+            Wait.time(function()
+                setVictoryToken(board, snap, 'borderpost')
+                setVictoryToken(board, snap, 'Tan')
+                setVictoryToken(board, snap, 'Red')
+                setVictoryToken(board, snap, 'Blue')
+                setVictoryToken(board, snap, 'Black')
+                setVictoryToken(board, snap, 'Green')
+                setVictoryToken(board, snap, 'Yellow')
+            end, waitCounter * DeploySpeed)
+        waitCounter = waitCounter + 1
         end
     end
 end
