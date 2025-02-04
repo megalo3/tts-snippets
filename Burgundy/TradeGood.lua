@@ -2,15 +2,20 @@ function setTradeGoods()
     local board = getGameBoard()
     local tgbag = getObjectsWithTag('tradegoodbag')[1]
     local snaps = board.getSnapPoints()
+    local waitCounter = 1
+
     for _, snap in ipairs(snaps) do
         if #snap.tags > 0 then
             if snap.tags[1] == 'tgslota' or snap.tags[1] == 'tgslotb' or snap.tags[1] == 'tgslotc' or snap.tags[1] == 'tgslotd' or snap.tags[1] == 'tgslote' then
                 local pos = board.positionToWorld(snap.position)
                 for a = 1,5 do
-                    local tile = tgbag.takeObject({
-                        position = {pos[1], 1+a/1.5, pos[3]
-                    }})
-                    tile.addTag(snap.tags[1])
+                    Wait.time(function()
+                        local tile = tgbag.takeObject({
+                            position = {pos[1], 1+a/1.5, pos[3]
+                        }})
+                        tile.addTag(snap.tags[1])
+                    end, waitCounter * DeploySpeed)
+                    waitCounter = waitCounter + 0.1
                 end
             end
         end
