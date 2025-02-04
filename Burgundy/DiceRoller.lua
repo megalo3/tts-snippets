@@ -1,12 +1,16 @@
 RollInProgress = false
 
-function clickRollWhiteDie(_, color)
-    local die = getObjectsWithTag('whitedie')[1]
-    die.roll()
+function clickRollDice(color)
     local playerDice = getObjectsWithAllTags({'playerdice', color})
     for _, d in ipairs(playerDice) do
         d.roll()
     end
+
+    -- Only roll the white die if the color is first playerr
+    if Turns.order[1] ~= color then return end
+
+    local die = getObjectsWithTag('whitedie')[1]
+    die.roll()
 
     function coroutine_monitorWhiteDie()
         repeat
@@ -37,10 +41,14 @@ function getDieValue(die)
     return 0
 end
 
-function createWhiteRollButton(playerBoard, color)
+for _, color in ipairs(Colors) do
+    _G["clickRollDice" .. color] = function() clickRollDice(color) end
+end
+
+function createDiceRollButton(color, playerBoard)
     local p = getSnapPositionsWithAllTags(playerBoard, {'whitedie', color})[1]
     playerBoard.createButton({
-        click_function = "clickRollWhiteDie",
+        click_function = "clickRollDice" .. color,
         function_owner = Global,
         label          = "Roll Dice",
         position       = {p[1] * -1 + 0.3, p[2]+0.1, p[3] - 0.25},
@@ -53,8 +61,4 @@ function createWhiteRollButton(playerBoard, color)
         font_color     = {1, 1, 1},
         disabled       = true
     })
-end
-
-function deleteWhiteRollButton(playerBoard)
-    playerBoard.removeButton(1)
 end

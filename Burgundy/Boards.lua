@@ -66,6 +66,13 @@ function setShields()
 end
 
 function setPlayerBoards()
+    setNormalPlayerBoards()
+    setSoloPlayerBoards()
+    setTeamPlayerBoards()
+    updateHandLocations()
+end
+
+function setNormalPlayerBoards()
     if settings.playstyle == 'normal' or settings.playstyle == 'ai' then
         setPlayerDuchyNumber()
         removeUnusedPlayerBoards()
@@ -82,7 +89,9 @@ function setPlayerBoards()
     else
         removePlayerDuchies()
     end
+end
 
+function setSoloPlayerBoards()
     if settings.playstyle == 'beginnersolo' then
         local board = SetupBag.takeObject({guid = Guids.Boards.beginnersolo, position = {30.00, 0.97, -14.00}, rotation = {0,180,0}})
         board.setLock(true)
@@ -91,6 +100,9 @@ function setPlayerBoards()
         local board = SetupBag.takeObject({guid = Guids.Boards.advancedsolo, position = {30.00, 0.97, -14.00}, rotation = {0,180,0}})
         board.setLock(true)
     end
+end
+
+function setTeamPlayerBoards()
     if settings.playstyle == 'beginnerteamgame' then
         local board = SetupBag.takeObject({guid = Guids.Boards.teams31pb, position = {34.5, 0.97, 0}})
         board.setRotation({0,180,0})
@@ -105,6 +117,9 @@ function setPlayerBoards()
         board.setRotation({0,180,0})
         board.setLock(true)
     end
+end
+
+function updateHandLocations()
     if settings.playstyle == 'beginnerteamgame' or settings.playstyle == 'advancedteamgame' or settings.playstyle == 'beginnersolo' or settings.playstyle == 'advancedsolo' then
         local hand = getObjectFromGUID(Guids.Hands.Red)
         hand.setPosition({-26.5,3.35, -36})
@@ -193,7 +208,7 @@ end
 
 function setPlayerDuchyNumber()
     -- Loop through all players and set board numbers
-    for _, color in ipairs(Global.call('getSeatedPlayerColors')) do
+    for _, color in ipairs(getSeatedPlayerColors()) do
         if (settings.randomboard) then
             settings.mapNumberIndex[color] = rand(#settings.availableBoards)
         end

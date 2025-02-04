@@ -5,10 +5,11 @@ require("Burgundy.Map")
 require("Burgundy.Hexes")
 require("Burgundy.Vineyard")
 require("Burgundy.TradeRoute")
-require("Burgundy.GameBoard")
+require("Burgundy.Boards")
 require("Burgundy.Round")
 require("Burgundy.TradeGood")
 require("Burgundy.TurnTrack")
+require("Burgundy.DiceRoller")
 
 function onLoad(saveState)
     SetupBag = getObjectFromGUID(Guids.Bags.setup)
@@ -22,7 +23,7 @@ function onLoad(saveState)
 
     local loadedData = JSON.decode(saveState)
     if loadedData ~= nil then
-        -- settings = loadedData
+        settings = loadedData
     end
 
     math.randomseed(os.time())
@@ -30,6 +31,10 @@ function onLoad(saveState)
     for key, object in ipairs(getObjectsWithTag('noninteractable')) do
         object.interactable = false
     end
+
+    -- for key, object in ipairs(getObjectsWithTag('Map')) do
+    --     object.tooltip = false
+    -- end
 
     if settings.setupComplete == true then
         setupMenu('false')
@@ -42,6 +47,12 @@ function onSave()
 end
 
 function onPlayerTurn(player, previous_player)
+end
+
+function onObjectLeaveContainer(container, leave_object)
+    local description = Descriptions[leave_object.getName()]
+    if description == nil then return end
+    leave_object.setDescription(description)
 end
 
 function setupMenu(value)

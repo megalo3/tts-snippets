@@ -2,7 +2,7 @@ function setTradeRoutes()
     if settings.components.traderoutes == true then
         local routeBoard = SetupBag.takeObject({guid = Guids.Boards['traderoute' .. settings.playercount]})
 
-        for _, color in ipairs(Global.call('getSeatedPlayerColors')) do
+        for _, color in ipairs(getSeatedPlayerColors()) do
             local board = getObjectsWithAllTags({color, 'playerboard'})[1]
             local pos = board.getPosition()
             local rotation = {0,180,0}
