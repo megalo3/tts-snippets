@@ -1,4 +1,8 @@
 require("Burgundy.Data")
+require("Burgundy.DataDescriptions")
+require("Burgundy.DataMaps")
+require("Burgundy.DataSettings")
+require("Burgundy.Buttons")
 require("Burgundy.Setup")
 require("Burgundy.Utility")
 require("Burgundy.Map")
@@ -10,6 +14,7 @@ require("Burgundy.Round")
 require("Burgundy.TradeGood")
 require("Burgundy.TurnTrack")
 require("Burgundy.DiceRoller")
+require("Burgundy.VictoryTrack")
 
 function onLoad(saveState)
     SetupBag = getObjectFromGUID(Guids.Bags.setup)
@@ -23,7 +28,7 @@ function onLoad(saveState)
 
     local loadedData = JSON.decode(saveState)
     if loadedData ~= nil then
-        settings = loadedData
+        -- settings = loadedData
     end
 
     math.randomseed(os.time())
@@ -31,10 +36,6 @@ function onLoad(saveState)
     for key, object in ipairs(getObjectsWithTag('noninteractable')) do
         object.interactable = false
     end
-
-    -- for key, object in ipairs(getObjectsWithTag('Map')) do
-    --     object.tooltip = false
-    -- end
 
     if settings.setupComplete == true then
         setupMenu('false')
@@ -53,6 +54,29 @@ function onObjectLeaveContainer(container, leave_object)
     local description = Descriptions[leave_object.getName()]
     if description == nil then return end
     leave_object.setDescription(description)
+end
+
+function onScriptingButtonDown(number, playerColor)
+    local activePlayer
+    for _, player in ipairs(Player.getPlayers()) do
+        if player.color == playerColor then activePlayer = player end
+    end
+    if activePlayer == nil then return end
+
+    local p = activePlayer.getPointerPosition()
+
+    local pos = {p[1], 2, p[3]}
+    if number == 1 then
+        local bag = getObjectFromGUID(Guids.Bags.worker)
+        if bag == nil then return end
+        bag.takeObject({position = pos, rotation = {0, 180, 0}})
+    end
+
+    if number == 2 then
+        local bag = getObjectFromGUID(Guids.Bags.coin)
+        if bag == nil then return end
+        bag.takeObject({position = pos, rotation = {0, 180, 0}})
+    end
 end
 
 function setupMenu(value)

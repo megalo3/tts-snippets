@@ -42,30 +42,3 @@ function getDieValue(die)
     end
     return 0
 end
-
-for _, color in ipairs(Colors) do
-    _G["clickRollDice" .. color] = function() clickRollDice(color) end
-end
-
--- color, playerBoard, altPosition
-function createDiceRollButton(input)
-    local p = getSnapPositionsWithAllTags(input.playerBoard, {'whitedie', input.color})[1]
-    local pos = {p[1] * -1 + 0.3, p[2]+0.1, p[3] - 0.25}
-    if input.altPosition == true then
-        pos[1] = pos[1] - 0.6
-    end
-    input.playerBoard.createButton({
-        click_function = "clickRollDice" .. input.color,
-        label          = "Roll Dice",
-        position       = pos,
-        rotation       = {0, 0, 0},
-        width          = 100,
-        height         = 200,
-        scale          = {0.5, 0.5, 0.5},
-        font_size      = 100,
-        color          = {0.2, 0.2, 0.2, 0.8},
-        font_color     = {1, 1, 1},
-        disabled       = true
-    })
-    createVictoryTrackButtons(input)
-end
