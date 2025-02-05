@@ -15,7 +15,10 @@ function moveToVictoryNumber(color, number)
 
     local selectedSnap = VictoryPositions[victoryIndex]
     local board = getGameBoard()
-    pawn.setPositionSmooth(board.positionToWorld(selectedSnap.position))
+    local position = board.positionToWorld(selectedSnap.position)
+    position[2] = 5
+    pawn.setPositionSmooth(position)
+    pawn.setRotationSmooth(({0,0,0}))
 end
 
 function getSortedVictoryPositions()

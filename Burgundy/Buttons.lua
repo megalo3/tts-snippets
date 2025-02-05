@@ -6,7 +6,6 @@ for _, color in ipairs(Colors) do
     _G["clickVictoryTrack" .. color .. '+1']    = function() moveToVictoryNumber(color, 1) end
     _G["clickVictoryTrack" .. color .. '+5']    = function() moveToVictoryNumber(color, 5) end
     _G["clickVictoryTrack" .. color .. '+10']   = function() moveToVictoryNumber(color, 10) end
-    -- _G["getWorkerToken" .. color]               = function() getWorkerToken(color) end
 end
 
 -- color, playerBoard, altPosition
@@ -30,7 +29,6 @@ function createDiceRollButton(input)
         disabled       = true
     })
     createVictoryTrackButtons(input, p)
-    -- createWorkerCoinButtons(input, p)
 end
 
 -- color, playerBoard, altPosition
@@ -43,6 +41,7 @@ function createVictoryTrackButtons(input, p)
         input.playerBoard.createButton({
             click_function = "clickVictoryTrack" .. input.color .. num,
             label          = num .. " VP",
+            tooltip        = "Score " .. num .. " VP",
             position       = pos,
             rotation       = {0, 0, 0},
             width          = 500,
@@ -55,32 +54,3 @@ function createVictoryTrackButtons(input, p)
         })
     end
 end
-
--- color, playerBoard, altPosition
--- function createWorkerCoinButtons(input, p)
---     local pos = {p[1] * -1 + 0.11, p[2]+0.1, p[3] - 0.45}
---     if input.altPosition == true then
---         pos[1] = pos[1] - 1.9
---     end
---     input.playerBoard.createButton({
---         click_function = "getWorkerToken" .. input.color,
---         label          = "Worker",
---         position       = pos,
---         rotation       = {0, 0, 0},
---         width          = 300,
---         height         = 200,
---         scale          = {0.5, 0.5, 0.5},
---         font_size      = 100,
---         color          = {0.2, 0.2, 0.2, 0.8},
---         font_color     = {1, 1, 1},
---         disabled       = true
---     })
--- end
-
--- function getWorkerToken(color)
-    -- getObjectFromGUID(Guids.Bags.worker).takeObject({position = pos})
--- end
-
--- function getCoinToken(pos)
---     getObjectFromGUID(Guids.Bags.coin).takeObject({position = pos})
--- end
