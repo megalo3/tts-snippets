@@ -1,5 +1,4 @@
 function setIncludedHexes()
-    local settings = Global.getTable('settings')
     if settings.components.geese == false then
         SetupBag.putObject(BlackBag.takeObject({guid = Guids.Hexes.geese}))
     end
@@ -43,8 +42,6 @@ function removePlayerBoardHexes()
 end
 
 function supplyGameBoardHexes()
-    local settings = Global.getTable('settings')
-
     GameBoard = getGameBoard()
     local snaps = GameBoard.getSnapPoints()
 

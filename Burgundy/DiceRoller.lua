@@ -1,6 +1,7 @@
 RollInProgress = false
 
 function clickRollDice(color)
+    local settings = Global.getTable('settings')
     local playerDice = getObjectsWithAllTags({'playerdice', color})
     for _, d in ipairs(playerDice) do
         d.roll()
@@ -46,19 +47,19 @@ for _, color in ipairs(Colors) do
     _G["clickRollDice" .. color] = function() clickRollDice(color) end
 end
 
-function createDiceRollButton(color, playerBoard, altPosition)
-    local p = getSnapPositionsWithAllTags(playerBoard, {'whitedie', color})[1]
+-- color, playerBoard, altPosition
+function createDiceRollButton(input)
+    local p = getSnapPositionsWithAllTags(input.playerBoard, {'whitedie', input.color})[1]
     local pos = {p[1] * -1 + 0.3, p[2]+0.1, p[3] - 0.25}
-    if altPosition == true then
+    if input.altPosition == true then
         pos[1] = pos[1] - 0.6
     end
-    playerBoard.createButton({
-        click_function = "clickRollDice" .. color,
-        function_owner = Global,
+    input.playerBoard.createButton({
+        click_function = "clickRollDice" .. input.color,
         label          = "Roll Dice",
         position       = pos,
         rotation       = {0, 0, 0},
-        width          = 500,
+        width          = 100,
         height         = 200,
         scale          = {0.5, 0.5, 0.5},
         font_size      = 100,
@@ -66,4 +67,5 @@ function createDiceRollButton(color, playerBoard, altPosition)
         font_color     = {1, 1, 1},
         disabled       = true
     })
+    createVictoryTrackButtons(input)
 end
