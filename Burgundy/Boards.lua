@@ -167,7 +167,7 @@ function setGameBoard()
     setTradeGoods()
     Wait.time(function()
        deployTradeGoods('tgslota')
-    end, 2.1)
+    end, DeploySpeed * 2.1)
 
     supplyGameBoardHexes()
     setVictoryTokens()
@@ -195,9 +195,11 @@ function setVictoryTokens()
     local waitCounter = 1
 
     for _, snap in ipairs(snaps) do
-        if #snap.tags > 0 then
+        if #snap.tags > 0 and not has_value(snap.tags, 'victory100') then
             Wait.time(function()
-                setVictoryToken(board, snap, 'borderpost')
+                if settings.rules.borderpostscoring == true then
+                    setVictoryToken(board, snap, 'borderpost')
+                end
                 setVictoryToken(board, snap, 'Tan')
                 setVictoryToken(board, snap, 'Red')
                 setVictoryToken(board, snap, 'Blue')

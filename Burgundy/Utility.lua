@@ -188,3 +188,15 @@ function getObjectGuidWithTag(container, tag)
         end
     end
 end
+
+function getPlayerBoardDicePositions(color)
+    local playerBoard = getObjectsWithAllTags({color, 'playerboard'})[1]
+    local playerDicePos = getSnapPositionsWithAnyTagsPositionedToWorld(playerBoard, {color})
+    local function sortingFunction(pos1, pos2) return pos1[3] > pos2[3] end
+    table.sort(playerDicePos, sortingFunction)
+    return playerDicePos
+end
+
+function raisePosition(pos)
+    return {pos[1], pos[2]+1, pos[3]}
+end

@@ -89,9 +89,7 @@ function giveStartingItems()
     end
 
     local function supplyDice(playerBoard, color, amount)
-        local playerDicePos = getSnapPositionsWithAnyTagsPositionedToWorld(playerBoard, {color})
-        local function sortingFunction(pos1, pos2) return pos1[3] > pos2[3] end
-        table.sort(playerDicePos, sortingFunction)
+        local playerDicePos = getPlayerBoardDicePositions(color)
         local playerDie = getObjectFromGUID(Guids.PlayerDie)
         local rotation = {0,330,0}
         if settings.playstyle == 'beginnersolo' or settings.playstyle == 'advancedsolo' then rotation = {0,30,0} end

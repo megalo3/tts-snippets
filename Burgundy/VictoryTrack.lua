@@ -1,6 +1,13 @@
 VictoryPositions = nil
 
 function moveToVictoryNumber(color, number)
+    if (settings.points[color] <= 100 and settings.points[color] + number > 100) or
+        (settings.points[color] <= 200 and settings.points[color] + number > 200) or
+        (settings.points[color] >= 101 and settings.points[color] + number < 101) or
+        (settings.points[color] >= 201 and settings.points[color] + number < 201)
+    then
+        moveVictoryPointToken(color, settings.points[color] + number)
+    end
     settings.points[color] = settings.points[color] + number
     pawn = getObjectsWithAllTags({color, 'victorytoken'})[1]
     local victoryIndex = settings.points[color]%100
@@ -19,6 +26,24 @@ function moveToVictoryNumber(color, number)
     position[2] = 5
     pawn.setPositionSmooth(position)
     pawn.setRotationSmooth(({0,0,0}))
+end
+
+function moveVictoryPointToken(color, number)
+    local pos = getSnapPositionsWithAllTagsPositionedToWorld(getGameBoard(), {color, 'victory100'})[1]
+    pos = {pos[1],2,pos[3]}
+
+    local rot = {0,180,0}
+    if number > 200 then rot = {0,180,180} end
+
+    local guid = Guids.Victory[color]
+    local token = getObjectFromGUID(guid)
+    if token == nil then
+        token = SetupBag.takeObject({guid = guid, position = pos, rotation = rot})
+    else
+        token.setPositionSmooth(pos)
+        token.setRotationSmooth(rot)
+    end
+
 end
 
 function getSortedVictoryPositions()
