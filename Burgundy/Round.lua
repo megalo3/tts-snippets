@@ -7,6 +7,11 @@ function startNextPhase()
         redPrint('There are still trade goods that have not been deployed. Unable to start the next phase.')
         return
     end
+    local message = 'Gain coins for placed mines.'
+    if settings.components.shields == true then
+        message = 'Pay 1 coin per placed shield. If you cannot afford to pay for your placed shields, remove shields until you can afford them. Then you may gain coins from placed mines.'
+    end
+    yellowPrint(message)
     increasePhase()
     resupplyVineyards()
     removeGameBoardHexes()
