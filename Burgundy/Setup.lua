@@ -19,9 +19,9 @@ function setup()
     Wait.time(function() setVineyards() end, 0.5)
     Wait.time(function() setTradeRoutes() end, 1.0)
     Wait.time(function() setPlayerBoards() end, 1.5)
-    Wait.time(function() setGameBoard() end, 2.0)
-    Wait.time(function() giveStartingItems() end, 3.0)
-    Wait.time(function() settings.setupComplete = true end, 3.0)
+    Wait.time(function() setGameBoard() end, 3.0)
+    Wait.time(function() giveStartingItems() end, 5.0)
+    Wait.time(function() settings.setupComplete = true end, 6.0)
 end
 
 function giveStartingItems()

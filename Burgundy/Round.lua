@@ -1,10 +1,17 @@
 function startNextPhase()
     if settings.setupComplete == false or settings.phase == 'E' then return end
+
+    -- If there are undeployed trade goods, do not proceed
+    local zone = getObjectFromGUID(Guids.Zones.tradegoods)
+    if #(zone.getObjects()) > 0 then
+        redPrint('There are still trade goods that have not been deployed. Unable to start the next phase.')
+        return
+    end
     increasePhase()
     resupplyVineyards()
     removeGameBoardHexes()
     updatePlayerTurnOrder()
-    Wait.time(function() supplyGameBoardHexes() end, 0.5)
+    Wait.time(function() supplyGameBoardHexes() end, 1)
 end
 
 function increasePhase()

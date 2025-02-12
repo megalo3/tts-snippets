@@ -48,7 +48,8 @@ Guids = {
     Zones = {
         gameboard = '82f251',
         vineyard = '58f596',
-        aideck = '71e23f'
+        aideck = '71e23f',
+        tradegoods = 'c30c38'
     },
     Hands = {
         Red = '727836',
@@ -111,7 +112,9 @@ Guids = {
         Yellow = '72aca5',
         Purple = '02cee6',
         Blue = 'a7c615'
-    }
+    },
+    StartNewRoundButton = '2501ec',
+    StartNewRoundText = 'f6351f'
 }
 
 Positions = {

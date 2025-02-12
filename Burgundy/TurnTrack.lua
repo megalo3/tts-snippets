@@ -118,6 +118,9 @@ function setInitialPlayerOrder()
     end
     if settings.playstyle == 'beginnersolo' or settings.playstyle == 'advancedsolo' then
         Turns.enable = false
+        -- Remove start new round button and helper text
+        getObjectFromGUID(Guids.StartNewRoundButton).destruct()
+        getObjectFromGUID(Guids.StartNewRoundText).destruct()
     else
         updatePlayerTurnOrder()
     end
