@@ -152,6 +152,7 @@ function moveWhiteDie(color)
 end
 
 function startNewRound()
+    if settings.setupComplete == false then return end
     updatePlayerTurnOrder()
     moveWhiteDie(Turns.order[1])
 end
