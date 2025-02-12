@@ -63,12 +63,16 @@ function removeColor(color)
     return returnIndex
 end
 
+AdvancementButtonLocs = nil
 function getAdvancementButtonLocs()
-    local gameBoard = getGameBoard()
-    local turnPos = getSnapPositionsWithAnyTagsPositionedToWorld(gameBoard, {'advance'})
-    local function sortingFunction(pos1, pos2) return pos1[3] < pos2[3] end
-    table.sort(turnPos, sortingFunction)  local gameBoard = getGameBoard()
-    return turnPos
+    if AdvancementButtonLocs == nil then
+        local gameBoard = getGameBoard()
+        local turnPos = getSnapPositionsWithAnyTagsPositionedToWorld(gameBoard, {'advance'})
+        local function sortingFunction(pos1, pos2) return pos1[3] < pos2[3] end
+        table.sort(turnPos, sortingFunction)  local gameBoard = getGameBoard()
+        AdvancementButtonLocs = turnPos
+    end
+    return AdvancementButtonLocs
 end
 
 function resetHeights(spot)

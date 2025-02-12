@@ -1,4 +1,10 @@
 VictoryPositions = nil
+Victory100TokenPositions = {
+    Red = nil,
+    Purple = nil,
+    Yellow = nil,
+    Blue = nil
+}
 
 function moveToVictoryNumber(color, number)
     if (settings.points[color] <= 100 and settings.points[color] + number > 100) or
@@ -29,8 +35,10 @@ function moveToVictoryNumber(color, number)
 end
 
 function moveVictoryPointToken(color, number)
-    local pos = getSnapPositionsWithAllTagsPositionedToWorld(getGameBoard(), {color, 'victory100'})[1]
-    pos = {pos[1],2,pos[3]}
+    if Victory100TokenPositions[color] == nil then
+        local p = getSnapPositionsWithAllTagsPositionedToWorld(getGameBoard(), {color, 'victory100'})[1]
+        Victory100TokenPositions[color] = raisePosition(p)
+    end
 
     local rot = {0,180,0}
     if number > 200 then rot = {0,180,180} end
@@ -38,9 +46,9 @@ function moveVictoryPointToken(color, number)
     local guid = Guids.Victory[color]
     local token = getObjectFromGUID(guid)
     if token == nil then
-        token = SetupBag.takeObject({guid = guid, position = pos, rotation = rot})
+        token = SetupBag.takeObject({guid = guid, position = Victory100TokenPositions[color], rotation = rot})
     else
-        token.setPositionSmooth(pos)
+        token.setPositionSmooth(Victory100TokenPositions[color])
         token.setRotationSmooth(rot)
     end
 

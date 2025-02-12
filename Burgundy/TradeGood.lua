@@ -39,21 +39,44 @@ function deployTradeGoods(phase)
     end
 end
 
+TgPlacePositions = nil
+
+function setTgPlacePositions(board)
+    TgPlacePositions = {}
+    for i = 1,6 do
+        TgPlacePositions[i] = {}
+        for j = 1,6 do
+            TgPlacePositions[i][j] = {}
+        end
+    end
+
+    for _, snap in ipairs(board.getSnapPoints()) do
+        if #snap.tags > 0 then
+            for _, tag in ipairs(snap.tags) do
+                if string.sub(tag,1,7) == 'tgplace' then
+                    TgPlacePositions[tonumber(string.sub(tag,8,8))][tonumber(string.sub(tag,9,9))] = raisePosition(board.positionToWorld(snap.position))
+                end
+            end
+        end
+    end
+end
+
 function deployTradeGood(depot)
     local board = getGameBoard()
     local phaseTag = 'tgslot' .. string.lower(settings.phase)
     local tradeGoods = getObjectsWithAllTags({phaseTag})
+
+    if TgPlacePositions == nil then
+        setTgPlacePositions(board)
+    end
 
     if #tradeGoods > 0 then
         local function sortingFunction(good1, good2) return good1.getPosition()[3] < good2.getPosition()[3] end
         table.sort(tradeGoods, sortingFunction)
 
         local tileValue = tradeGoods[1].getRotationValue()
-        local placeTag = 'tgplace' .. depot .. tileValue
-        local pos = getSnapPositionsWithAnyTagsPositionedToWorld(board, {placeTag})[1]
-        pos[2] = 2
+        tradeGoods[1].setPositionSmooth(TgPlacePositions[depot][tileValue])
 
-        tradeGoods[1].setPositionSmooth(pos)
         if depot == 4 or depot == 1 then
             tradeGoods[1].setRotationSmooth({0, 150, 0})
         end
