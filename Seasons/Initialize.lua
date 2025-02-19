@@ -179,11 +179,11 @@ end
 function visionOfDestinyShift()
     local deck = getDrawDeck()
 
-    local topCardText = getObjectFromGUID('0f525b')
+    local topCardText = getObjectFromGUID(Guids.Text.TopCard)
     local topCardTextPos = topCardText.getPosition()
     topCardText.setPositionSmooth({topCardTextPos[1], 1, topCardTextPos[3]})
 
-    local secondDrawText = getObjectFromGUID('1117ad')
+    local secondDrawText = getObjectFromGUID(Guids.Text.SecondDraw)
     local secondDrawTextPos = secondDrawText.getPosition()
     secondDrawText.setPositionSmooth({secondDrawTextPos[1], 1, secondDrawTextPos[3]})
 

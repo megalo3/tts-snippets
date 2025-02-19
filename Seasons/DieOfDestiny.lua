@@ -1,9 +1,9 @@
 function hideDestiny()
     local items = {
-        getObjectFromGUID('975275'),
-        getObjectFromGUID('48b274'),
-        getObjectFromGUID('0e1960'),
-        getObjectFromGUID('50469c'),
+        getObjectFromGUID(Guids.Text.Destiny[1]),
+        getObjectFromGUID(Guids.Text.Destiny[2]),
+        getObjectFromGUID(Guids.Text.Destiny[3]),
+        getObjectFromGUID(Guids.Text.Destiny[4]),
         table.unpack(getObjectsWithAllTags({'Destiny'}))
     }
     for _, item in ipairs(items) do

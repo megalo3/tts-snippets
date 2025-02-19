@@ -37,7 +37,10 @@ Guids = {
         Phase = '7982cf',
         Discard = 'adfe86',
         Draw = 'a7ee19',
-        Enchantment = '0a9eec'
+        SecondDraw = '1117ad',
+        TopCard = '0f525b',
+        Enchantment = '0a9eec',
+        Destiny = {'975275','48b274','0e1960','50469c'}
     },
     Bags = {
         SpecialAbility = 'a3ee11',
