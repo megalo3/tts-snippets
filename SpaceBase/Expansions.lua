@@ -160,7 +160,7 @@ function addDeadReckoning()
 end
 
 function addGenesis()
-    if (settings.genesis == true) then
+    if settings.genesis == true then
         print('Adding Genesis.')
 
         expansion = getExpansion('genesis');
@@ -176,17 +176,17 @@ function addGenesis()
 end
 
 function addColonyCards()
-    if (settings.biodome == true) then
+    if settings.biodome == true then
         getObjectFromGUID(Guids.Expansions.Biodome.Colony).setPosition({3.00, 1.00, 30.00})
         getObjectFromGUID(Guids.Expansions.Biodome.Colony).setRotation({0, 180, 180})
         print('Adding Biodome Colony Cards.')
     end
-    if (settings.terraProxima == true) then
+    if settings.terraProxima == true then
         getObjectFromGUID(Guids.Expansions.Proxima.Colony).setPosition({3.00, 1.00, 30.00})
         getObjectFromGUID(Guids.Expansions.Proxima.Colony).setRotation({0, 180, 180})
         print('Adding Terra Proxima Colony Cards.')
     end
-    if (settings.genesis == true) then
+    if settings.genesis == true then
         getObjectFromGUID(Guids.Expansions.Genesis.Colony).setPosition({3.00, 1.00, 30.00})
         getObjectFromGUID(Guids.Expansions.Genesis.Colony).setRotation({0, 180, 180})
         print('Adding Genesis Colony Cards.')

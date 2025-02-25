@@ -3,6 +3,8 @@ gameLoaded = false
 function onLoad(saveState)
     UI.hide('FirstPlayerPanel')
     math.randomseed(os.time())
+    Hands.enable = false
+
 
     local loadedData = JSON.decode(saveState)
     if loadedData ~= nil then
@@ -297,13 +299,10 @@ end
 
 -- Swap all cards in a sector with those from another sector
 function swapSectorCards()
-    moveToTrack('Credits', 5, 'Blue', false)
-
     -- The sectors that the two checkers are on will determine which to swap
-    Checker1 = getObjectFromGUID('3630f7')
-    Checker2 = getObjectFromGUID('a12ea2')
-    local locOne = getSectorLocation(Checker1)
-    local locTwo = getSectorLocation(Checker2)
+    local checkers = getObjectsWithTag('checker')
+    local locOne = getSectorLocation(checkers[1])
+    local locTwo = getSectorLocation(checkers[2])
     if (locTwo[2] == 0 or locOne[2] == 0) then
         print("Both checkers must be on a sector to swap sectors.")
         return
@@ -315,8 +314,8 @@ function swapSectorCards()
     print('Swapping ', locOne[1], ' sectors ', locOne[2], ' and ', locTwo[2], '.')
 
     -- Return the checkers to the original location
-    Checker1.setPositionSmooth({-0.46, 1.12, -14.32}, false, false)
-    Checker2.setPositionSmooth({0.89, 1.12, -14.32}, false, false)
+    checkers[1].setPositionSmooth({-0.46, 1.12, -14.32}, false, false)
+    checkers[2].setPositionSmooth({0.89, 1.12, -14.32}, false, false)
 
     local Sector1 = getObjectFromGUID(Guids.PlayerBoards[locOne[1]][locOne[2]])
     local Sector2 = getObjectFromGUID(Guids.PlayerBoards[locOne[1]][locTwo[2]])

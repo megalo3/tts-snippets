@@ -4,7 +4,7 @@ function onObjectDrop(colorName, obj)
     end
 end
 
-function AutoDeployOnObjectEnterScriptingZone(zone, card)
+function AutoDeployOnObjectEnterScriptingZone(card)
     -- Find the color that dropped this card
     local playerColor = card.getVar('droppedBy')
     if (isPlayerColor(playerColor) == false) then return end

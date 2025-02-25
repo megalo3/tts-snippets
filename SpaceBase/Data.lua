@@ -115,16 +115,6 @@ SectorY = {3.05, -0.49, -3.89, -7.29}
 ResupplySectorInProgress = {false, false, false, false}
 ResupplyInProgress = false
 
-AutoRollZones = {
-    Red = '9e1e40',
-    Orange = '4de647',
-    Yellow = 'f90ed4',
-    Green = 'c22c7b',
-    Blue = '31f9ef',
-    Teal = '340eb2',
-    Purple = 'f44f1f'
-}
-
 DiceTags = {
     'bonus roll',
     'charge',
@@ -217,6 +207,15 @@ Guids = {
             Purple = '82f36f',
             Green = 'd159d1',
             Teal = '7cd0b3'
+        },
+        AutoRoll = {
+            Red = '9e1e40',
+            Orange = '4de647',
+            Yellow = 'f90ed4',
+            Green = 'c22c7b',
+            Blue = '31f9ef',
+            Teal = '340eb2',
+            Purple = 'f44f1f'
         }
     },
     Deployments = {

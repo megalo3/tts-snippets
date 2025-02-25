@@ -31,10 +31,6 @@ resupplySector2 = function() resupplySector(2) end
 resupplySector3 = function() resupplySector(3) end
 resupplySector4 = function() resupplySector(4) end
 
-function haveTerraProxima()
-    return getObjectFromGUID(StartPlayerCard).hasTag('haveTerraProxima')
-end
-
 function getSectorDeck(n)
     return find_pile(getObjectFromGUID(n))
 end
@@ -108,7 +104,7 @@ end
 
 function shuffleSectorDecks()
     local total = 3
-    if (haveTerraProxima()) then total = 4 end
+    if settings.terraProxima == true then total = 4 end
     for k=1,total do
         deck = find_pile(SectorScriptZones[k])
         deck.shuffle()
@@ -119,5 +115,5 @@ function resupplySectors()
     resupplySector1()
     resupplySector2()
     resupplySector3()
-    if (haveTerraProxima()) then resupplySector4() end
+    if settings.terraProxima == true then resupplySector4() end
 end

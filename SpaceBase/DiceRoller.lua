@@ -346,7 +346,7 @@ function rollShyPlutoniumDice()
     for key, color in ipairs(players) do
         if (isPlayerColor(color) == true) then
 
-            local zone = getObjectFromGUID(AutoRollZones[color])
+            local zone = getObjectFromGUID(Guids.Zones.AutoRoll[color])
             local diceValues = {
                 charge = 0,
                 credits = 0,
