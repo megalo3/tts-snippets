@@ -1,27 +1,5 @@
 SectorScriptZones = {}
 
-SectorDeckColors = {
-    {0, 1, 0},
-    {1, 1, 0},
-    {1, 0, 1},
-    {0.5, 1, 0}
-}
-
-SectorDealZones = {}
-SectorDealZones[1] = {'2f6af8', '3fd8b0', '4faee4', '6f1ab7', '4e14f6', 'f45664'}
-SectorDealZones[2] = {'f2a756', 'dcbd86', '1aae77', 'd39780', 'dd4e5a', '44ebd0'}
-SectorDealZones[3] = {'abf34d', '3c1ec6', '3454b5', 'a406ac', 'ad25a1', '6d85cc'}
-SectorDealZones[4] = {'dc07d3', 'eedc3f', 'ebe528'}
-
-SectorX = {-2.19, -0.76, 0.67, 2.10, 3.53, 4.96}
-SectorY = {3.05, -0.49, -3.89, -7.29}
-
-resupplyInProgress = {}
-resupplyInProgress[1] = false
-resupplyInProgress[2] = false
-resupplyInProgress[3] = false
-resupplyInProgress[4] = false
-
 function sectorDeckOnLoad()
     SectorScriptZones = {getObjectFromGUID('c1471e'), getObjectFromGUID('9f6e2d'), getObjectFromGUID('709338'), getObjectFromGUID('84e601')}
 
@@ -63,11 +41,9 @@ end
 
 -- Deal cards to refill the marketplace
 function resupplySector(n)
-
-    if (resupplyInProgress[n] == false) then
-
-        resupplyInProgress[n] = true
-        Wait.time(function() resupplyInProgress[n] = false end, 2)
+    if ResupplySectorInProgress[n] == false then
+        ResupplySectorInProgress[n] = true
+        Wait.time(function() ResupplySectorInProgress[n] = false end, 2)
 
         local deck = SectorScriptZones[n]
         local topCard = find_pile(deck)

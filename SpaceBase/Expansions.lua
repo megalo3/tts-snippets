@@ -62,8 +62,9 @@ function addShyPluto()
         addDecktoDeck(getObjectFromGUID(Guids.Decks.Sectors[3]), Guids.Expansions.ShyPluto.Sectors[3])
         pinkDiceBag = getObjectFromGUID(Guids.Expansions.ShyPluto.PinkBag)
         pinkDiceBag.shuffle()
-        Global.setVar('resupplyInProgress', true)
-        Wait.time(function() Global.setVar('resupplyInProgress', false) end, 2)
+
+        ResupplyInProgress = true
+        Wait.time(function() ResupplyInProgress = false end, 2)
 
         for k=1,6 do
             pinkDiceBag.takeObject({

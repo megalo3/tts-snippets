@@ -6,21 +6,14 @@ function onLoad(saveState)
 
     local loadedData = JSON.decode(saveState)
     if loadedData ~= nil then
-        -- settings = loadedData
+        settings = loadedData
     end
+
 
     -- Set items uninteractable
     for key, value in ipairs({
             -- Auto Roll Zone Dotted Displays
-            Guids.AutoRollDisplay['Red'], Guids.AutoRollDisplay['Orange'], Guids.AutoRollDisplay['Yellow'], Guids.AutoRollDisplay['Green'], Guids.AutoRollDisplay['Blue'], Guids.AutoRollDisplay['Teal'], Guids.AutoRollDisplay['Purple']
-        }) do
-        if (getObjectFromGUID(value) != nil) then
-            getObjectFromGUID(value).interactable = false
-        end
-    end
-
-    -- Set items uninteractable
-    for key, value in ipairs({
+            Guids.AutoRollDisplay['Red'], Guids.AutoRollDisplay['Orange'], Guids.AutoRollDisplay['Yellow'], Guids.AutoRollDisplay['Green'], Guids.AutoRollDisplay['Blue'], Guids.AutoRollDisplay['Teal'], Guids.AutoRollDisplay['Purple'],
             -- Player Boards
             'e58bea', '93553d', '2eaddb', 'fc21ad', 'a917cc', '0b40bb', '707903',
             -- Table
@@ -305,6 +298,7 @@ end
 -- Swap all cards in a sector with those from another sector
 function swapSectorCards()
     moveToTrack('Credits', 5, 'Blue', false)
+
     -- The sectors that the two checkers are on will determine which to swap
     Checker1 = getObjectFromGUID('3630f7')
     Checker2 = getObjectFromGUID('a12ea2')
@@ -476,13 +470,13 @@ end
 function moveToTrack(track, number, color, startAtZero)
     local cubeSlotSpacing = 0.41
 
-    local beginningX = -24.45
+    local beginningX = Positions.ResourceIncrements[1][1]
     if color == 'Blue' or color == 'Purple' or color == 'Teal' then
-        beginningX = 8.56
+        beginningX = Positions.ResourceIncrements[2][1]
     end
-    local endX = -8.44
+    local endX = Positions.ResourceIncrements[1][40]
     if color == 'Blue' or color == 'Purple' or color == 'Teal' then
-        endX = 24.56
+        endX = Positions.ResourceIncrements[2][40]
     end
 
     local cubeIndex = 0
@@ -717,10 +711,10 @@ end
 -- Fill empty shy pluto spots by moving dice to the left, and then draw
 -- new dice to fill remaining spots
 function deployDice()
-    if (resupplyInProgress == true) then return end
+    if (ResupplyInProgress == true) then return end
 
-    resupplyInProgress = true
-    Wait.time(function() resupplyInProgress = false end, 2)
+    ResupplyInProgress = true
+    Wait.time(function() ResupplyInProgress = false end, 2)
     local dice = {}
 
     local deployed = getObjectFromGUID(ShyPlutoDiceZone)
