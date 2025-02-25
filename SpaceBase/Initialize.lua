@@ -222,7 +222,7 @@ function start()
 
     -- If world eater, pull out 6 World Eater red dice
     if (settings.worldEater == true) then
-        local diceBag = Guids.Expansions.ShyPluto.RedBag
+        local diceBag = getObjectFromGUID(Guids.Expansions.ShyPluto.RedBag)
         diceBag.takeObject({guid = '2a7a43', position = {8.17, 1.23, 25.87}, rotation = {270, 180, 0}})
         diceBag.takeObject({guid = '5f0e18', position = {8.94, 1.23, 25.87}, rotation = {270, 180, 0}})
         diceBag.takeObject({guid = 'e7c672', position = {9.71, 1.23, 25.87}, rotation = {270, 180, 0}})

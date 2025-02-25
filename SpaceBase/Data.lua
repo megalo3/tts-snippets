@@ -220,8 +220,8 @@ Guids = {
         }
     },
     Deployments = {
-        Tall = {'c08c9b', '5b4153', 'e2a4c6', 'c572af', 'b0e8f8', '1394ec', '07b1d1', '3e70aa', 'ed5be4', 'ef6e02', '949f67', 'f1e719'},
-        Taller = {'11d1fc', 'f0d126', 'ce3512', 'd1d0ea', '66ac96', '1bc92b', '8fadea', '3a81fe', '65d15a', '233671', '26f271', '1aa4c6', 'eb14a4', 'd0a0ae', '3a3ad8', 'c17f91', 'e540c8', '5aa245', '5aa245', '52d0f8', 'e27613',
+        Tall = {'c17f91', 'c08c9b', '5b4153', 'e2a4c6', 'c572af', 'b0e8f8', '1394ec', '07b1d1', '3e70aa', 'ed5be4', 'ef6e02', '949f67', 'f1e719'},
+        Taller = {'3a3ad8', 'e540c8', '5aa245', '52d0f8', 'e27613',
         -- 6/7 player start cards
         '65d15a', 'd1d0ea', '11d1fc', 'eb14a4', '3a81fe', '66ac96', '233671', '1aa4c6',
         '8fadea', '1bc92b', 'ce3512', 'd0a0ae', 'f0d126', '26f271'
