@@ -1,7 +1,12 @@
 SectorScriptZones = {}
 
 function sectorDeckOnLoad()
-    SectorScriptZones = {getObjectFromGUID('c1471e'), getObjectFromGUID('9f6e2d'), getObjectFromGUID('709338'), getObjectFromGUID('84e601')}
+    SectorScriptZones = {
+        getObjectFromGUID(Guids.Zones.Sectors[1]),
+        getObjectFromGUID(Guids.Zones.Sectors[2]),
+        getObjectFromGUID(Guids.Zones.Sectors[3]),
+        getObjectFromGUID(Guids.Zones.Sectors[4])
+    }
 
     for k=1,4 do
         if (SectorScriptZones[k] != nil) then
@@ -76,6 +81,21 @@ function resupplySector(n)
         end
     end
 end
+
+function resetSupplySectorButtonHeights()
+    local function moveUpZone(zoneNumber)
+        local zone = getObjectFromGUID(Guids.Zones.Sectors[zoneNumber])
+        local cardAmount = #((find_pile(zone)).getObjects())
+        if cardAmount > 213 then cardAmount = 213 end
+        local p = zone.getPosition()
+        p[2] = 0.37 + (cardAmount)*0.01 - math.floor(cardAmount/27)/100
+        zone.setPositionSmooth(p)
+    end
+    moveUpZone(1)
+    moveUpZone(2)
+    moveUpZone(3)
+end
+
 
 function supplyPilotToken()
     print('Supplying patrol ship')

@@ -8,6 +8,7 @@ function addSelectedExpansions()
     addGenesis()
     addColonyCards()
     removeUnusedExpansions()
+    Wait.time(function() resetSupplySectorButtonHeights() end, 2.5)
 end
 
 function addDecktoDeck(consumerDeck, consumedDeckGUID)
@@ -32,7 +33,7 @@ function getExpansion(name)
 end
 
 function addDreadnaught()
-    if (settings.dreadnaught == true) then
+    if settings.dreadnaught == true then
         print('Adding Dreadnaught.')
         expansion = getExpansion('dreadnaught');
         addDecktoDeck(getObjectFromGUID(Guids.Decks.Sectors[2]), expansion.guid)
@@ -83,7 +84,7 @@ function addShyPluto()
 end
 
 function addBiodome()
-    if (settings.biodome == true) then
+    if settings.biodome == true then
         print('Adding Biodome Sector Cards.')
         expansion = getExpansion('biodome');
         expansion.takeObject({guid = Guids.Expansions.Biodome.Sectors[1]})
@@ -98,7 +99,7 @@ function addBiodome()
 end
 
 function addTerraProxima()
-    if (settings.terraProxima == true) then
+    if settings.terraProxima == true then
         print('Adding Terra Proxima sector cards.')
         expansion = getExpansion('terraProxima');
         expansion.takeObject({guid = Guids.Expansions.Proxima.Sectors[1]})
@@ -126,14 +127,14 @@ function addTerraProxima()
 end
 
 function addJohnDClaire()
-    if (settings.johnDClaire == true) then
+    if settings.johnDClaire == true then
         print('Adding John D Claire promo card.')
         getObjectFromGUID(Guids.Decks.Sectors[3]).putObject(getObjectFromGUID(Guids.Bags.Expansions).takeObject({guid = Guids.Expansions.JohnDClaire.Sector3}))
     end
 end
 
 function addDeadReckoning()
-    if (settings.deadReckoning == true) then
+    if settings.deadReckoning == true then
         print('Deploying Dread Reckoning cards.')
         local deck = getObjectFromGUID(Guids.Bags.Expansions).takeObject({guid = Guids.Expansions.DeadReckoning.Sector1, position = {17.21, 3.04, 40.02}})
 

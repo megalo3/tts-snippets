@@ -216,7 +216,8 @@ Guids = {
             Blue = '31f9ef',
             Teal = '340eb2',
             Purple = 'f44f1f'
-        }
+        },
+        Sectors = {'c1471e', '9f6e2d', '709338', '84e601'}
     },
     Deployments = {
         Tall = {'c17f91', 'c08c9b', '5b4153', 'e2a4c6', 'c572af', 'b0e8f8', '1394ec', '07b1d1', '3e70aa', 'ed5be4', 'ef6e02', '949f67', 'f1e719'},
