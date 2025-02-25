@@ -1,0 +1,306 @@
+<!-- For camera views -->
+<Panel id="CamerasPanel" active="true" width="40" height="180" color="rgba(0, 0, 0, 0)"
+    rectAlignment="LowerRight" offsetXY="-15 65" returnToOriginalPositionWhenReleased="false" allowDragging="true">
+    <VerticalLayout preferredHeight="40" spacing="3">
+        <Button id="Multi" onClick="CameraViewClicked" color="rgba(0, 0, 0, 0)">
+            <Image image="MultiButton" />
+        </Button>
+        <Button id="Red" onClick="CameraViewClicked" color="rgba(0, 0, 0, 0)">
+            <Image image="RedButton" />
+        </Button>
+        <Button id="Orange" onClick="CameraViewClicked" color="rgba(0, 0, 0, 0)">
+            <Image image="OrangeButton" />
+        </Button>
+        <Button id="Yellow" onClick="CameraViewClicked" color="rgba(0, 0, 0, 0)">
+            <Image image="YellowButton" />
+        </Button>
+        <Button id="Green" onClick="CameraViewClicked" color="rgba(0, 0, 0, 0)">
+            <Image image="GreenButton" />
+        </Button>
+        <Button id="Teal" onClick="CameraViewClicked" color="rgba(0, 0, 0, 0)">
+            <Image image="TealButton" />
+        </Button>
+        <Button id="Blue" onClick="CameraViewClicked" color="rgba(0, 0, 0, 0)">
+            <Image image="BlueButton" />
+        </Button>
+        <Button id="Purple" onClick="CameraViewClicked" color="rgba(0, 0, 0, 0)">
+            <Image
+                    id="Blue"
+                    image="PurpleButton" />
+        </Button>
+    </VerticalLayout>
+</Panel>
+
+<Defaults>
+    <Panel
+            class="score"
+            height="50"
+            width="50"
+            rectAlignment="UpperLeft" />
+    <Panel
+            class="itemannouncePanel"
+            active="false"
+            rectAlignment="LowerRight"
+            showAnimation="FadeIn"
+            hideAnimation="FadeOut"
+            animationDuration="0.6"
+            hideAnimationDelay="0.5"
+            height="100"
+            width="300" />
+    <Text
+            class="itemannounceText"
+            fontSize="25"
+            color="#FFFFFF"
+            fontstyle="Bold"
+            outline="#000000"
+            alignment="LowerRight"
+            outlinesize="1 -1" />
+    <text
+            class="plusminus"
+            fontSize="30"
+            fontStyle="Bold"
+            color="#000000"></text>
+    <Button
+            class="spawnbutton"
+            onClick="spawnitem()"></Button>
+    <Button
+            class="despawnbutton"
+            onClick="despawnitem()"></Button>
+    <Button
+            class="transmutebutton"
+            onClick="transmuteitem()"></Button>
+    <Button
+            class="tipbutton"
+            rectAlignment="UpperLeft"
+            preferredHeight="50"
+            preferredWidth="50"
+            tooltipPosition="Above"
+            tooltipBackgroundColor="rgba(0,0,0,1)">
+    </Button>
+    <Button
+            class="bluebutton"
+            colors="rgb(0.11,0.52,1)|rgb(0.09,0.40,0.9)|rgb(0.05,0.25,0.8)|rgba(0.78,0.78,0.78,0.5)">
+    </Button>
+    <Button
+            class="redbutton"
+            colors="rgb(0.85,0.08,0.08)|rgb(0.75,0.06,0.06)|rgb(0.65,0.05,0.05)|rgba(0.78,0.78,0.78,0.5)">
+    </Button>
+    <Button
+            class="greenbutton"
+            colors="rgb(0.19,0.7,0.16)|rgb(0.12,0.6,0.12)|rgb(0.09,0.5,0.09)|rgba(0.78,0.78,0.78,0.5)">
+    </Button>
+    <Button
+            class="yellowbutton"
+            colors="rgb(0.9,0.9,0.16)|rgb(0.8,0.8,0.12)|rgb(0.7,0.7,0.09)|rgba(0.78,0.78,0.78,0.5)">
+    </Button>
+    <Button
+            class="graybutton1"
+            colors="rgb(0.8,0.8,0.8)|rgb(0.7,0.7,0.7)|rgb(0.6,0.6,0.6)|rgba(0.78,0.78,0.78,0.5)">
+    </Button>
+    <Button
+            class="graybutton2"
+            colors="rgb(0.6,0.6,0.6)|rgb(0.5,0.5,0.5)|rgb(0.4,0.4,0.4)|rgba(0.78,0.78,0.78,0.5)">
+    </Button>
+
+
+    <Cell
+            class="whiteBackground"
+            color="White"
+            dontUseTableCellBackground="true"></Cell>
+    <Cell
+            class="pinkBackground"
+            color="Pink"
+            dontUseTableCellBackground="true">
+    </Cell>
+    <Cell
+            class="orangeBackground"
+            color="Orange"
+            dontUseTableCellBackground="true">
+    </Cell>
+    <Cell
+            class="yellowBackground"
+            color="Yellow"
+            dontUseTableCellBackground="true">
+    </Cell>
+    <Text
+            class="whitetext"
+            color="White"
+            fontSize="18"></Text>
+    <image
+            class="elementimage"
+            height="40"
+            width="40"
+            tooltipPosition="Above"
+            tooltipBackgroundColor="rgba(0,0,0,1)"
+            preserveAspect="true">
+    </image>
+    <image
+            class="transmuteimage"
+            image="transmute"
+            height="30"
+            width="30"
+            tooltipPosition="Above"
+            tooltipBackgroundColor="rgba(0,0,0,1)"
+            preserveAspect="true">
+    </image>
+</Defaults>
+
+<TableLayout
+        id="optionsMenu1"
+        active="true"
+        rectAlignment="LowerRight"
+        offsetXY="0 440"
+        height="60"
+        width="300"
+        rowBackgroundColor="rgba(0, 0.39, 0.65)">
+    <Row preferredHeight="40">
+        <Cell>
+            <Text
+                    color="white"
+                    fontSize="16">Game Options</Text>
+        </Cell>
+    </Row>
+</TableLayout>
+<TableLayout
+        id="optionsMenu2"
+        active="true"
+        rectAlignment="LowerRight"
+        offsetXY="0 0"
+        height="460"
+        width="300"
+        cellPadding="24 12 12 12"
+        cellBackgroundColor="clear"
+        rowBackgroundColor="rgba(1, 1, 1, 0.85)">
+    <Row preferredHeight="140">
+        <Cell>
+            <VerticalLayout>
+                <Text fontSize="16">Everyone must select their player color before starting.</Text>
+                <Text
+                        fontStyle="Bold"
+                        alignment="MiddleLeft">Variants</Text>
+                <Toggle
+                        isOn="False"
+                        onValueChanged="uiToggle"
+                        id="lightSpeed">Light-speed</Toggle>
+                <Toggle
+                        isOn="False"
+                        onValueChanged="uiToggle"
+                        id="worldEater">The World Eater</Toggle>
+            </VerticalLayout>
+        </Cell>
+    </Row>
+    <Row preferredHeight="150">
+        <Cell>
+            <VerticalLayout>
+                <Text
+                        fontStyle="Bold"
+                        alignment="MiddleLeft">Expansions</Text>
+                <VerticalLayout>
+                    <Toggle
+                            isOn="False"
+                            onValueChanged="uiToggle"
+                            id="shyPluto">Shy Pluto</Toggle>
+                    <Toggle
+                            isOn="False"
+                            onValueChanged="uiToggle"
+                            id="biodome">Biodome</Toggle>
+                    <Toggle
+                            isOn="False"
+                            onValueChanged="uiToggle"
+                            id="terraProxima">Terra Proxima</Toggle>
+                    <Toggle
+                            isOn="False"
+                            onValueChanged="uiToggle"
+                            id="genesis">Genesis</Toggle>
+                </VerticalLayout>
+            </VerticalLayout>
+        </Cell>
+    </Row>
+    <Row preferredHeight="120">
+        <Cell>
+            <VerticalLayout>
+                <Text
+                        fontStyle="Bold"
+                        alignment="MiddleLeft">Promos</Text>
+                <VerticalLayout>
+                    <Toggle
+                            isOn="False"
+                            onValueChanged="uiToggle"
+                            id="dreadnaught">Dreadnaught</Toggle>
+                    <Toggle
+                            isOn="False"
+                            onValueChanged="uiToggle"
+                            id="johnDClaire">John D Claire</Toggle>
+                    <Toggle
+                            isOn="False"
+                            onValueChanged="uiToggle"
+                            id="deadReckoning">Dead Reckoning</Toggle>
+                </VerticalLayout>
+            </VerticalLayout>
+        </Cell>
+    </Row>
+    <Row preferredHeight="10">
+    </Row>
+</TableLayout>
+<TableLayout
+        id="optionsMenu3"
+        active="true"
+        rectAlignment="LowerRight"
+        height="40"
+        width="300"
+        cellBackgroundColor="clear"
+        rowBackgroundColor="rgba(1, 1, 1, 0.85)">
+    <Row preferredHeight="40">
+        <Cell>
+            <Button
+                    onClick="start()"
+                    color="Green"
+                    textColor="white"
+                    fontSize="16">Start Game</Button>
+        </Cell>
+    </Row>
+</TableLayout>
+
+<!-- For selecting starting player and discarding unpurchased cards -->
+<Panel
+        id="FirstPlayerPanel"
+        active="false"
+        width="300"
+        height="380"
+        rectAlignment="UpperRight"
+        returnToOriginalPositionWhenReleased="false"
+        allowDragging="true"
+        color="rgba(1,1,1,0.9)"
+        padding="10 10 10 10">
+    <TableLayout
+            autoCalculateHeight="true"
+            cellBackgroundColor="clear"
+            >
+        <Row>
+            <Cell>
+            <Text
+                        id="FirstPlayerPanelText"
+                        fontSize="18"
+                        alignment="UpperLeft">All players must deploy their starting card and pay its cost. This does not reset currency to zero. Set the player with the highest starting sector as the starting player. A dice roll breaks ties.</Text>
+        </Cell></Row>
+        <Row preferredHeight="160"><Cell>
+        <ToggleGroup onValueChanged="startingOptionSelected">
+            <VerticalLayout>
+                <Toggle id="StarterOptionRed" selected="true">Red</Toggle>
+                <Toggle id="StarterOptionOrange">Orange</Toggle>
+                <Toggle id="StarterOptionYellow">Yellow</Toggle>
+                <Toggle id="StarterOptionGreen">Green</Toggle>
+                <Toggle id="StarterOptionTeal">Teal</Toggle>
+                <Toggle id="StarterOptionBlue">Blue</Toggle>
+                <Toggle id="StarterOptionPurple">Purple</Toggle>
+            </VerticalLayout>
+        </ToggleGroup>
+
+        </Cell></Row>
+        <Row preferredHeight="20"><Cell>
+        </Cell></Row>
+        <Row preferredHeight="40"><Cell>
+            <Button id="SetStartingPlayer" onClick="SetStartingPlayer" color="rgb(0.19,0.7,0.12)" textColor="white" fontSize="20"  height="40" width="120">Set Starting Player</Button>
+        </Cell></Row>
+    </TableLayout>
+</Panel>
