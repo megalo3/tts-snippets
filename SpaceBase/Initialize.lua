@@ -229,7 +229,7 @@ function dealStartingCards()
             dealCard(Positions.Starters[color], 2, 5)
             dealCard(Positions.Starters[color], 2, 6)
 
-            -- Update to 15 currency. The lightspeed / Terra Proxima income will add later
+            -- Update to 15 credits. The lightspeed / Terra Proxima income will add later
             settings.Points[color].Credits = 15
             moveTrack('Credits', color)
         end
@@ -424,13 +424,13 @@ end
 function setStartingResources(turnOrder)
     for index, color in ipairs(turnOrder) do
 
-        -- CURRENCY
-        local startingCurrency = 0
+        -- CREDITS
+        local startingCredits = 0
         if (index == 2) then
-            startingCurrency = startingCurrency + 1
+            startingCredits = startingCredits + 1
         end
         if (index == 3) then
-            startingCurrency = startingCurrency + 2
+            startingCredits = startingCredits + 2
         end
 
         -- INCOME
@@ -451,17 +451,17 @@ function setStartingResources(turnOrder)
         if index == 7 then playerOrder = 'Seventh' end
 
         local messages = {playerOrder .. ' player gains '}
-        if startingCurrency == 0 and startingIncome == 0 then
+        if startingCredits == 0 and startingIncome == 0 then
             table.insert(messages, ' no starting resources')
         end
 
-        if startingCurrency > 0 then
-            settings.Points[color].Credits = startingCurrency
+        if startingCredits > 0 then
+            settings.Points[color].Credits = startingCredits
             moveTrack('Credits', color)
-            table.insert(messages, startingCurrency .. ' credit')
-            if startingCurrency > 1 then table.insert(messages, 's') end
+            table.insert(messages, startingCredits .. ' credit')
+            if startingCredits > 1 then table.insert(messages, 's') end
         end
-        if startingCurrency > 0 and startingIncome > 0 then
+        if startingCredits > 0 and startingIncome > 0 then
             table.insert(messages, ' and ')
         end
         if startingIncome > 0 then
