@@ -220,34 +220,35 @@ function addSixSevenPlayerMods()
 end
 
 function dealStartingCards()
-    for key, value in ipairs(getTurnOrderFromStartingPlayer(Turns.turn_color)) do
-        dealCard(Positions.Starters[value], 1, 1)
+    for key, color in ipairs(getTurnOrderFromStartingPlayer(Turns.turn_color)) do
+        dealCard(Positions.Starters[color], 1, 1)
         if (settings.lightSpeed == true) then
             -- Give out more cards
-            dealCard(Positions.Starters[value], 1, 2)
-            dealCard(Positions.Starters[value], 1, 3)
-            dealCard(Positions.Starters[value], 1, 4)
-            dealCard(Positions.Starters[value], 2, 5)
-            dealCard(Positions.Starters[value], 2, 6)
+            dealCard(Positions.Starters[color], 1, 2)
+            dealCard(Positions.Starters[color], 1, 3)
+            dealCard(Positions.Starters[color], 1, 4)
+            dealCard(Positions.Starters[color], 2, 5)
+            dealCard(Positions.Starters[color], 2, 6)
 
             -- Update to 15 currency. The lightspeed / Terra Proxima income will add later
-            moveToTrack('Credits', 15, value, true)
+            settings.Points[color].Credits = 15
+            moveTrack('Credits', color)
         end
         -- Give out pilot tokens
         -- If playing world eater, give out 2 pilot tokens
         if (settings.shyPluto == true or settings.terraProxima == true or settings.worldEater == true) then
 
-            local PilotBag = getPilotBag(value)
+            local PilotBag = getPilotBag(color)
             if (PilotBag != nil) then
                 PilotBag.takeObject({
-                    position = {x=Positions.Starters[value][1]+10, y=Positions.Starters[value][2], z=Positions.Starters[value][3]},
+                    position = {x=Positions.Starters[color][1]+10, y=Positions.Starters[color][2], z=Positions.Starters[color][3]},
                     rotation = {0,180,0},
                     smooth = true
                 })
 
                 if (settings.worldEater == true) then
                     PilotBag.takeObject({
-                        position = {x=Positions.Starters[value][1]+11, y=Positions.Starters[value][2], z=Positions.Starters[value][3]},
+                        position = {x=Positions.Starters[color][1]+11, y=Positions.Starters[color][2], z=Positions.Starters[color][3]},
                         rotation = {0,180,0},
                         smooth = true
                     })
@@ -456,7 +457,8 @@ function setStartingResources(turnOrder)
         end
 
         if startingCurrency > 0 then
-            moveToTrack('Credits', startingCurrency, color, false)
+            settings.Points[color].Credits = startingCurrency
+            moveTrack('Credits', color)
             table.insert(messages, startingCurrency .. ' credit')
             if startingCurrency > 1 then table.insert(messages, 's') end
         end
@@ -464,7 +466,8 @@ function setStartingResources(turnOrder)
             table.insert(messages, ' and ')
         end
         if startingIncome > 0 then
-            moveToTrack('Income', startingIncome, color, true)
+            settings.Points[color].Income = startingIncome
+            moveTrack('Income', color)
             table.insert(messages, startingIncome .. ' income')
         end
         table.insert(messages, '.')

@@ -3,44 +3,35 @@
 for _, color in ipairs(Colors) do
     for _, track in ipairs({'Credits', 'Income', 'Victory'}) do
         for _, number in ipairs({'-5','-1','+1','+5'}) do
-            _G["move" .. color .. track .. number] = function() moveToTrack(track, tonumber(number), color, false) end
+            _G["move" .. color .. track .. number] = function()
+                settings.Points[color][track] = settings.Points[color][track] + tonumber(number)
+                moveTrack(track, color)
+            end
         end
     end
 end
 
-function moveToTrack(track, number, color, startAtZero)
-    local cubeSlotSpacing = 0.41
+function moveTrack(track, color)
+    local points = settings.Points[color][track]
 
-    local beginningX = Positions.ResourceIncrements[1][1]
-    if color == 'Blue' or color == 'Purple' or color == 'Teal' then
-        beginningX = Positions.ResourceIncrements[2][1]
+    local slot = points%40
+    if slot == 0 and points > 1 then
+        slot = 40
     end
-    local endX = Positions.ResourceIncrements[1][40]
+    local positionsIndex = 1
     if color == 'Blue' or color == 'Purple' or color == 'Teal' then
-        endX = Positions.ResourceIncrements[2][40]
+        positionsIndex = 2
     end
 
+    local positionX = Positions.ResourceIncrements[positionsIndex][slot+1]
     local cubeIndex = 0
     if track == 'Credits' then cubeIndex = 1 end
     if track == 'Income' then cubeIndex = 2 end
     if track == 'Victory' then cubeIndex = 3 end
     local cube = getObjectFromGUID(Guids.PlayerCubes[color][cubeIndex])
-
     local p = cube.getPosition()
-
-    local startX = p[1]
-    if startAtZero == true then startX = beginningX end
-
-    local posX = startX + (cubeSlotSpacing * number)
-
-    if posX > endX then
-        posX = posX - (40 * cubeSlotSpacing)
-    end
-    if posX < beginningX then
-        posX = posX + (40 * cubeSlotSpacing)
-    end
-
-    cube.setPositionSmooth({posX, p[2], p[3]})
+    p[1] = positionX
+    cube.setPositionSmooth(p)
 end
 
 function createMoveCubeButtons(color)
@@ -51,7 +42,8 @@ function createMoveCubeButtons(color)
     for tIndex, track in ipairs({'Victory', 'Income', 'Credits'}) do
         for nIndex, number in ipairs({'+5','+1','-1','-5'}) do
 
-            local pos = {nIndex/2 - 0.05, 0, tIndex/2 - 0.05}
+            -- local pos = {nIndex/1.8 - 0.7, 0, tIndex/2.4 - 0.15}
+            local pos = {nIndex/1.8 - 0.7, 0, tIndex/2.4 - 0.15}
 
             zone.createButton({
                 click_function = "move" .. color .. track .. number,
@@ -60,11 +52,11 @@ function createMoveCubeButtons(color)
                 tooltip        = number .. ' ' .. track,
                 position       = pos,
                 rotation       = {0,180,0},
-                width          = 160,
+                width          = 300,
                 height         = 160,
-                font_size      = 200,
-                color          = {0,0,0},
-                font_color     = MoveCubesColors[track],
+                font_size      = 150,
+                color          = MoveCubesColors[track],
+                font_color     = {0,0,0},
             })
         end
     end
