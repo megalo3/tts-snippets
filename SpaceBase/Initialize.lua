@@ -26,7 +26,7 @@ function onLoad(saveState)
             '71a899'
         }) do
         if (getObjectFromGUID(value) != nil) then
-            -- getObjectFromGUID(value).interactable = false
+            getObjectFromGUID(value).interactable = false
         end
     end
 

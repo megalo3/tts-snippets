@@ -1,5 +1,5 @@
 function onObjectDrop(colorName, obj)
-    if (obj.type == 'Card') then
+    if (obj.type == 'Card' or obj.type == 'Tile') then
         obj.setVar('droppedBy', colorName)
     end
 end
@@ -8,11 +8,21 @@ function onObjectLeaveContainer(container, leave_object)
     if leave_object.type == 'Card' then leave_object.tooltip = false end
 end
 
-function AutoDeployOnObjectEnterScriptingZone(card)
+function AutoDeployOnObjectEnterScriptingZone(obj)
     -- Find the color that dropped this card
-    local playerColor = card.getVar('droppedBy')
+    local playerColor = obj.getVar('droppedBy')
     if (isPlayerColor(playerColor) == false) then return end
-    autoDeployCard({card = card, color = playerColor})
+    if obj.type == 'Card' then
+        autoDeployCard({card = obj, color = playerColor})
+    end
+    if obj.type == 'Tile' then
+        autoDeployTile(obj, playerColor)
+    end
+end
+
+function autoDeployTile(obj, color)
+    local p = Positions.Starters[color]
+    obj.setPositionSmooth({p[1] + 10, p[2], p[3]})
 end
 
 function autoDeployCard(parameters)
