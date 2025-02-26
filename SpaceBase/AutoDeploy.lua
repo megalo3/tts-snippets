@@ -4,6 +4,10 @@ function onObjectDrop(colorName, obj)
     end
 end
 
+function onObjectLeaveContainer(container, leave_object)
+    if leave_object.type == 'Card' then leave_object.tooltip = false end
+end
+
 function AutoDeployOnObjectEnterScriptingZone(card)
     -- Find the color that dropped this card
     local playerColor = card.getVar('droppedBy')

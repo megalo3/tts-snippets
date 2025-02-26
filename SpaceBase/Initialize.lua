@@ -5,12 +5,10 @@ function onLoad(saveState)
     math.randomseed(os.time())
     Hands.enable = false
 
-
     local loadedData = JSON.decode(saveState)
     if loadedData ~= nil then
         settings = loadedData
     end
-
 
     -- Set items uninteractable
     for key, value in ipairs({
@@ -144,6 +142,48 @@ function start()
     settings.started = true
 
     -- If a 6 or 7 player game, give each player a sector 7 and 8 McCaffery Monitor-Relay Class Craft
+    addSixSevenPlayerMods()
+
+    addSelectedExpansions()
+
+    -- Give the starter card "Started" tag to know on load if this is loading a saved game
+    settings.started = true
+
+    -- Shuffle the sector decks
+    shuffleSectorDecks()
+    print('Resupplying marketplace.')
+    Turns.enable = true
+
+    -- Deal starting cards (and pilot tokens if playing Shy Pluto) for active players
+    dealStartingCards()
+
+    -- If world eater, pull out 6 World Eater red dice
+    if (settings.worldEater == true) then
+        local diceBag = getObjectFromGUID(Guids.Expansions.ShyPluto.RedBag)
+        diceBag.takeObject({guid = '2a7a43', position = {8.17, 1.23, 25.87}, rotation = {270, 180, 0}})
+        diceBag.takeObject({guid = '5f0e18', position = {8.94, 1.23, 25.87}, rotation = {270, 180, 0}})
+        diceBag.takeObject({guid = 'e7c672', position = {9.71, 1.23, 25.87}, rotation = {270, 180, 0}})
+        diceBag.takeObject({guid = '8244a0', position = {10.48, 1.23, 25.87}, rotation = {270, 180, 0}})
+        diceBag.takeObject({guid = '90e112', position = {11.25, 1.23, 25.87}, rotation = {270, 180, 0}})
+        diceBag.takeObject({guid = '3de589', position = {12.02, 1.23, 25.87}, rotation = {270, 180, 0}})
+    end
+
+    print('Giving out starter cards.')
+    gameStarted = true
+
+    if (settings.lightSpeed == true) then
+        UI.setAttribute('FirstPlayerPanelText', 'fontSize', 16)
+        UI.setAttributes('FirstPlayerPanelText', {
+        text = 'Each player may spend money to buy as many cards as they can afford. Any unspent money is kept. Set the player with the highest remaining money as the starting player. Ties are broken with the highest sector card. If still tied, roll dice.'
+    })
+    end
+
+    -- Show set starting player
+    UI.show('FirstPlayerPanel')
+    hideStarterOptionsForNonPlayers()
+end
+
+function addSixSevenPlayerMods()
     if (#Player.getPlayers() > 5) then
         commandStation = getExpansion('commandStation');
         deck7 = commandStation.takeObject{guid = '9fdea6', position = {10.72, 3.08, 40.00}, rotation = {0,180,0}}
@@ -172,19 +212,9 @@ function start()
         end
         getObjectFromGUID(Guids.Bags.Expansions).putObject(commandStation)
     end
+end
 
-    addSelectedExpansions()
-
-    -- Give the starter card "Started" tag to know on load if this is loading a saved game
-    settings.started = true
-
-    -- Shuffle the sector decks
-    shuffleSectorDecks()
-    print('Resupplying marketplace.')
-    Turns.enable = true
-
-    -- Wait.time(startShuffleDeal, 0.1)
-    -- Deal starting cards (and pilot tokens if playing Shy Pluto) for active players
+function dealStartingCards()
     for key, value in ipairs(getTurnOrderFromStartingPlayer(Turns.turn_color)) do
         dealCard(Positions.Starters[value], 1, 1)
         if (settings.lightSpeed == true) then
@@ -221,31 +251,6 @@ function start()
             end
         end
     end
-
-    -- If world eater, pull out 6 World Eater red dice
-    if (settings.worldEater == true) then
-        local diceBag = getObjectFromGUID(Guids.Expansions.ShyPluto.RedBag)
-        diceBag.takeObject({guid = '2a7a43', position = {8.17, 1.23, 25.87}, rotation = {270, 180, 0}})
-        diceBag.takeObject({guid = '5f0e18', position = {8.94, 1.23, 25.87}, rotation = {270, 180, 0}})
-        diceBag.takeObject({guid = 'e7c672', position = {9.71, 1.23, 25.87}, rotation = {270, 180, 0}})
-        diceBag.takeObject({guid = '8244a0', position = {10.48, 1.23, 25.87}, rotation = {270, 180, 0}})
-        diceBag.takeObject({guid = '90e112', position = {11.25, 1.23, 25.87}, rotation = {270, 180, 0}})
-        diceBag.takeObject({guid = '3de589', position = {12.02, 1.23, 25.87}, rotation = {270, 180, 0}})
-    end
-
-    print('Giving out starter cards.')
-    gameStarted = true
-
-    if (settings.lightSpeed == true) then
-        UI.setAttribute('FirstPlayerPanelText', 'fontSize', 16)
-        UI.setAttributes('FirstPlayerPanelText', {
-        text = 'Each player may spend money to buy as many cards as they can afford. Any unspent money is kept. Set the player with the highest remaining money as the starting player. Ties are broken with the highest sector card. If still tied, roll dice.'
-    })
-    end
-
-    -- Show set starting player
-    UI.show('FirstPlayerPanel')
-    hideStarterOptionsForNonPlayers()
 end
 
 function hideStarterOptionsForNonPlayers()
@@ -771,30 +776,6 @@ function onPlayerTurnEnd(color)
         local miningDiceBag = getMiningDiceBag()
         if (miningDiceBag != nil) then
             deployDice()
-        end
-    end
-end
-
--- Sorts a table
-function spairs(t, order)
-    -- collect the keys
-    local keys = {}
-    for k in pairs(t) do keys[#keys+1] = k end
-
-    -- if order function given, sort by it by passing the table and keys a, b,
-    -- otherwise just sort the keys
-    if order then
-        table.sort(keys, function(a,b) return order(t, a, b) end)
-    else
-        table.sort(keys)
-    end
-
-    -- return the iterator function
-    local i = 0
-    return function()
-        i = i + 1
-        if keys[i] then
-            return keys[i], t[keys[i]]
         end
     end
 end

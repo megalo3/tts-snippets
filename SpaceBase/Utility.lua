@@ -1,4 +1,4 @@
--- Check if a table contains a value 
+-- Check if a table contains a value
 function has_value(parameters)
     for index, value in ipairs(parameters.table) do
         if value == parameters.value then
@@ -83,7 +83,7 @@ function hasPlayerSelectedColors()
     return hasPlayerColors
 end
 
-function getTurnOrderFromStartingPlayer(startColor)    
+function getTurnOrderFromStartingPlayer(startColor)
     local playerOrder = {}
     local currentOrderIndex = 1
     for c=1,7 do
@@ -91,21 +91,45 @@ function getTurnOrderFromStartingPlayer(startColor)
             table.insert(playerOrder, Turns.order[c])
         end
     end
-    
+
     for index, value in ipairs(playerOrder) do
         if (startColor == value) then
             currentOrderIndex = index
         end
     end
-    
+
     local turnOrderFromStarter = {}
-    
+
     for c=currentOrderIndex, #getSeatedPlayers() do
         table.insert(turnOrderFromStarter, playerOrder[c])
     end
     for c=1,(currentOrderIndex-1) do
         table.insert(turnOrderFromStarter, playerOrder[c])
     end
-    
+
     return turnOrderFromStarter
+end
+
+-- Sorts a table
+function spairs(t, order)
+    -- collect the keys
+    local keys = {}
+    for k in pairs(t) do keys[#keys+1] = k end
+
+    -- if order function given, sort by it by passing the table and keys a, b,
+    -- otherwise just sort the keys
+    if order then
+        table.sort(keys, function(a,b) return order(t, a, b) end)
+    else
+        table.sort(keys)
+    end
+
+    -- return the iterator function
+    local i = 0
+    return function()
+        i = i + 1
+        if keys[i] then
+            return keys[i], t[keys[i]]
+        end
+    end
 end
