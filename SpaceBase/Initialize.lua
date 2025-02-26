@@ -53,6 +53,11 @@ function onLoad(saveState)
 
     sectorDeckOnLoad()
 
+    -- for _, color in ipairs(Colors) do
+    --     createMoveCubeButtons(color)
+    -- end
+    createMoveCubeButtons('Red')
+
     if (settings.started == true) then
         UI.hide('optionsMenu1')
         UI.hide('optionsMenu2')
@@ -414,7 +419,6 @@ function SetStartingPlayer()
 
     Turns.turn_color = turnOrder[1]
     UI.hide('FirstPlayerPanel')
-    hideUnusedPlayers()
 end
 
 function setStartingResources(turnOrder)
@@ -468,45 +472,6 @@ function setStartingResources(turnOrder)
         message = table.concat(messages)
         printToAll(message, stringColorToRGB(color))
     end
-end
-
-
-function moveToTrack(track, number, color, startAtZero)
-    local cubeSlotSpacing = 0.41
-
-    local beginningX = Positions.ResourceIncrements[1][1]
-    if color == 'Blue' or color == 'Purple' or color == 'Teal' then
-        beginningX = Positions.ResourceIncrements[2][1]
-    end
-    local endX = Positions.ResourceIncrements[1][40]
-    if color == 'Blue' or color == 'Purple' or color == 'Teal' then
-        endX = Positions.ResourceIncrements[2][40]
-    end
-
-    local cubeIndex = 0
-    if track == 'Credits' then cubeIndex = 1 end
-    if track == 'Income' then cubeIndex = 2 end
-    local cube = getObjectFromGUID(Guids.PlayerCubes[color][cubeIndex])
-
-    local p = cube.getPosition()
-
-    local startX = p[1]
-    if startAtZero == true then startX = beginningX end
-
-    local posX = startX + (cubeSlotSpacing * number)
-
-    if posX > endX then
-        posX = posX - (40 * cubeSlotSpacing)
-    end
-    if posX < beginningX then
-        posX = posX + (40 * cubeSlotSpacing)
-    end
-
-    cube.setPositionSmooth({posX, p[2], p[3]})
-end
-
-function hideUnusedPlayers()
-
 end
 
 function returnUnpurchasedCards()
@@ -654,11 +619,11 @@ function deployCard(parameters)
     parameters.card.setPositionSmooth({right, height, up}, false, true)
 
     if (parameters.shouldMoveCharges == true) then
-        moveCharges(parameters.card, charges)
+        moveDeployedCharges(parameters.card, charges)
     end
 end
 
-function moveCharges(card, charges)
+function moveDeployedCharges(card, charges)
     Wait.time(function()
         local snapPositions = getSnapPoints(card, true)
         for key, charge in ipairs(charges) do

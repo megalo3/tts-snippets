@@ -104,6 +104,11 @@ SectorDeckColors = {
     {1, 0, 1},
     {0.5, 1, 0}
 }
+MoveCubesColors = {
+    Credits = {1, 1, 0},
+    Income = {0, 1, 0},
+    Victory = {0.2, 0.2, 1},
+}
 
 SectorDealZones = {}
 SectorDealZones[1] = {'2f6af8', '3fd8b0', '4faee4', '6f1ab7', '4e14f6', 'f45664'}
@@ -219,7 +224,16 @@ Guids = {
             Teal = '340eb2',
             Purple = 'f44f1f'
         },
-        Sectors = {'c1471e', '9f6e2d', '709338', '84e601'}
+        Sectors = {'c1471e', '9f6e2d', '709338', '84e601'},
+        MoveCubes = {
+            Red = 'afa0b5',
+            Orange = 'e148ad',
+            Yellow = 'dbd01f',
+            Blue = '6a3a59',
+            Purple = '0c5fc5',
+            Green = '9fc056',
+            Teal = '7e7012'
+        }
     },
     Deployments = {
         Tall = {'c17f91', 'c08c9b', '5b4153', 'e2a4c6', 'c572af', 'b0e8f8', '1394ec', '07b1d1', '3e70aa', 'ed5be4', 'ef6e02', '949f67', 'f1e719'},
