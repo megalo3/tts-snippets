@@ -1,3 +1,5 @@
+WorkshopId = '2339922640'
+
 settings = {
     lightSpeeed = false,
     shyPluto = false,
