@@ -26,7 +26,7 @@ function onLoad(saveState)
             '71a899'
         }) do
         if (getObjectFromGUID(value) != nil) then
-            getObjectFromGUID(value).interactable = false
+            -- getObjectFromGUID(value).interactable = false
         end
     end
 
@@ -53,10 +53,9 @@ function onLoad(saveState)
 
     sectorDeckOnLoad()
 
-    -- for _, color in ipairs(Colors) do
-    --     createMoveCubeButtons(color)
-    -- end
-    createMoveCubeButtons('Red')
+    for _, color in ipairs(Colors) do
+        createMoveCubeButtons(color)
+    end
 
     if (settings.started == true) then
         UI.hide('optionsMenu1')

@@ -114,9 +114,14 @@ SectorDeckColors = {
     {0.5, 1, 0}
 }
 MoveCubesColors = {
-    Credits = {1, 1, 0,0.9},
-    Income = {0, 1, 0,0.9},
-    Victory = {0.2, 0.2, 1,0.9},
+    Credits     = {1, 1, 0},
+    Income      = {0, 1, 0},
+    Victory     = {0.2, 0.2, 1},
+}
+MoveCubesColorsText = {
+    Credits     = {0.5, 0.5, 0},
+    Income      = {0, 0.5, 0},
+    Victory     = {0.8, 0.8, 1}
 }
 
 SectorDealZones = {}

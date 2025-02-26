@@ -2,9 +2,20 @@
 -- moveRedCredits5 = moveToTrack('Credits', 5, Red, true)
 for _, color in ipairs(Colors) do
     for _, track in ipairs({'Credits', 'Income', 'Victory'}) do
-        for _, number in ipairs({'-5','-1','+1','+5'}) do
-            _G["move" .. color .. track .. number] = function()
-                settings.Points[color][track] = settings.Points[color][track] + tonumber(number)
+        for _, number in ipairs({1,5}) do
+            _G["move" .. color .. track .. number] = function(_,_,altClick)
+
+                local verb = 'gained '
+                local value = number
+                if altClick == true then
+                    verb = 'spent '
+                    value = value * -1
+                end
+
+                settings.Points[color][track] = settings.Points[color][track] + value
+
+                printToAll(color .. ' player ' .. verb .. math.abs(value) .. ' ' .. track .. ' to a total of ' .. settings.Points[color][track] .. '.', stringColorToRGB(color))
+
                 moveTrack(track, color)
             end
         end
@@ -40,23 +51,22 @@ function createMoveCubeButtons(color)
 
 
     for tIndex, track in ipairs({'Victory', 'Income', 'Credits'}) do
-        for nIndex, number in ipairs({'+5','+1','-1','-5'}) do
+        for nIndex, number in ipairs({5,1}) do
 
-            -- local pos = {nIndex/1.8 - 0.7, 0, tIndex/2.4 - 0.15}
-            local pos = {nIndex/1.8 - 0.7, 0, tIndex/2.4 - 0.15}
+            local pos = {nIndex/1.95 - 0.9, 0, tIndex/2.5 - 0.08}
 
             zone.createButton({
                 click_function = "move" .. color .. track .. number,
                 function_owner = Global,
-                label          = number,
-                tooltip        = number .. ' ' .. track,
+                label          = '+' .. number,
+                tooltip        = 'Add ' .. number .. ' ' .. track,
                 position       = pos,
                 rotation       = {0,180,0},
-                width          = 300,
+                width          = 240,
                 height         = 160,
-                font_size      = 150,
+                font_size      = 100,
                 color          = MoveCubesColors[track],
-                font_color     = {0,0,0},
+                font_color     = MoveCubesColorsText[track],
             })
         end
     end
