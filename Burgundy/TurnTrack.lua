@@ -150,9 +150,24 @@ function updatePlayerTurnOrder()
 end
 
 function moveWhiteDie(color)
-    local playerBoard = getObjectsWithAllTags({color, 'playerboard'})[1]
-    pos = getSnapPositionsWithAllTagsPositionedToWorld(playerBoard, {'whitedie', color})[1]
-    getObjectsWithTag('whitedie')[1].setPositionSmooth(pos)
+    local whiteDie = getObjectsWithTag('whitedie')[1]
+    if settings.playstyle == 'ai' then
+        local aiBoard = getObjectsWithAllTags({'aiboard'})[1]
+        snaps = getSnapPositionsWithAllTagsPositionedToWorld(aiBoard, {'whitedie'})
+        local function sortingFunction(snap1, snap2) return snap1[1] < snap2[1] end
+        table.sort(snaps, sortingFunction)
+
+        local value = whiteDie.getRotationValue()
+        if value < 5 then
+            whiteDie.setPositionSmooth(raisePosition(snaps[1]))
+        else
+            whiteDie.setPositionSmooth(raisePosition(snaps[2]))
+        end
+    else
+        local playerBoard = getObjectsWithAllTags({color, 'playerboard'})[1]
+        pos = getSnapPositionsWithAllTagsPositionedToWorld(playerBoard, {'whitedie', color})[1]
+        whiteDie.setPositionSmooth(pos)
+    end
 end
 
 function startNewRound()

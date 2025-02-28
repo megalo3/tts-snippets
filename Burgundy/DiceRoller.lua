@@ -23,7 +23,7 @@ function getDieValue(die)
 end
 
 function rollPlayerDice(color)
-    local playerDicePos = getPlayerBoardDicePositions(color)
+    local playerDicePos = getPlayerBoardDicePositions(color, 'playerboard')
     local playerDice = getObjectsWithAllTags({'playerdice', color})
     for _, d in ipairs(playerDice) do
         d.roll()

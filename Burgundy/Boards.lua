@@ -78,6 +78,7 @@ function setNormalPlayerBoards()
         setPlayerDuchyNumber()
         removeUnusedPlayerBoards()
         if settings.playstyle == 'ai' and playerCount == 4 then
+            settings.playstyle = 'normal'
             redPrint('You cannot play Chateauma with 4 players. Setting up the game normally.')
         end
         if settings.playstyle == 'ai' and playerCount < 4 then

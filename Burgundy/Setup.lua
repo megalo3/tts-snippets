@@ -88,8 +88,8 @@ function giveStartingItems()
         end
     end
 
-    local function supplyDice(playerBoard, color, amount)
-        local playerDicePos = getPlayerBoardDicePositions(color)
+    local function supplyDice(playerBoard, color, amount, board)
+        local playerDicePos = getPlayerBoardDicePositions(color, board)
         local playerDie = getObjectFromGUID(Guids.PlayerDie)
         local rotation = {0,330,0}
         if settings.playstyle == 'beginnersolo' or settings.playstyle == 'advancedsolo' then rotation = {0,30,0} end
@@ -145,7 +145,7 @@ function giveStartingItems()
         supplyAiTradeGoods(aiBoard)
         supplyCastle(aiBoard)
         supplyCoin(aiBoard)
-        supplyDice(aiBoard, settings.aiPlayerColor, 1)
+        supplyDice(aiBoard, settings.aiPlayerColor, 1, 'aiboard')
         local p = aiBoard.getPosition()
         supplyAiDeck(p)
 
@@ -184,7 +184,7 @@ function giveStartingItems()
         supplyCastle(playerBoard)
         supplyCoin(playerBoard)
         for _, color in ipairs(colors) do
-            supplyDice(playerBoard, color, 2)
+            supplyDice(playerBoard, color, 2, 'playerboard')
         end
     end
 
