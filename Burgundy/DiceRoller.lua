@@ -62,8 +62,13 @@ function rollPlayerDice(color)
         table.insert(messages, '.')
         printToAll(table.concat(messages), stringColorToRGB(color))
 
-        for i,die in ipairs(playerDice) do
-            playerDice[i].setPositionSmooth(raisePosition(playerDicePos[i]))
+        if color == settings.aiPlayerColor then
+            local slot = getAiWhiteDieSlot()
+            playerDice[1].setPositionSmooth(raisePosition(playerDicePos[slot]))
+        else
+            for i,die in ipairs(playerDice) do
+                playerDice[i].setPositionSmooth(raisePosition(playerDicePos[i]))
+            end
         end
         return 1
     end

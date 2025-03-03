@@ -159,23 +159,32 @@ end
 function moveWhiteDie(color)
     local whiteDie = getObjectsWithTag('whitedie')[1]
     if settings.playstyle == 'ai' then
-        local aiBoard = getObjectsWithAllTags({'aiboard'})[1]
-        snaps = getSnapPositionsWithAllTagsPositionedToWorld(aiBoard, {'whitedie'})
-        local function sortingFunction(snap1, snap2) return snap1[1] < snap2[1] end
-        table.sort(snaps, sortingFunction)
-
-        local value = whiteDie.getRotationValue()
-        if value < 5 then
-            whiteDie.setPositionSmooth(raisePosition(snaps[1]))
-        else
-            whiteDie.setPositionSmooth(raisePosition(snaps[2]))
-        end
+        whiteDie.setPositionSmooth(getAiWhiteDiePosition())
     else
         local playerBoard = getObjectsWithAllTags({color, 'playerboard'})[1]
         pos = getSnapPositionsWithAllTagsPositionedToWorld(playerBoard, {'whitedie', color})[1]
         whiteDie.setPositionSmooth(pos)
     end
 end
+
+function getAiWhiteDieSlot()
+    local whiteDie = getObjectsWithTag('whitedie')[1]
+    local value = whiteDie.getRotationValue()
+    if value < 5 then
+        return 1
+    else
+        return 2
+    end
+end
+
+function getAiWhiteDiePosition()
+    local aiBoard = getObjectsWithAllTags({'aiboard'})[1]
+    snaps = getSnapPositionsWithAllTagsPositionedToWorld(aiBoard, {'whitedie'})
+    local function sortingFunction(snap1, snap2) return snap1[1] < snap2[1] end
+    table.sort(snaps, sortingFunction)
+    return raisePosition(snaps[getAiWhiteDieSlot()])
+end
+
 
 function startNewRound()
     if settings.setupComplete == false then return end
