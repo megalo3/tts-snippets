@@ -11,7 +11,9 @@ function clickRollDice(color)
     rollPlayerDice(color)
 
     -- Only roll the white die if the color is first player
-    if Turns.order[1] ~= color and not (settings.playstyle == 'beginnersolo' or settings.playstyle == 'advancedsolo') then return end
+    local turnOrder = getPlayerTurnOrder()
+    if color == 'aicolor' then color = settings.aiPlayerColor end
+    if turnOrder[1] ~= color and not (settings.playstyle == 'beginnersolo' or settings.playstyle == 'advancedsolo') then return end
     rollWhiteDie(color)
 end
 
@@ -23,7 +25,13 @@ function getDieValue(die)
 end
 
 function rollPlayerDice(color)
-    local playerDicePos = getPlayerBoardDicePositions(color, 'playerboard')
+    local board = 'playerboard'
+    if color == 'aicolor' then
+        board = 'aiboard'
+        color = settings.aiPlayerColor
+    end
+
+    local playerDicePos = getPlayerBoardDicePositions(color, board)
     local playerDice = getObjectsWithAllTags({'playerdice', color})
     for _, d in ipairs(playerDice) do
         d.roll()
@@ -46,9 +54,17 @@ function rollPlayerDice(color)
         end
 
         RollInProgress[color] = false
-        printToAll(color .. ' player rolled ' .. values[1] .. ' and ' .. values[2] .. '.', stringColorToRGB(color))
-        playerDice[1].setPositionSmooth(raisePosition(playerDicePos[1]))
-        playerDice[2].setPositionSmooth(raisePosition(playerDicePos[2]))
+        messages = {color .. ' player rolled '}
+        table.insert(messages, values[1])
+        if values[2] ~= nil then
+            table.insert(messages, ' and ' .. values[2])
+        end
+        table.insert(messages, '.')
+        printToAll(table.concat(messages), stringColorToRGB(color))
+
+        for i,die in ipairs(playerDice) do
+            playerDice[i].setPositionSmooth(raisePosition(playerDicePos[i]))
+        end
         return 1
     end
 

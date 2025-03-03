@@ -120,7 +120,7 @@ function giveStartingItems()
 
         local aiDeck = SetupBag.takeObject({guid = aiDeckGuid, position = aiDeckPosition, rotation = {0,180,180}})
         aiDeck.shuffle()
-        local castleCardGuid = getObjectGuidWithTag(aiDeck, 'castle')
+        local castleCardGuid = getObjectGuidWithTag(aiDeck, 'castlecard')
         Wait.time(function()
             aiDeck.takeObject({
                 guid = castleCardGuid,
@@ -143,7 +143,6 @@ function giveStartingItems()
 
         local aiBoard = getObjectFromGUID(getAiBoardGuid())
         supplyAiTradeGoods(aiBoard)
-        supplyCastle(aiBoard)
         supplyCoin(aiBoard)
         supplyDice(aiBoard, settings.aiPlayerColor, 1, 'aiboard')
         local p = aiBoard.getPosition()

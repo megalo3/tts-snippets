@@ -25,8 +25,8 @@ Guids = {
         traderoute2 = 'fc3766',
     },
     Decks = {
-        aibasic = 'a36dac',
-        aivineyard = '4c280f'
+        aibasic = '65dc4e',
+        aivineyard = '41baef'
     },
     AllHexesToken = '6cb7b0',
     Bags = {

@@ -146,7 +146,14 @@ end
 function updatePlayerTurnOrder()
     local turns = getPlayerTurnOrder()
     Turns.order = turns
-    Turns.turn_color = turns[1]
+    Turns.turn_color = getFirstPlayer()
+end
+
+function getFirstPlayer()
+    local turns = getPlayerTurnOrder()
+    local firstPlayer = turns[1]
+    if turns[1] == settings.aiPlayerColor then firstPlayer = turns[2] end
+    return firstPlayer
 end
 
 function moveWhiteDie(color)
