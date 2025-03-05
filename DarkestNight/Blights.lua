@@ -15,7 +15,7 @@ Blights = {
             local blightInfo = Blights.getBlightInfoFromGUID(guid)
             local retry = false
 
-            for index, location in ipairs(Locations) do
+            for index, location in ipairs(Data.Location.Areas) do
                 if location ~= 'Monastery' then
                     if Blights.Starting[index] < n then
                         local blightName = blightInfo[location][1]
@@ -103,7 +103,7 @@ Blights = {
     end,
 
     deployBlightToLocation = function(blightName, location, blightCount)
-        local position = {LocationPositions[location][1] + blightCount * 1.5, 2, LocationPositions[location][3]}
+        local position = {Data.Location.BlightPosition[location][1] + blightCount * 1.5, 2, Data.Location.BlightPosition[location][3]}
         local BlightZone = getObjectsWithAllTags({'Zone', 'Blight', 'Draw'})[1]
         for index, tileStack in ipairs(BlightZone.getObjects()) do
             if (tileStack.getName() == blightName) then

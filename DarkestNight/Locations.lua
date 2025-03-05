@@ -30,7 +30,7 @@ end
 function findPawnLocation(pawn)
     local locationName = nil
     local position = pawn.getPosition()
-    for _, location in ipairs(Locations) do
+    for _, location in ipairs(Data.Location.Areas) do
         local pawnArea = getPointWithPolygonArea(location, {position[1], position[3]})
         if LocationAreas[location] == pawnArea then
             return location
@@ -39,7 +39,7 @@ function findPawnLocation(pawn)
 end
 
 function getPolygonArea(location)
-    local coords = LocationVertices[location]
+    local coords = Data.Location.Vertices[location]
     local area = 0
     for i = 0,#coords - 2 do
         local point2 = coords[i+1]
@@ -51,7 +51,7 @@ function getPolygonArea(location)
 end
 
 function getPointWithPolygonArea(location, point)
-    local coords = LocationVertices[location]
+    local coords = Data.Location.Vertices[location]
     local area = 0
     for i = 0,#coords - 1 do
         local point2 = coords[i+1]

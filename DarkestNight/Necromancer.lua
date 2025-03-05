@@ -85,7 +85,7 @@ function moveNecromancer(dieValue, location)
 
     else
         -- No characters detected
-        newLocation = LocationDirection[location][dieValue]
+        newLocation = Data.Location.Direction[location][dieValue]
     end
 
     if gateCount > 0 then
@@ -95,7 +95,7 @@ function moveNecromancer(dieValue, location)
     end
 
     local necromancer = getObjectsWithAllTags({'Necromancer', 'Pawn'})[1]
-    necromancer.setPositionSmooth(LocationPosition[newLocation])
+    necromancer.setPositionSmooth(Data.Location.Position[newLocation])
 end
 
 function necroBlightUI()
@@ -110,7 +110,7 @@ function necroAddQuest(info)
             local zone = getObjectsWithAllTags({'Zone', 'Quest'})[1]
             local deck = Utility.getDeckFromZone(zone)
             deck.takeObject({
-                position = LocationPosition[info.Quest],
+                position = Data.Location.Position[info.Quest],
                 flip = true
             })
         end
@@ -135,7 +135,7 @@ function getBestRoute(necroLocation, pawn)
     if necroLocation == pawnLocation then return necroLocation end
     -- The Village is one away from everything
     if necroLocation == 'Village' then return pawnLocation end
-    local path = LocationPathfinding[necroLocation][pawnLocation]
+    local path = Data.Location.Pathfinding[necroLocation][pawnLocation]
     -- If the path doesn't exist, the Village is the closest
     if path == nil then return 'Village' end
     if #path == 2 then
@@ -146,7 +146,7 @@ function getBestRoute(necroLocation, pawn)
 end
 
 function findClosestCharacters(necroLocation, characters)
-    local closeLocations = LocationProximity[necroLocation]
+    local closeLocations = Data.Location.Proximity[necroLocation]
     local closeCharacters = {}
     local sameLocationCharacters = {}
     for _, character in ipairs(characters) do

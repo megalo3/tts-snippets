@@ -1,7 +1,7 @@
 LocationAreas = {}
 
 function onLoad(saveData)
-    for _, location in ipairs(Locations) do
+    for _, location in ipairs(Data.Location.Areas) do
         LocationAreas[location] = getPolygonArea(location)
     end
 

@@ -24,10 +24,10 @@ Quests = {
     end,
 
     addQuest = function(number)
-        local direction = LocationDirection['Village']
+        local direction = Data.Location.Direction['Village']
         local location = direction[number]
         print('Spawning a quest in the ' .. location .. '.')
-        local pos = LocationPosition[location]
+        local pos = Data.Location.Position[location]
 
         local zone = getObjectsWithAllTags({'Quest', 'Zone'})[1];
         local deckObj = Utility.getDeckFromZone(zone)
