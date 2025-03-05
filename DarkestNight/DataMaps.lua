@@ -1,4 +1,4 @@
-Maps = {
+Data.Maps = {
     {
         GUID = 'ccdb75',
         Quest = '',

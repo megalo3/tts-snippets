@@ -7,7 +7,7 @@ Utility = {
         -- type: Event, Artifact, Quest, Mystery, Map
         Event = function(o, color, a)
             local card = Utility.Draw.Card({ Target = 'Discard', Type = 'Event', Color = color })
-            fate = Events[card.getName()].FateValue
+            fate = Data.Events[card.getName()].FateValue
             if fate == -1 then
                 printToAll('The Renewal event was drawn. Reshuffling deck.', stringColorToRGB('Yellow'))
                 Wait.time(function()
@@ -31,7 +31,7 @@ Utility = {
                 card1.setLock(false)
             end
 
-            fate1 = Events[card1.getName()].FateValue
+            fate1 = Data.Events[card1.getName()].FateValue
             if fate1 == -1 then
                 printToAll('The Renewal event was drawn. Reshuffling deck.', stringColorToRGB('Yellow'))
                 Wait.time(function()
@@ -42,7 +42,7 @@ Utility = {
             end
 
             local card2 = Utility.Draw.Card({ Target = 'Discard', Type = 'Event', Color = color })
-            local fate2 = Events[card2.getName()].FateValue
+            local fate2 = Data.Events[card2.getName()].FateValue
             if fate2 == -1 then
                 card1.setLock(true)
                 local pos = card1.getPosition()

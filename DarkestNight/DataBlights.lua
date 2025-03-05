@@ -1,4 +1,4 @@
-Blights = {
+Data.Blights = {
     Confusion = {
         Strength = -1,
         Awareness = -1,
@@ -208,7 +208,7 @@ Blights = {
         Type = 'Yellow'
     }
 }
-Blights["Dark Fog"] = {
+Data.Blights["Dark Fog"] = {
     Strength = -1,
     Awareness = -1,
     Might = 5,
@@ -216,7 +216,7 @@ Blights["Dark Fog"] = {
     Defense = 'Lose a turn',
     Type = 'Blue'
 }
-Blights["Evil Presence"] = {
+Data.Blights["Evil Presence"] = {
     Strength = -1,
     Awareness = -1,
     Might = 4,
@@ -224,7 +224,7 @@ Blights["Evil Presence"] = {
     Defense = 'Event',
     Type = 'Blue'
 }
-Blights["Flux Cage"] = {
+Data.Blights["Flux Cage"] = {
     Strength = -1,
     Awareness = -1,
     Might = 6,
@@ -232,7 +232,7 @@ Blights["Flux Cage"] = {
     Defense = 'Lose 1 secrecy',
     Type = 'Blue'
 }
-Blights['Unholy Aura'] = {
+Data.Blights['Unholy Aura'] = {
     Strength = -1,
     Awareness = -1,
     Might = 4,

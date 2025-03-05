@@ -95,7 +95,7 @@ Blights = {
     end,
 
     getBlightInfoFromGUID = function(guid)
-        for _, info in ipairs(Maps) do
+        for _, info in ipairs(Data.Maps) do
             if (info.GUID == guid) then
                 return info
             end
