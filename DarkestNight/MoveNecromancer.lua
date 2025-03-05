@@ -4,6 +4,7 @@ FailedBlightDrawAttempt = 0
 function runNecroTurn()
     if isRolling == false then
         rollnecroDie(getNecroLocation())
+        UI.hide("NecroTurnPanel")
     end
 end
 
@@ -261,100 +262,3 @@ function includes(tbl, item)
     end
     return false
 end
-
-SecrecyPositions = {.90, .73, .55, .38, .2, .02, -0.15, -0.33, -0.51, -0.68}
-
--- Either he's already in the location or he goes through the village
-LocationPathfinding = {
-    Mountains = {
-        Castle = { 'Castle' },
-        Swamp = { 'Village', 'Castle' }
-    },
-    Castle = {
-        Mountains = { 'Mountains' },
-        Ruins = { 'Village', 'Swamp' },
-        Swamp = { 'Swamp' }
-    },
-    Swamp = {
-        Castle = { 'Castle' },
-        Ruins = { 'Ruins' },
-        Mountains = { 'Village', 'Castle' }
-    },
-    Forest = {
-        Swamp = { 'Village', 'Ruins' },
-        Ruins = { 'Ruins' }
-    },
-    Ruins = {
-        Forest = { 'Forest' },
-        Castle = { 'Village', 'Swamp' },
-        Swamp = { 'Swamp' }
-    }
-}
--- Only locations that are 1 away. Everything else is 2
-LocationProximity = {
-    Mountains = { 'Village', 'Castle' },
-    Castle = { 'Mountains', 'Village', 'Swamp' },
-    Swamp = { 'Castle', 'Village', 'Ruins' },
-    Forest = { 'Village', 'Ruins' },
-    Ruins = { 'Forest', 'Village', 'Swamp' },
-    Village = { 'Mountains', 'Castle', 'Swamp', 'Forest', 'Ruins' }
-}
-Locations = {'Mountains', 'Monastery', 'Forest', 'Castle', 'Village', 'Swamp', 'Ruins'}
-LocationPosition = {
-    Mountains = {-7.91, 2, 19.40},
-    Castle = {10.48, 2, 18.57},
-    Village = {-0.79, 2, 12.62},
-    Swamp = {9, 2, 12.59},
-    Forest = {-1.68, 2, 6.24},
-    Ruins = {8.57, 2, 6.18}
-}
-LocationDirection = {
-    Mountains = {
-        'Castle',
-        'Village',
-        'Mountains',
-        'Village',
-        'Castle',
-        'Mountains'
-    },
-    Castle = {
-        'Swamp',
-        'Village',
-        'Mountains',
-        'Castle',
-        'Village',
-        'Castle'
-    },
-    Village = {
-        'Mountains',
-        'Ruins',
-        'Forest',
-        'Castle',
-        'Swamp',
-        'Village'
-    },
-    Swamp = {
-        'Ruins',
-        'Village',
-        'Castle',
-        'Swamp',
-        'Village',
-        'Swamp'
-    },
-    Forest = {
-        'Village',
-        'Ruins',
-        'Forest',
-        'Village',
-        'Ruins',
-        'Forest'
-    },
-    Ruins = {
-        'Forest',
-        'Swamp',
-        'Village',
-        'Ruins',
-        'Village',
-        'Ruins'
-    }
-}

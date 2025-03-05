@@ -1,27 +1,8 @@
-WorkshopID = '2961940791'
-Settings = {
-    difficultyOptions = {0,0,0,0,0,0,0,0},
-    heroTurnPanelClosedBy = {"Nobody"},
-    actionsPanelClosedBy = {"Nobody"},
-    difficultyPanelClosedBy = {"Nobody"},
-    mapSelected = false,
-    mapType = 'Everything',
-    pawns = {}
-}
-
-ReturnBlight = nil
-ItemBag = nil
-AddDarknessScript = nil
-AddBlightScript = nil
-DeckUtility = nil
-ReturnItemsUtility = nil
-DifficultyModifierUtility = nil
-
 function onLoad(saveData)
     addHotkey("Return Token", function(playerColor, object, pointerPosition, isKeyUp)
         if isKeyUp == true then return end
         if object ~= nil then
-            ReturnItemsUtility.call('returnItem', object)
+            returnItem(object)
         end
     end, true)
 
@@ -37,14 +18,7 @@ function onLoad(saveData)
 
     math.randomseed(os.time())
 
-    ReturnBlight = getObjectFromGUID('ea4c54')
     PlayerBoard = getObjectFromGUID('65a138')
-    ItemBag = getObjectsWithAllTags({'Item', 'Bag'})[1]
-    AddDarknessScript = getObjectFromGUID('a4642e')
-    AddBlightScript = getObjectFromGUID('31c6dc')
-    DeckUtility = getObjectFromGUID('17f823')
-    ReturnItemsUtility = getObjectFromGUID('bfd1c2')
-    DifficultyModifierUtility = getObjectFromGUID('68ebd8')
 
     -- Set items uninteractable
     for key, uninteractableObject in ipairs(getObjectsWithTag('Uninteractable')) do
@@ -96,27 +70,22 @@ function onSave()
     return JSON.encode(Settings)
 end
 
-function darknessCardsSelected(player, selected) DifficultyModifierUtility.call('darknessCardsSelected', selected) end
-function startingBlightsSelected(player, selected) DifficultyModifierUtility.call('startingBlightsSelected', selected) end
-function startingDarknessSelected(player, selected) DifficultyModifierUtility.call('startingDarknessSelected', selected) end
-function startingPowerCardsSelected(player, selected) DifficultyModifierUtility.call('startingPowerCardsSelected', selected) end
-function startingGraceSelected(player, selected) DifficultyModifierUtility.call('startingGraceSelected', selected) end
-function startingSparksSelected(player, selected) DifficultyModifierUtility.call('startingSparksSelected', selected) end
-function numberOfHeroesSelected(player, selected) DifficultyModifierUtility.call('numberOfHeroesSelected', selected) end
-function increaseQuestsSelected(player, selected) DifficultyModifierUtility.call('increaseQuestsSelected', selected) end
+function darknessCardsSelected(player, selected) darknessCardsSelected(selected) end
+function startingBlightsSelected(player, selected) startingBlightsSelected(selected) end
+function startingDarknessSelected(player, selected) startingDarknessSelected(selected) end
+function startingPowerCardsSelected(player, selected) startingPowerCardsSelected(selected) end
+function startingGraceSelected(player, selected) startingGraceSelected(selected) end
+function startingSparksSelected(player, selected) startingSparksSelected(selected) end
+function numberOfHeroesSelected(player, selected) numberOfHeroesSelected(selected) end
+function increaseQuestsSelected(player, selected) increaseQuestsSelected(selected) end
 
-function necroIncreaseDarkness() AddDarknessScript.call('necroIncreaseDarkness') end
-function addQuestTimers() getObjectFromGUID('7689af').call('addQuestTimers') end
-function runNecroTurn()
-    getObjectFromGUID('5507ea').call('runNecroTurn')
-    UI.hide("NecroTurnPanel")
-end
+function necroIncreaseDarkness() necroIncreaseDarkness() end
 
 function setDifficulty()
     print('Game difficulty chosen')
 
     -- Move starting darkness and add cards
-    AddDarknessScript.call("moveStartingDarkness")
+    moveStartingDarkness()
 
     if Settings.mapSelected == false then
         UI.setAttribute('MapPanel', 'active', true)
@@ -159,7 +128,7 @@ function setMapDeck()
     local startingBlights = 0
     if blightDm == 0 then startingBlights = 1 end
     if blightDm == 3 then startingBlights = 2 end
-    AddBlightScript.call("createStartingBlights", startingBlights)
+    createStartingBlights(startingBlights)
 end
 
 function setCharacters()
@@ -262,9 +231,9 @@ function dealCharacterSheet(color, character)
 
     -- Use DM starting sparks
     if Settings.difficultyOptions[6] == -1 then
-        Wait.time(function()  ReturnItemsUtility.call("getItemFromBag", {tag = 'Spark', color = color}) end, 1.3)
-        Wait.time(function()  ReturnItemsUtility.call("getItemFromBag", {tag = 'Spark', color = color}) end, 2)
-        Wait.time(function()  ReturnItemsUtility.call("getItemFromBag", {tag = 'Spark', color = color}) end, 2.7)
+        Wait.time(function() getItemFromBag({tag = 'Spark', color = color}) end, 1.3)
+        Wait.time(function() getItemFromBag({tag = 'Spark', color = color}) end, 2)
+        Wait.time(function() getItemFromBag({tag = 'Spark', color = color}) end, 2.7)
     end
 end
 
@@ -297,7 +266,7 @@ end
 
 function createMapDeck(color)
     local zone = getObjectsWithAllTags({'Map', 'Zone', 'Deck', 'Draw'})[1];
-    local deck = DeckUtility.call('getDeckFromZone', zone)
+    local deck = getDeckFromZone(zone)
 
     for _, card in ipairs(deck.getObjects(true)) do
         if table.inTable(card.tags, color) == false then
@@ -325,7 +294,7 @@ function dealPlayerCards(color, character)
 end
 
 function dealStarterCards(zone, color)
-    local deck = DeckUtility.call('getDeckFromZone', zone)
+    local deck = getDeckFromZone(zone)
     if deck == nil then return end
 
     local dealt = 1;
