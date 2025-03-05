@@ -118,7 +118,7 @@ Darkness = {
 
     drawCard = function(n)
         local zone = getObjectsWithAllTags({'Darkness', 'Zone'})[1];
-        local deck = getDeckFromZone(zone)
+        local deck = Utility.getDeckFromZone(zone)
         local position = deck.getPosition()
         local xPos = position[1] + 2.5 * n
         local card = deck.takeObject({ position = {xPos, 2, position[3]}, flip = true })

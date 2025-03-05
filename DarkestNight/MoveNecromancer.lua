@@ -108,7 +108,7 @@ function necroAddQuest(info)
     if Settings.difficultyOptions[8] == 1 then
         if info.Quest ~= '' then
             local zone = getObjectsWithAllTags({'Zone', 'Quest'})[1]
-            local deck = getDeckFromZone(zone)
+            local deck = Utility.getDeckFromZone(zone)
             deck.takeObject({
                 position = LocationPosition[info.Quest],
                 flip = true
@@ -191,7 +191,7 @@ end
 
 function deployBlight(newLocation)
     local waitTime = 1.3
-    if isDeckEmpty('Map') then waitTime = waitTime + 1.3 end
+    if Utility.isDeckEmpty('Map') then waitTime = waitTime + 1.3 end
     Wait.time(function() attemptDeployBlight(newLocation)  end, waitTime)
 end
 

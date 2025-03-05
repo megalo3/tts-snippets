@@ -55,7 +55,7 @@ Blights = {
             return
         end
         printToAll("You've discovered a " .. itemName .. " in the " .. location .. ".", stringColorToRGB(color))
-        dealItem({ ItemName = itemName, Color = color})
+        Utility.Draw.Item({ ItemName = itemName, Color = color})
     end,
 
     createBlight = function(location)
@@ -86,7 +86,7 @@ Blights = {
     end,
 
     getTopMapDiscardGuid = function()
-        local card = getDiscardDeckTopCardInfo('Map')
+        local card = Utility.getDiscardDeckTopCardInfo('Map')
         if card == nil then
             print('No map card has been played.')
             return false

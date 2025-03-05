@@ -30,7 +30,7 @@ Quests = {
         local pos = LocationPosition[location]
 
         local zone = getObjectsWithAllTags({'Quest', 'Zone'})[1];
-        local deckObj = getDeckFromZone(zone)
+        local deckObj = Utility.getDeckFromZone(zone)
         local deck = getObjectFromGUID(deckObj.guid)
         deck.takeObject({
             position = {pos[1],pos[2],pos[3]},

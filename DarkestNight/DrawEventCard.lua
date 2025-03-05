@@ -4,7 +4,7 @@ function drawEvent(o, color, a)
     if fate == -1 then
         printToAll('The Renewal event was drawn. Reshuffling deck.', stringColorToRGB('Yellow'))
         Wait.time(function()
-            resupplyDeck('Event')
+            Utility.resupplyDeck('Event')
             Wait.time(function() drawEvent(o, color) end, 1.3)
         end, 1.3)
         return false
@@ -28,7 +28,7 @@ function omenDraw(o, color, a, firstDrawnCardGuid)
     if fate1 == -1 then
         printToAll('The Renewal event was drawn. Reshuffling deck.', stringColorToRGB('Yellow'))
         Wait.time(function()
-            resupplyDeck('Event')
+            Utility.resupplyDeck('Event')
             Wait.time(function() omenDraw(o, color) end, 1.3)
         end, 1.3)
         return false
@@ -42,7 +42,7 @@ function omenDraw(o, color, a, firstDrawnCardGuid)
         card1.setPosition({-10.91, 3, pos[3]})
         printToAll('The Renewal event was drawn. Reshuffling deck.', stringColorToRGB('Yellow'))
         Wait.time(function()
-            resupplyDeck('Event')
+            Utility.resupplyDeck('Event')
             Wait.time(function() omenDraw(o, color, a, card1.guid) end, 1.5)
         end, 1.3)
         return false

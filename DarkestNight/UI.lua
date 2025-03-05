@@ -141,3 +141,20 @@ function necroIncreaseDarknessUI() Darkness.increaseDarknessConsideringBlights()
 function drawArtifactUI(o, c, a) Utility.Draw.Card({ Target = 'Player', Type = 'Artifact', Color = c }) end
 function drawMapUI(o, c, a) Utility.Draw.Card({ Target = 'Discard', Type = 'Map' }) end
 function drawMysteryUI(o, c, a) Utility.Draw.Card({ Target = 'Player', Type = 'Mystery', Color = c }) end
+
+-- ItemName, Color
+function getArtifact(o,c) Utility.Draw.Item({ItemName = 'Artifact', Color = c}) end
+function getBottledMagic(o,c) Utility.Draw.Item({ItemName = 'Bottled Magic', Color = c}) end
+function getCharm(o,c) Utility.Draw.Item({ItemName = 'Charm', Color = c}) end
+function getCursedAshes(o,c) Utility.Draw.Item({ItemName = 'Cursed Ashes', Color = c}) end
+function getPsionStone(o,c) Utility.Draw.Item({ItemName = 'Psion Stone', Color = c}) end
+function getSkullToken(o,c) Utility.Draw.Item({ItemName = 'Skull Token', Color = c}) end
+
+function getSoothingLyre(o,c) Utility.Draw.Item({ItemName = 'Soothing Lyre', Color = c}) end
+function getTomeOfRetraining(o,c) Utility.Draw.Item({ItemName = 'Tome of Retraining', Color = c}) end
+function getTreasureChest(o,c) Utility.Draw.Item({ItemName = 'Treasure Chest', Color = c}) end
+function getVanishingDust(o,c) Utility.Draw.Item({ItemName = 'Vanishing Dust', Color = c}) end
+function getWaystone(o,c) Utility.Draw.Item({ItemName = 'Waystone', Color = c}) end
+
+function getMystery(o,c) Utility.Draw.Item({ItemName = 'Mystery', Color = c}) end
+function getRevelation(o,c) Utility.Draw.Item({ItemName = 'Revelation', Color = c}) end

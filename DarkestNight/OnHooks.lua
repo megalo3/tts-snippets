@@ -8,7 +8,7 @@ function onLoad(saveData)
     addHotkey("Return Token", function(playerColor, object, pointerPosition, isKeyUp)
         if isKeyUp == true then return end
         if object ~= nil then
-            returnItem(object)
+            Utility.returnItem(object)
         end
     end, true)
 

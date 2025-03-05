@@ -108,9 +108,9 @@ function dealCharacterSheet(color, character)
 
     -- Use DM starting sparks
     if Settings.difficultyOptions[6] == -1 then
-        Wait.time(function() getItemFromBag({tag = 'Spark', color = color}) end, 1.3)
-        Wait.time(function() getItemFromBag({tag = 'Spark', color = color}) end, 2)
-        Wait.time(function() getItemFromBag({tag = 'Spark', color = color}) end, 2.7)
+        Wait.time(function() Utility.Draw.ItemFromBag({tag = 'Spark', color = color}) end, 1.3)
+        Wait.time(function() Utility.Draw.ItemFromBag({tag = 'Spark', color = color}) end, 2)
+        Wait.time(function() Utility.Draw.ItemFromBag({tag = 'Spark', color = color}) end, 2.7)
     end
 end
 
@@ -143,7 +143,7 @@ end
 
 function createMapDeck(color)
     local zone = getObjectsWithAllTags({'Map', 'Zone', 'Deck', 'Draw'})[1];
-    local deck = getDeckFromZone(zone)
+    local deck = Utility.getDeckFromZone(zone)
 
     for _, card in ipairs(deck.getObjects(true)) do
         if table.inTable(card.tags, color) == false then
@@ -171,7 +171,7 @@ function dealPlayerCards(color, character)
 end
 
 function dealStarterCards(zone, color)
-    local deck = getDeckFromZone(zone)
+    local deck = Utility.getDeckFromZone(zone)
     if deck == nil then return end
 
     local dealt = 1;
