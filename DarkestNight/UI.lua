@@ -117,3 +117,19 @@ function startHeroTurnUI()
     end
     UI.hide("NecroTurnPanel")
 end
+
+function addQuestTimersUI() Quests.addaddQuestTimers() end
+function rollQuestUI() Quests.rollQuest() end
+function createBlightMountainsUI(o, c, a) createBlight('Mountains') end
+function createBlightCastleUI(o, c, a) createBlight('Castle') end
+function createBlightVillageUI(o, c, a) createBlight('Village') end
+function createBlightSwampUI(o, c, a) createBlight('Swamp') end
+function createBlightForestUI(o, c, a) createBlight('Forest') end
+function createBlightRuinsUI(o, c, a) createBlight('Ruins') end
+function createBlightMonasteryUI(o, c, a) createBlight('Monastery') end
+function getItemMountainsUI(o, c, a) getItem('Mountains',c) end
+function getItemCastleUI(o, c, a) getItem('Castle',c) end
+function getItemSwampUI(o, c, a) getItem('Swamp',c) end
+function getItemForestUI(o, c, a) getItem('Forest',c) end
+function getItemRuinsUI(o, c, a) getItem('Ruins',c) end
+function getItemMonasteryUI(o, c, a) getItem('Monastery',c) end

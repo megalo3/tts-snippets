@@ -1,19 +1,3 @@
-function createBlightMountains(o, c, a) createBlight('Mountains') end
-function createBlightCastle(o, c, a) createBlight('Castle') end
-function createBlightVillage(o, c, a) createBlight('Village') end
-function createBlightSwamp(o, c, a) createBlight('Swamp') end
-function createBlightForest(o, c, a) createBlight('Forest') end
-function createBlightRuins(o, c, a) createBlight('Ruins') end
-function createBlightMonastery(o, c, a) createBlight('Monastery') end
-
-function getItemMountains(o, c, a) getItem('Mountains',c) end
-function getItemCastle(o, c, a) getItem('Castle',c) end
-function getItemVillage(o, c, a) getItem('Village',c) end
-function getItemSwamp(o, c, a) getItem('Swamp',c) end
-function getItemForest(o, c, a) getItem('Forest',c) end
-function getItemRuins(o, c, a) getItem('Ruins',c) end
-function getItemMonastery(o, c, a) getItem('Monastery',c) end
-
 StartingBlights = {0,0,0,0,0,0}
 function createStartingBlights(n)
     if n == 0 then return end
@@ -141,4 +125,19 @@ function blightCount(blightName)
         if blight.hasTag(blightName) then count = count + 1 end
     end
     return count
+end
+
+function returnBlight(object)
+    local position = findSnapLocation(object.getName())
+    local toWorld = getBlightBoard().positionToWorld(position)
+    object.setPositionSmooth({toWorld[1], 3, toWorld[3]})
+    object.setRotationSmooth({0,180,0})
+end
+
+function findSnapLocation(name)
+    for _, snap in ipairs(getBlightBoard().getSnapPoints()) do
+        if snap.tags[1] == name then
+            return snap.position
+        end
+    end
 end

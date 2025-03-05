@@ -1,3 +1,9 @@
+DarknessTrack = {-13.80, -12.80, -11.80, -10.80, -9.80, -8.80, -7.80, -6.80, -5.80, -4.80,
+-3.79, -2.77, -1.77, -0.77, 0.22, 1.22, 2.22, 3.20, 4.19, 5.20,
+6.20, 7.20, 8.20, 9.20, 10.20, 11.20, 12.27, 13.27, 14.27, 15.27, 16.27}
+DarknessDeck = {25.77, 28.12}
+NegativeTrackZ = 2.15
+
 function increaseDarkness() moveDarkness(1) end
 function decreaseDarkness() moveDarkness(-1) end
 function increaseClues() moveClues(1) end
@@ -131,9 +137,3 @@ function getTrackLevel(pType)
     end
     return darknessLevel
 end
-
-DarknessTrack = {-13.80, -12.80, -11.80, -10.80, -9.80, -8.80, -7.80, -6.80, -5.80, -4.80,
--3.79, -2.77, -1.77, -0.77, 0.22, 1.22, 2.22, 3.20, 4.19, 5.20,
-6.20, 7.20, 8.20, 9.20, 10.20, 11.20, 12.27, 13.27, 14.27, 15.27, 16.27}
-DarknessDeck = {25.77, 28.12}
-NegativeTrackZ = 2.15
