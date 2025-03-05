@@ -1,11 +1,3 @@
-isMonitoring = false
-
-function onObjectRandomize(object, color)
-    if isMonitoring == true then return end
-    isMonitoring = true
-    waitMonitor(color)
-end
-
 function waitMonitor(color)
     Wait.time(function() monitorDice(color) end, .2)
 end
@@ -13,9 +5,9 @@ end
 function monitorDice(color)
     local allDice = getObjectsWithAllTags({'Die'});
     local dice = {};
-    
+
     for _, d in ipairs(allDice) do
-        if d.resting == false then        
+        if d.resting == false then
             table.insert(dice, d)
         end
     end
@@ -29,7 +21,7 @@ function monitorDice(color)
                 end
             end
             coroutine.yield(0)
-        until allRest == true 
+        until allRest == true
 
         local message = getDiceResultMessage(dice)
 

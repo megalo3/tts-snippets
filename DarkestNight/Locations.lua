@@ -1,11 +1,3 @@
-LocationAreas = {}
-
-function onLoad()
-    for _, location in ipairs(Locations) do
-        LocationAreas[location] = getPolygonArea(location)
-    end
-end
-
 function countBlightsInLocation(location)
     local zone = getObjectsWithAllTags({'Zone', 'Board', 'Blight'})[1]
     local bag = getObjectsWithAllTags({'Bag', 'Time'})[1]
@@ -35,9 +27,9 @@ function getTileStackCount(tileStack)
     end
 end
 
-function findPawnLocation(object)
+function findPawnLocation(pawn)
     local locationName = nil
-    local position = object.getPosition()
+    local position = pawn.getPosition()
     for _, location in ipairs(Locations) do
         local pawnArea = getPointWithPolygonArea(location, {position[1], position[3]})
         if LocationAreas[location] == pawnArea then

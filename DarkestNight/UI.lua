@@ -93,3 +93,7 @@ function setDifficultyUI()
         closePanel(color, 'difficultyPanelClosedBy', 'DifficultyPanel')
     end
 end
+
+function startHeroTurnUI()
+    UI.hide("NecroTurnPanel")
+end

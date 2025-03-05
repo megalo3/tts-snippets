@@ -460,7 +460,7 @@
     active="true"
     outline="Black"
     width="200"
-    height="227"
+    height="287"
     rectAlignment="MiddleCenter"
     returnToOriginalPositionWhenReleased="false"
     allowDragging="true"
@@ -477,11 +477,11 @@
     </Panel>
     <Panel
         rectAlignment="LowerRight"
-        height="200">
+        height="260">
         <VerticalLayout
             padding="5 5 10 5"
-            height="200">
-            <Text class="GuideBody">Run the necromancer's turn by adding darkness, adding quest timers, and then moving and blighting.
+            height="260">
+            <Text class="GuideBody">Run the necromancer's turn by adding darkness, adding quest timers, moving, and blighting.
             </Text>
             <Button
                 class="NecroTurnButton"
@@ -493,8 +493,16 @@
                 onClick="addQuestTimers"></Button>
             <Button
                 class="NecroTurnButton"
-                text="3. Move and Blight"
-                onClick="runNecroTurn"></Button>
+                text="3. Move"
+                onClick="necroMoveUI"></Button>
+            <Button
+                class="NecroTurnButton"
+                text="4. Blight"
+                onClick="necroBlightUI"></Button>
+            <Button
+                class="NecroTurnButton"
+                text="5. Start Hero Turn"
+                onClick="startHeroTurnUI"></Button>
         </VerticalLayout>
     </Panel>
 </Panel>

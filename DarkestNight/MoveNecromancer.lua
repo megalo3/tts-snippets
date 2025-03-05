@@ -1,10 +1,9 @@
 isRolling = false
 FailedBlightDrawAttempt = 0
 
-function runNecroTurn()
+function necroMoveUI()
     if isRolling == false then
-        rollnecroDie(getNecroLocation())
-        UI.hide("NecroTurnPanel")
+        rollNecroDie(getNecroLocation())
     end
 end
 
@@ -13,7 +12,7 @@ function getNecroLocation()
     return findPawnLocation(necromancer)
 end
 
-function rollnecroDie(location)
+function rollNecroDie(location)
     local necroDie = getObjectsWithAllTags({'Necromancer', 'Die'})[1];
     necroDie.roll()
 
@@ -98,7 +97,11 @@ function moveNecromancer(dieValue, location)
     drawCard({ Target = 'Discard', Type = 'Map' })
     local necromancer = getObjectsWithAllTags({'Necromancer', 'Pawn'})[1]
     necromancer.setPositionSmooth(LocationPosition[newLocation])
-    deployBlight(newLocation)
+
+end
+
+function necroBlightUI()
+    deployBlight(getNecroLocation())
 
     -- Increase Quests DM
     if Settings.difficultyOptions[8] == 1 then
