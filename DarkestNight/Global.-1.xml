@@ -1,90 +1,90 @@
 <!-- Default values for UI elements. -->
 <Defaults>
     <Panel
-            active="false"
-            allowDragging="true"
-            color="#FFFFFF"
-            class="SetupPanel"
-            outline="#000000"
-            outlineSize="2 -2"
-            rectAlignment="MiddleCenter"
-            returnToOriginalPositionWhenReleased="false"
-            showAnimation="FadeIn"
-            showAnimationDelay="2" />
+        active="false"
+        allowDragging="true"
+        color="#FFFFFF"
+        class="SetupPanel"
+        outline="#000000"
+        outlineSize="2 -2"
+        rectAlignment="MiddleCenter"
+        returnToOriginalPositionWhenReleased="false"
+        showAnimation="FadeIn"
+        showAnimationDelay="2" />
     <Panel
-            class="SetupTopBar"
-            color="#000000"
-            height="28"
-            rectAlignment="UpperLeft" />
+        class="SetupTopBar"
+        color="#000000"
+        height="28"
+        rectAlignment="UpperLeft" />
     <Panel
-            class="TopSpace"
-            padding="0 0 10 0"></Panel>
+        class="TopSpace"
+        padding="0 0 10 0"></Panel>
     <Text
-            alignment="UpperLeft"
-            class="SetupPanelTitle"
-            color="#FFFFFF"
-            fontSize="18"
-            fontStyle="Bold"
-            offsetXY="5 -4" />
+        alignment="UpperLeft"
+        class="SetupPanelTitle"
+        color="#FFFFFF"
+        fontSize="18"
+        fontStyle="Bold"
+        offsetXY="5 -4" />
     <Text
-            alignment="UpperLeft"
-            class="SetupTitle"
-            fontSize="16"
-            fontStyle="Bold" />
+        alignment="UpperLeft"
+        class="SetupTitle"
+        fontSize="16"
+        fontStyle="Bold" />
     <Button
-            class="SetupPanelCloseButton"
-            color="#990000"
-            height="20"
-            rectAlignment="UpperRight"
-            text="X"
-            textColor="#FFFFFF"
-            offsetXY="-5 -4"
-            width="20" />
+        class="SetupPanelCloseButton"
+        color="#990000"
+        height="20"
+        rectAlignment="UpperRight"
+        text="X"
+        textColor="#FFFFFF"
+        offsetXY="-5 -4"
+        width="20" />
     <Button
-            class="NecroTurnButton"
-            fontStyle="Bold"
-            fontSize="16"
-            color="rgb(0.9,0.9,0.9)"
-            rectAlignment="UpperRight"
-            textColor="rgb(0, 0, 0)" />
+        class="NecroTurnButton"
+        fontStyle="Bold"
+        fontSize="16"
+        color="rgb(0.9,0.9,0.9)"
+        rectAlignment="UpperRight"
+        textColor="rgb(0, 0, 0)" />
     <VerticalLayout
-            childForceExpandHeight="false"
-            class="SetupGroup"
-            padding="0 0 10 0"
-            spacing="5" />
+        childForceExpandHeight="false"
+        class="SetupGroup"
+        padding="0 0 10 0"
+        spacing="5" />
     <VerticalLayout
-            childForceExpandHeight="true"
-            class="SetupButtonGroup"
-            padding="0 0 50 0"
-            spacing="5" />
+        childForceExpandHeight="true"
+        class="SetupButtonGroup"
+        padding="0 0 50 0"
+        spacing="5" />
     <VerticalLayout
-            childForceExpandHeight="false"
-            class="SetupMainLayout"
-            padding="5 5 30 0"
-            rectAlignment="UpperLeft" />
+        childForceExpandHeight="false"
+        class="SetupMainLayout"
+        padding="5 5 30 0"
+        rectAlignment="UpperLeft" />
     <Text
-            alignment="UpperLeft"
-            class="SetupText" />
+        alignment="UpperLeft"
+        class="SetupText" />
     <Text class="GuideBody2" alignment="UpperLeft" />
     <Button
-            class="SetupButton"
-            height="30"
-            ignoreLayout="true" />
+        class="SetupButton"
+        height="30"
+        ignoreLayout="true" />
     <Text
-            class="H1Title"
-            fontSize="14"
-            fontStyle="Bold"
-            alignment="UpperLeft" />
+        class="H1Title"
+        fontSize="14"
+        fontStyle="Bold"
+        alignment="UpperLeft" />
     <Text
-            class="GuideBody"
-            fontSize="14"
-            alignment="UpperLeft" />
+        class="GuideBody"
+        fontSize="14"
+        alignment="UpperLeft" />
     <Text
-            class="ActiveHero"
-            fontSize="18" />
+        class="ActiveHero"
+        fontSize="18" />
     <Text
-            class="InactiveHero"
-            fontSize="18" />
+        class="InactiveHero"
+        fontSize="18" />
     <!-- <Button
             fontSize="18"
             font="Fonts/MKCardText"
@@ -99,35 +99,35 @@
             shadowDistance="2 -2" /> -->
 </Defaults>
 <Panel
-        id="DifficultyPanel"
-        active="true"
-        width="500"
-        height="740"
-        rectAlignment="MiddleCenter"
-        returnToOriginalPositionWhenReleased="false"
-        allowDragging="true"
-        color="rgba(1,1,1,1)"
-        outline="Black">
+    id="DifficultyPanel"
+    active="true"
+    width="500"
+    height="740"
+    rectAlignment="MiddleCenter"
+    returnToOriginalPositionWhenReleased="false"
+    allowDragging="true"
+    color="rgba(1,1,1,1)"
+    outline="Black">
     <!-- The top row panel, containing the title and close buttons. -->
     <Panel
-            class="SetupTopBar"
-            width="500">
+        class="SetupTopBar"
+        width="500">
         <Text
-                class="SetupPanelTitle"
-                id="difficultyOptionsTitle">Difficulty Options (Modifier +0)</Text>
+            class="SetupPanelTitle"
+            id="difficultyOptionsTitle">Difficulty Options (Modifier +0)</Text>
         <Button
-                class="SetupPanelCloseButton"
-                onClick="closeDifficultyPanel"></Button>
+            class="SetupPanelCloseButton"
+            onClick="closeDifficultyPanelUI"></Button>
     </Panel>
     <TableLayout
-            autoCalculateHeight="true"
-            cellBackgroundColor="clear"
-            padding="10 10 40 10">
+        autoCalculateHeight="true"
+        cellBackgroundColor="clear"
+        padding="10 10 40 10">
         <Row preferredHeight="60">
             <Cell>
                 <Text
-                        fontSize="14"
-                        alignment="UpperLeft">Some optional rules have a greater impact than others. To help you gauge the effect of an optional rule, each rule is rated with a difficulty modifier (dm) showing its approximate magnitude.</Text>
+                    fontSize="14"
+                    alignment="UpperLeft">Some optional rules have a greater impact than others. To help you gauge the effect of an optional rule, each rule is rated with a difficulty modifier (dm) showing its approximate magnitude.</Text>
             </Cell>
         </Row>
         <Row preferredHeight="5">
@@ -136,14 +136,14 @@
         <Row preferredHeight="20">
             <Cell>
                 <Text
-                        fontSize="16"
-                        fontStyle="Bold"
-                        alignment="UpperLeft">Starting Darkness</Text>
+                    fontSize="16"
+                    fontStyle="Bold"
+                    alignment="UpperLeft">Starting Darkness</Text>
             </Cell>
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="startingDarknessSelected">
+                <Dropdown onValueChanged="startingDarknessSelectedUI">
                     <Option>-1 dm: Darkness -5</Option>
                     <Option selected="true">+0 dm: Darkness 0</Option>
                     <Option>+1 dm: Darkness 5</Option>
@@ -156,14 +156,14 @@
         <Row preferredHeight="20">
             <Cell>
                 <Text
-                        fontSize="16"
-                        fontStyle="Bold"
-                        alignment="UpperLeft">Darkness Cards</Text>
+                    fontSize="16"
+                    fontStyle="Bold"
+                    alignment="UpperLeft">Darkness Cards</Text>
             </Cell>
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="darknessCardsSelected">
+                <Dropdown onValueChanged="darknessCardsSelectedUI">
                     <Option>-1 dm: 1 card (at 15)</Option>
                     <Option selected="true">+0 dm: 2 cards (at 10, 20)</Option>
                     <Option>+1 dm: 3 cards (at 7, 14, 21)</Option>
@@ -181,14 +181,14 @@
         <Row preferredHeight="20">
             <Cell>
                 <Text
-                        fontSize="16"
-                        fontStyle="Bold"
-                        alignment="UpperLeft">Starting Blights</Text>
+                    fontSize="16"
+                    fontStyle="Bold"
+                    alignment="UpperLeft">Starting Blights</Text>
             </Cell>
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="startingBlightsSelected">
+                <Dropdown onValueChanged="startingBlightsSelectedUI">
                     <Option>-3 dm: Start with no blights</Option>
                     <Option selected="true">+0 dm: 1 blight per location (except the Monastery)</Option>
                     <Option>+3 dm: 2 blights per location (except the Monastery)</Option>
@@ -201,14 +201,14 @@
         <Row preferredHeight="20">
             <Cell>
                 <Text
-                        fontSize="16"
-                        fontStyle="Bold"
-                        alignment="UpperLeft">Starting Power Cards</Text>
+                    fontSize="16"
+                    fontStyle="Bold"
+                    alignment="UpperLeft">Starting Power Cards</Text>
             </Cell>
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="startingPowerCardsSelected">
+                <Dropdown onValueChanged="startingPowerCardsSelectedUI">
                     <Option>-2 dm: Start every hero with 5 power cards</Option>
                     <Option>-1 dm: Start every hero with 4 power cards</Option>
                     <Option selected="true">+0 dm: Start every hero with 3 power cards</Option>
@@ -221,14 +221,14 @@
         <Row preferredHeight="20">
             <Cell>
                 <Text
-                        fontSize="16"
-                        fontStyle="Bold"
-                        alignment="UpperLeft">Starting Grace</Text>
+                    fontSize="16"
+                    fontStyle="Bold"
+                    alignment="UpperLeft">Starting Grace</Text>
             </Cell>
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="startingGraceSelected">
+                <Dropdown onValueChanged="startingGraceSelectedUI">
                     <Option>-1 dm: Start every hero with 2 extra Grace</Option>
                     <Option selected="true">+0 dm: Start every hero with 0 extra Grace</Option>
                 </Dropdown>
@@ -240,14 +240,14 @@
         <Row preferredHeight="20">
             <Cell>
                 <Text
-                        fontSize="16"
-                        fontStyle="Bold"
-                        alignment="UpperLeft">Starting Sparks</Text>
+                    fontSize="16"
+                    fontStyle="Bold"
+                    alignment="UpperLeft">Starting Sparks</Text>
             </Cell>
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="startingSparksSelected">
+                <Dropdown onValueChanged="startingSparksSelectedUI">
                     <Option>-1 dm: Start every hero with 3 sparks</Option>
                     <Option selected="true">+0 dm: Start every hero with 0 sparks</Option>
                 </Dropdown>
@@ -259,14 +259,14 @@
         <Row preferredHeight="20">
             <Cell>
                 <Text
-                        fontSize="16"
-                        fontStyle="Bold"
-                        alignment="UpperLeft">Number of Heroes</Text>
+                    fontSize="16"
+                    fontStyle="Bold"
+                    alignment="UpperLeft">Number of Heroes</Text>
             </Cell>
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="numberOfHeroesSelected">
+                <Dropdown onValueChanged="numberOfHeroesSelectedUI">
                     <Option>+4 dm: Play with 3 heroes</Option>
                     <Option selected="true">+0 dm: Play with 4 heroes</Option>
                     <Option>+0 dm: Play with 5 heroes. (See extra rules)</Option>
@@ -279,9 +279,9 @@
         <Row preferredHeight="30">
             <Cell>
                 <Toggle
-                        onValueChanged="increaseQuestsSelected"
-                        isOn="false"
-                        fontStyle="Bold">+1 dm: Increase Quests</Toggle>
+                    onValueChanged="increaseQuestsSelectedUI"
+                    isOn="false"
+                    fontStyle="Bold">+1 dm: Increase Quests</Toggle>
             </Cell>
         </Row>
         <Row preferredHeight="60">
@@ -292,36 +292,36 @@
         <Row preferredHeight="40">
             <Cell>
                 <Button
-                        onClick="setDifficulty"
-                        color="rgb(0.19,0.7,0.12)"
-                        textColor="white"
-                        fontSize="20"
-                        height="40"
-                        width="120">Set Difficulty</Button>
+                    onClick="setDifficultyUI"
+                    color="rgb(0.19,0.7,0.12)"
+                    textColor="white"
+                    fontSize="20"
+                    height="40"
+                    width="120">Set Difficulty</Button>
             </Cell>
         </Row>
     </TableLayout>
 </Panel>
 <Panel
-        id="MapPanel"
-        active="false"
-        width="500"
-        height="620"
-        rectAlignment="MiddleCenter"
-        returnToOriginalPositionWhenReleased="false"
-        allowDragging="true"
-        color="rgba(1,1,1,1)"
-        outline="Black">
+    id="MapPanel"
+    active="false"
+    width="500"
+    height="620"
+    rectAlignment="MiddleCenter"
+    returnToOriginalPositionWhenReleased="false"
+    allowDragging="true"
+    color="rgba(1,1,1,1)"
+    outline="Black">
     <!-- The top row panel, containing the title and close buttons. -->
     <Panel
-            class="SetupTopBar"
-            width="500">
+        class="SetupTopBar"
+        width="500">
         <Text class="SetupPanelTitle">Map Deck</Text>
     </Panel>
     <TableLayout
-            autoCalculateHeight="true"
-            cellBackgroundColor="clear"
-            padding="10 10 40 10">
+        autoCalculateHeight="true"
+        cellBackgroundColor="clear"
+        padding="10 10 40 10">
         <Row preferredHeight="330">
             <Cell>
                 <VerticalLayout>
@@ -337,7 +337,7 @@
         </Row>
         <Row preferredHeight="160">
             <Cell>
-                <ToggleGroup onValueChanged="mapDeckSelected">
+                <ToggleGroup onValueChanged="mapDeckSelectedUI">
                     <VerticalLayout>
                         <Toggle selected="true">Simplicity</Toggle>
                         <Toggle>Hunted</Toggle>
@@ -356,33 +356,33 @@
         <Row preferredHeight="40">
             <Cell>
                 <Button
-                        id="setMapDeck"
-                        onClick="setMapDeck"
-                        color="rgb(0.19,0.7,0.12)"
-                        textColor="white"
-                        fontSize="20"
-                        height="40"
-                        width="120">Select Deck</Button>
+                    id="setMapDeck"
+                    onClick="setMapDeckUI"
+                    color="rgb(0.19,0.7,0.12)"
+                    textColor="white"
+                    fontSize="20"
+                    height="40"
+                    width="120">Select Deck</Button>
             </Cell>
         </Row>
     </TableLayout>
 </Panel>
 <Panel
-        id="HeroTurnPanel"
-        active="true"
-        width="240"
-        height="500"
-        rectAlignment="LowerRight"
-        returnToOriginalPositionWhenReleased="false"
-        allowDragging="true"
-        color="rgba(1,1,1,0.9)"
-        offsetXY="0, 0">
+    id="HeroTurnPanel"
+    active="true"
+    width="240"
+    height="500"
+    rectAlignment="LowerRight"
+    returnToOriginalPositionWhenReleased="false"
+    allowDragging="true"
+    color="rgba(1,1,1,0.9)"
+    offsetXY="0, 0">
     <!-- The top row panel, containing the title and close buttons. -->
     <Panel class="SetupTopBar">
         <Text class="SetupPanelTitle">Hero Turn</Text>
         <Button
-                class="SetupPanelCloseButton"
-                onClick="closeHeroTurnPanel"></Button>
+            class="SetupPanelCloseButton"
+            onClick="closeHeroTurnPanelUI"></Button>
     </Panel>
     <VerticalLayout padding="5 5 30 5">
         <Text class="GuideBody">
@@ -397,8 +397,8 @@
             <Text class="H1Title">Event</Text>
         </Panel>
         <Text
-                class="GuideBody"
-                color="Red">
+            class="GuideBody"
+            color="Red">
             <i>(Skip this step if in the Monastery)</i>
         </Text>
         <Text class="GuideBody">If the Necromancer is present <b>and</b> your secrecy is 0, combat the Necromancer (7 strength, 6 awareness); otherwise, draw an event card. </Text>
@@ -414,21 +414,21 @@
     </VerticalLayout>
 </Panel>
 <Panel
-        id="ActionsPanel"
-        active="true"
-        width="240"
-        height="440"
-        rectAlignment="LowerRight"
-        returnToOriginalPositionWhenReleased="false"
-        allowDragging="true"
-        color="rgba(1,1,1,0.9)"
-        offsetXY="-242, 0">
+    id="ActionsPanel"
+    active="true"
+    width="240"
+    height="440"
+    rectAlignment="LowerRight"
+    returnToOriginalPositionWhenReleased="false"
+    allowDragging="true"
+    color="rgba(1,1,1,0.9)"
+    offsetXY="-242, 0">
     <!-- The top row panel, containing the title and close buttons. -->
     <Panel class="SetupTopBar">
         <Text class="SetupPanelTitle">Actions</Text>
         <Button
-                class="SetupPanelCloseButton"
-                onClick="closeActionsPanel"></Button>
+            class="SetupPanelCloseButton"
+            onClick="closeActionsPanelUI"></Button>
     </Panel>
     <VerticalLayout padding="5 5 30 5">
         <Text class="GuideBody">
@@ -455,71 +455,71 @@
     </VerticalLayout>
 </Panel>
 <Panel
-        id="NecroTurnPanel"
-        visibility="Nobody"
-        active="true"
-        outline="Black"
-        width="200"
-        height="227"
-        rectAlignment="MiddleCenter"
-        returnToOriginalPositionWhenReleased="false"
-        allowDragging="true"
-        offsetXY="0, 300"
-        showAnimation="FadeIn"
-        hideAnimation="FadeOut"
-        showAnimationDelay="0"
-        color="rgba(1,1,1,0.9)">
+    id="NecroTurnPanel"
+    visibility="Nobody"
+    active="true"
+    outline="Black"
+    width="200"
+    height="227"
+    rectAlignment="MiddleCenter"
+    returnToOriginalPositionWhenReleased="false"
+    allowDragging="true"
+    offsetXY="0, 300"
+    showAnimation="FadeIn"
+    hideAnimation="FadeOut"
+    showAnimationDelay="0"
+    color="rgba(1,1,1,0.9)">
     <Panel
-            class="SetupTopBar"
-            height="27"
-            color="rgb(0.19,0.7,0.12)">
+        class="SetupTopBar"
+        height="27"
+        color="rgb(0.19,0.7,0.12)">
         <Text class="SetupPanelTitle">Necromancer's Turn</Text>
     </Panel>
     <Panel
-            rectAlignment="LowerRight"
-            height="200">
+        rectAlignment="LowerRight"
+        height="200">
         <VerticalLayout
-                padding="5 5 10 5"
-                height="200">
+            padding="5 5 10 5"
+            height="200">
             <Text class="GuideBody">Run the necromancer's turn by adding darkness, adding quest timers, and then moving and blighting.
             </Text>
             <Button
-                    class="NecroTurnButton"
-                    text="1. Add Darkness"
-                    onClick="necroIncreaseDarkness"></Button>
+                class="NecroTurnButton"
+                text="1. Add Darkness"
+                onClick="necroIncreaseDarkness"></Button>
             <Button
-                    class="NecroTurnButton"
-                    text="2. Add Quest Timers"
-                    onClick="addQuestTimers"></Button>
+                class="NecroTurnButton"
+                text="2. Add Quest Timers"
+                onClick="addQuestTimers"></Button>
             <Button
-                    class="NecroTurnButton"
-                    text="3. Move and Blight"
-                    onClick="runNecroTurn"></Button>
+                class="NecroTurnButton"
+                text="3. Move and Blight"
+                onClick="runNecroTurn"></Button>
         </VerticalLayout>
     </Panel>
 </Panel>
 
 <!-- The side menu panel. -->
 <Panel
-        height="60"
-        offsetXY="-225 0"
-        raycastTarget="true"
-        rectAlignment="UpperRight"
-        showAnimation="FadeIn"
-        showAnimationDelay="2"
-        width="200">
+    height="60"
+    offsetXY="-225 0"
+    raycastTarget="true"
+    rectAlignment="UpperRight"
+    showAnimation="FadeIn"
+    showAnimationDelay="2"
+    width="200">
     <GridLayout cellSize="(100 30)">
         <Button
-                visibility="Nobody"
-                id="HeroTurnPanelButton"
-                onClick="openHeroTurnPanel"> Hero Turn </Button>
+            visibility="Nobody"
+            id="HeroTurnPanelButton"
+            onClick="openHeroTurnPanelUI"> Hero Turn </Button>
         <Button
-                visibility="Nobody"
-                id="ActionsPanelButton"
-                onClick="openActionsPanel"> Actions </Button>
+            visibility="Nobody"
+            id="ActionsPanelButton"
+            onClick="openActionsPanelUI"> Actions </Button>
         <Button
-                visibility="Nobody"
-                id="DifficultyPanelButton"
-                onClick="openDifficultyPanel">Difficulty </Button>
+            visibility="Nobody"
+            id="DifficultyPanelButton"
+            onClick="openDifficultyPanelUI">Difficulty </Button>
     </GridLayout>
 </Panel>

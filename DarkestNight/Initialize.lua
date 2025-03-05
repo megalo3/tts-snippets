@@ -1,77 +1,12 @@
-function setNecroPanel()
-    local allComplete = true
-    -- Require at least 1 pawn to be set
-    if #Settings.pawns == 0 then return end
-
-    for _, pawn in ipairs(Settings.pawns) do
-        activityToken = getObjectsWithAllTags({'Activity', pawn.Color})[1]
-        if activityToken.getRotationValue() == 'Active' then
-            allComplete = false
-        end
-    end
-
-    if allComplete == true then
-        UI.show("NecroTurnPanel")
-    end
-end
-
-function darknessCardsSelected(player, selected) darknessCardsSelected(selected) end
-function startingBlightsSelected(player, selected) startingBlightsSelected(selected) end
-function startingDarknessSelected(player, selected) startingDarknessSelected(selected) end
-function startingPowerCardsSelected(player, selected) startingPowerCardsSelected(selected) end
-function startingGraceSelected(player, selected) startingGraceSelected(selected) end
-function startingSparksSelected(player, selected) startingSparksSelected(selected) end
-function numberOfHeroesSelected(player, selected) numberOfHeroesSelected(selected) end
-function increaseQuestsSelected(player, selected) increaseQuestsSelected(selected) end
-
-function setDifficulty()
-    print('Game difficulty chosen')
-
-    -- Move starting darkness and add cards
-    moveStartingDarkness()
-
-    if Settings.mapSelected == false then
-        UI.setAttribute('MapPanel', 'active', true)
-    end
-    for _, color in ipairs(Player.getColors()) do
-        closePanel(color, 'difficultyPanelClosedBy', 'DifficultyPanel')
-    end
-end
-
 function shuffleDecks()
     for _, deck in ipairs(getObjectsWithTag('deck')) do
         deck.shuffle()
     end
 end
 
-function mapDeckSelected(player, option, id)
-    SelectedMapDeck = MapDecks[option + 1]
-end
-
 function updateMapTypeName()
     DrawMapScript = getObjectFromGUID('131f29')
     DrawMapScript.UI.setAttribute('mapType', 'text', Settings.mapType)
-end
-
-function setMapDeck()
-    Settings.mapSelected = true
-    UI.setAttribute('MapPanel', 'active', false)
-
-    shuffleDecks()
-    Settings.mapType = DeckMapNames[SelectedMapDeck]
-    print('Selected "' .. Settings.mapType .. '" map deck.')
-    updateMapTypeName()
-
-    if SelectedMapDeck ~= 'Everything' then
-        createMapDeck(SelectedMapDeck)
-    end
-
-    -- Add starting blights
-    local blightDm = Settings.difficultyOptions[2]
-    local startingBlights = 0
-    if blightDm == 0 then startingBlights = 1 end
-    if blightDm == 3 then startingBlights = 2 end
-    createStartingBlights(startingBlights)
 end
 
 function setCharacters()
@@ -254,36 +189,6 @@ function dealStarterCards(zone, color)
             dealt = dealt + 1
         end
     end
-end
-
-function closeHeroTurnPanel(player) closePanel(player.color, 'heroTurnPanelClosedBy', 'HeroTurnPanel') end
-function closeActionsPanel(player) closePanel(player.color, 'actionsPanelClosedBy', 'ActionsPanel') end
-function closeDifficultyPanel(player) closePanel(player.color, 'difficultyPanelClosedBy', 'DifficultyPanel') end
-
-function openHeroTurnPanel(player) openPanel(player.color, 'heroTurnPanelClosedBy', 'HeroTurnPanel') end
-function openActionsPanel(player) openPanel(player.color, 'actionsPanelClosedBy', 'ActionsPanel') end
-function openDifficultyPanel(player) openPanel(player.color, 'difficultyPanelClosedBy', 'DifficultyPanel') end
-
-function closePanel(color, tableName, elementId)
-    table.insert(Settings[tableName], color)
-    showHidePanelsForPlayers(tableName, elementId)
-end
-function openPanel(color, tableName, elementId)
-    table.removeByValue(Settings[tableName], color)
-    showHidePanelsForPlayers(tableName, elementId)
-end
-
-function showHidePanelForAllPlayers()
-    showHidePanelsForPlayers('heroTurnPanelClosedBy', 'HeroTurnPanel')
-    showHidePanelsForPlayers('actionsPanelClosedBy', 'ActionsPanel')
-    showHidePanelsForPlayers('difficultyPanelClosedBy', 'DifficultyPanel')
-end
-
-function showHidePanelsForPlayers(tableName, elementId)
-    local visibility = getVisibilityString(invertUIVisibilityTable(Settings[tableName]), true)
-    UI.setAttribute(elementId, "visibility", visibility)
-    local buttonVisibility = getVisibilityString(Settings[tableName], true)
-    UI.setAttribute(elementId .. "Button", "visibility", buttonVisibility)
 end
 
 -- Turns a visibility table (a table of players) into a string suitable for the visibility attribute.
