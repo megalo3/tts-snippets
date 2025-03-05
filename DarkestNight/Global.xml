@@ -143,7 +143,10 @@
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="startingDarknessSelectedUI">
+                <Dropdown
+                    id="StartingDarkness"
+                    interactable="true"
+                    onValueChanged="startingDarknessSelectedUI">
                     <Option>-1 dm: Darkness -5</Option>
                     <Option selected="true">+0 dm: Darkness 0</Option>
                     <Option>+1 dm: Darkness 5</Option>
@@ -163,7 +166,10 @@
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="darknessCardsSelectedUI">
+                <Dropdown
+                    id="DarknessCards"
+                    interactable="true"
+                    onValueChanged="darknessCardsSelectedUI">
                     <Option>-1 dm: 1 card (at 15)</Option>
                     <Option selected="true">+0 dm: 2 cards (at 10, 20)</Option>
                     <Option>+1 dm: 3 cards (at 7, 14, 21)</Option>
@@ -188,7 +194,10 @@
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="startingBlightsSelectedUI">
+                <Dropdown
+                    id="StartingBlights"
+                    interactable="true"
+                    onValueChanged="startingBlightsSelectedUI">
                     <Option>-3 dm: Start with no blights</Option>
                     <Option selected="true">+0 dm: 1 blight per location (except the Monastery)</Option>
                     <Option>+3 dm: 2 blights per location (except the Monastery)</Option>
@@ -208,7 +217,10 @@
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="startingPowerCardsSelectedUI">
+                <Dropdown
+                    id="StartingPowerCards"
+                    interactable="true"
+                    onValueChanged="startingPowerCardsSelectedUI">
                     <Option>-2 dm: Start every hero with 5 power cards</Option>
                     <Option>-1 dm: Start every hero with 4 power cards</Option>
                     <Option selected="true">+0 dm: Start every hero with 3 power cards</Option>
@@ -228,7 +240,10 @@
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="startingGraceSelectedUI">
+                <Dropdown
+                    id="StartingGrace"
+                    interactable="true"
+                    onValueChanged="startingGraceSelectedUI">
                     <Option>-1 dm: Start every hero with 2 extra Grace</Option>
                     <Option selected="true">+0 dm: Start every hero with 0 extra Grace</Option>
                 </Dropdown>
@@ -247,7 +262,10 @@
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="startingSparksSelectedUI">
+                <Dropdown
+                    id="StartingSparks"
+                    interactable="true"
+                    onValueChanged="startingSparksSelectedUI">
                     <Option>-1 dm: Start every hero with 3 sparks</Option>
                     <Option selected="true">+0 dm: Start every hero with 0 sparks</Option>
                 </Dropdown>
@@ -266,7 +284,10 @@
         </Row>
         <Row preferredHeight="30">
             <Cell>
-                <Dropdown onValueChanged="numberOfHeroesSelectedUI">
+                <Dropdown
+                    id="StartingHeroes"
+                    interactable="true"
+                    onValueChanged="numberOfHeroesSelectedUI">
                     <Option>+4 dm: Play with 3 heroes</Option>
                     <Option selected="true">+0 dm: Play with 4 heroes</Option>
                     <Option>+0 dm: Play with 5 heroes. (See extra rules)</Option>
@@ -279,6 +300,8 @@
         <Row preferredHeight="30">
             <Cell>
                 <Toggle
+                    id="IncreaseQuests"
+                    interactable="true"
                     onValueChanged="increaseQuestsSelectedUI"
                     isOn="false"
                     fontStyle="Bold">+1 dm: Increase Quests</Toggle>
@@ -292,6 +315,8 @@
         <Row preferredHeight="40">
             <Cell>
                 <Button
+                    id="SetDifficulty"
+                    interactable="true"
                     onClick="setDifficultyUI"
                     color="rgb(0.19,0.7,0.12)"
                     textColor="white"

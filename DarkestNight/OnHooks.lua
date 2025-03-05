@@ -18,7 +18,6 @@ function onLoad(saveData)
     if saveData and saveData ~= "" then
        Settings = JSON.decode(saveData)
     end
-    -- print(JSON.encode(Settings))
     showHidePanelForAllPlayers()
     updateMapTypeName()
 
@@ -32,6 +31,10 @@ function onLoad(saveData)
     end
 
     highlightPawns()
+
+    if Settings.started == true then
+        setDifficultyUninteractable()
+    end
 end
 
 function onObjectNumberTyped(object,  player_color,  number)

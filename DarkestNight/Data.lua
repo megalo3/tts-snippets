@@ -27,7 +27,8 @@ Settings = {
     difficultyPanelClosedBy = {"Nobody"},
     mapSelected = false,
     mapType = 'Everything',
-    pawns = {}
+    pawns = {},
+    started = false
 }
 
 

@@ -15,14 +15,14 @@ function setNecroPanel()
     end
 end
 
-function darknessCardsSelectedUI(player, selected) darknessCardsSelected(selected) end
-function startingBlightsSelectedUI(player, selected) startingBlightsSelected(selected) end
-function startingDarknessSelectedUI(player, selected) startingDarknessSelected(selected) end
-function startingPowerCardsSelectedUI(player, selected) startingPowerCardsSelected(selected) end
-function startingGraceSelectedUI(player, selected) startingGraceSelected(selected) end
-function startingSparksSelectedUI(player, selected) startingSparksSelected(selected) end
-function numberOfHeroesSelectedUI(player, selected) numberOfHeroesSelected(selected) end
-function increaseQuestsSelectedUI(player, selected) increaseQuestsSelected(selected) end
+function darknessCardsSelectedUI(player, selected) if Settings.started == false then darknessCardsSelected(selected) end end
+function startingBlightsSelectedUI(player, selected) if Settings.started == false then startingBlightsSelected(selected) end end
+function startingDarknessSelectedUI(player, selected) if Settings.started == false then startingDarknessSelected(selected) end end
+function startingPowerCardsSelectedUI(player, selected) if Settings.started == false then startingPowerCardsSelected(selected) end end
+function startingGraceSelectedUI(player, selected) if Settings.started == false then startingGraceSelected(selected) end end
+function startingSparksSelectedUI(player, selected) if Settings.started == false then startingSparksSelected(selected) end end
+function numberOfHeroesSelectedUI(player, selected) if Settings.started == false then numberOfHeroesSelected(selected) end end
+function increaseQuestsSelectedUI(player, selected) if Settings.started == false then increaseQuestsSelected(selected) end end
 
 function setMapDeckUI()
     Settings.mapSelected = true
@@ -43,6 +43,7 @@ function setMapDeckUI()
     if blightDm == 0 then startingBlights = 1 end
     if blightDm == 3 then startingBlights = 2 end
     createStartingBlights(startingBlights)
+    Settings.started = true
 end
 
 function mapDeckSelected(player, option, id)
@@ -80,11 +81,13 @@ function showHidePanelsForPlayers(tableName, elementId)
 end
 
 function setDifficultyUI()
+    if Settings.started == true then return end
     print('Game difficulty chosen')
 
     -- Move starting darkness and add cards
     shuffleDecks()
     moveStartingDarkness()
+    setDifficultyUninteractable()
 
     if Settings.mapSelected == false then
         UI.setAttribute('MapPanel', 'active', true)
@@ -92,6 +95,18 @@ function setDifficultyUI()
     for _, color in ipairs(Player.getColors()) do
         closePanel(color, 'difficultyPanelClosedBy', 'DifficultyPanel')
     end
+end
+
+function setDifficultyUninteractable()
+    UI.setAttribute('DarknessCards', 'interactable', false)
+    UI.setAttribute('StartingBlights', 'interactable', false)
+    UI.setAttribute('StartingDarkness', 'interactable', false)
+    UI.setAttribute('StartingPowerCards', 'interactable', false)
+    UI.setAttribute('StartingGrace', 'interactable', false)
+    UI.setAttribute('StartingSparks', 'interactable', false)
+    UI.setAttribute('StartingHeroes', 'interactable', false)
+    UI.setAttribute('IncreaseQuests', 'interactable', false)
+    UI.setAttribute('SetDifficulty', 'interactable', false)
 end
 
 function startHeroTurnUI()
