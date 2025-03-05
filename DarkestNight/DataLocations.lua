@@ -70,9 +70,6 @@ LocationVertices = {
     }
 }
 
-
-SecrecyPositions = {.90, .73, .55, .38, .2, .02, -0.15, -0.33, -0.51, -0.68}
-
 -- Either he's already in the location or he goes through the village
 LocationPathfinding = {
     Mountains = {
