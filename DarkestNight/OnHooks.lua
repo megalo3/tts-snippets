@@ -62,12 +62,10 @@ function onSave()
     return JSON.encode(Settings)
 end
 
-function addQuestProgress(card) Quests.addProgress(card) end
-function addTime(card) Quests.addTime(card) end
 function onObjectSpawn(object)
     if object.hasTag("Quest") and object.type == 'Card' then
         object.createButton({
-            click_function = "addQuestProgress",
+            click_function = "addQuestProgressUI",
             function_owner = Global,
             label          = "+",
             position       = {-0.8,0.25,-.35},
@@ -79,7 +77,7 @@ function onObjectSpawn(object)
             font_color     = {95/255,120/255,0/255,1},
         })
         object.createButton({
-            click_function = "addTime",
+            click_function = "addTimeUI",
             function_owner = Global,
             label          = "+",
             position       = {0.8,0.25,-.35},
