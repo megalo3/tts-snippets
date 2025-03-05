@@ -33,7 +33,7 @@ function tryCreateStartingBlights(n)
             if location ~= 'Monastery' then
                 if StartingBlights[index] < n then
                     local blightName = blightInfo[location][1]
-                    local deployedBlightMessage = deployBlight(blightName, location, StartingBlights[index])
+                    local deployedBlightMessage = deployBlightToLocation(blightName, location, StartingBlights[index])
                     if deployedBlightMessage ~= false then
                         print(deployedBlightMessage)
                         StartingBlights[index] = StartingBlights[index] + 1
@@ -88,7 +88,7 @@ function createBlight(location)
     -- If so, the blight location is the Monastery
     local blightInfo = getBlightInfoFromGUID(guid)
     local blightName = blightInfo[location][1]
-    local deployedBlightMessage = deployBlight(blightName, location, blightCount)
+    local deployedBlightMessage = deployBlightToLocation(blightName, location, blightCount)
     if deployedBlightMessage == false then
         return false
     end
@@ -113,7 +113,7 @@ function getBlightInfoFromGUID(guid)
     end
 end
 
-function deployBlight(blightName, location, blightCount)
+function deployBlightToLocation(blightName, location, blightCount)
     local position = {LocationPositions[location][1] + blightCount * 1.5, 2, LocationPositions[location][3]}
     local BlightZone = getObjectsWithAllTags({'Zone', 'Blight', 'Draw'})[1]
     for index, tileStack in ipairs(BlightZone.getObjects()) do
