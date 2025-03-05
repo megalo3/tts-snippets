@@ -60,7 +60,6 @@ end
 function getItem(location, color)
     local blightInfo = getMapCardInfo()
     if blightInfo == nil then
-        -- print('No map card has been played.')
         return
     end
     local itemName = blightInfo[location][2]
@@ -77,6 +76,11 @@ end
 function createBlight(location)
     local guid = getTopMapDiscardGuid()
     if guid == false then return end
+
+    if FailedBlightDrawAttempt == 0 then
+        local info = getMapCardInfo()
+        necroAddQuest(info)
+    end
 
     -- Make sure there aren't already 4 blights
     local blightCount = countBlightsInLocation(location)

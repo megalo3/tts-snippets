@@ -94,29 +94,26 @@ function moveNecromancer(dieValue, location)
         printToAll('The Necromancer ' .. movesOrStays(location, newLocation) .. ' the ' .. newLocation, stringColorToRGB('Green'))
     end
 
-    drawCard({ Target = 'Discard', Type = 'Map' })
     local necromancer = getObjectsWithAllTags({'Necromancer', 'Pawn'})[1]
     necromancer.setPositionSmooth(LocationPosition[newLocation])
-
 end
 
 function necroBlightUI()
+    drawCard({ Target = 'Discard', Type = 'Map' })
     deployBlight(getNecroLocation())
+end
 
+function necroAddQuest(info)
     -- Increase Quests DM
     if Settings.difficultyOptions[8] == 1 then
-        Wait.time(function()
-            local info = getMapCardInfo()
-            if info.Quest ~= '' then
-                print(info.Quest)
-                local zone = getObjectsWithAllTags({'Zone', 'Quest'})[1]
-                local deck = getDeckFromZone(zone)
-                deck.takeObject({
-                    position = LocationPosition[info.Quest],
-                    flip = true
-                })
-            end
-        end, 1.45)
+        if info.Quest ~= '' then
+            local zone = getObjectsWithAllTags({'Zone', 'Quest'})[1]
+            local deck = getDeckFromZone(zone)
+            deck.takeObject({
+                position = LocationPosition[info.Quest],
+                flip = true
+            })
+        end
     end
 end
 
@@ -193,13 +190,14 @@ function notInMonastery(character)
 end
 
 function deployBlight(newLocation)
-    local waitTime = 0.3
+    local waitTime = 1.3
     if isDeckEmpty('Map') then waitTime = waitTime + 1.3 end
     Wait.time(function() attemptDeployBlight(newLocation)  end, waitTime)
 end
 
 function attemptDeployBlight(newLocation)
     local didDeploy = createBlight(newLocation)
+
     if didDeploy == false then
         FailedBlightDrawAttempt = FailedBlightDrawAttempt + 1
         if FailedBlightDrawAttempt < 3 then
@@ -208,6 +206,7 @@ function attemptDeployBlight(newLocation)
             return deployBlight(newLocation)
         else
             printToAll('Three map cards have been drawn with no available blight tokens. Create a blight of your choice.', stringColorToRGB('Yellow'))
+            FailedBlightDrawAttempt = 0
         end
     else
         -- Map draw succeeded

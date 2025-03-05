@@ -41,7 +41,6 @@ end
 function setActivityPanel(pawns)
     for _, pawn in ipairs(pawns) do
         table.insert(Settings.pawns, pawn)
-        -- print(pawn.Pawn .. ' ' .. pawn.Color)
     end
 end
 
