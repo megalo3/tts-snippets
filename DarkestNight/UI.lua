@@ -95,5 +95,10 @@ function setDifficultyUI()
 end
 
 function startHeroTurnUI()
+    print('It is now the Hero Turn.')
+
+    for _, token in ipairs(getObjectsWithAllTags({'Activity'})) do
+        token.setRotationValue("Active")
+    end
     UI.hide("NecroTurnPanel")
 end

@@ -193,7 +193,7 @@ function notInMonastery(character)
 end
 
 function deployBlight(newLocation)
-    local waitTime = 1.3
+    local waitTime = 0.3
     if isDeckEmpty('Map') then waitTime = waitTime + 1.3 end
     Wait.time(function() attemptDeployBlight(newLocation)  end, waitTime)
 end
@@ -212,11 +212,6 @@ function attemptDeployBlight(newLocation)
     else
         -- Map draw succeeded
         FailedBlightDrawAttempt = 0
-        print('It is now the Hero Turn.')
-
-        for _, token in ipairs(getObjectsWithAllTags({'Activity'})) do
-            token.setRotationValue("Active")
-        end
     end
 end
 
