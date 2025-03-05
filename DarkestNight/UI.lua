@@ -86,7 +86,7 @@ function setDifficultyUI()
 
     -- Move starting darkness and add cards
     shuffleDecks()
-    moveStartingDarkness()
+    Darkness.Move.StartingDarkness()
     setDifficultyUninteractable()
 
     if Settings.mapSelected == false then
@@ -133,3 +133,8 @@ function getItemSwampUI(o, c, a) Blights.getItem('Swamp',c) end
 function getItemForestUI(o, c, a) Blights.getItem('Forest',c) end
 function getItemRuinsUI(o, c, a) Blights.getItem('Ruins',c) end
 function getItemMonasteryUI(o, c, a) Blights.getItem('Monastery',c) end
+function increaseDarknessUI() Darkness.Move.Darkness(1) end
+function decreaseDarknessUI() Darkness.Move.Darkness(-1) end
+function increaseCluesUI() Darkness.Move.Clues(1) end
+function decreaseCluesUI() Darkness.Move.Clues(-1) end
+function necroIncreaseDarknessUI() Darkness.increaseDarknessConsideringBlights() end

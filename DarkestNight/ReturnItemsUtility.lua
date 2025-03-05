@@ -79,7 +79,7 @@ function dealItem(input)
         return
     end
     if input.ItemName == "Revelation" then
-        moveClues(3)
+        Darkness.Move.Clues(3)
         return
     end
     getItemFromBag({tag = input.ItemName, color = input.Color})
