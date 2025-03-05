@@ -99,7 +99,7 @@ function moveNecromancer(dieValue, location)
 end
 
 function necroBlightUI()
-    drawCard({ Target = 'Discard', Type = 'Map' })
+    Utility.Draw.Card({ Target = 'Discard', Type = 'Map' })
     deployBlight(getNecroLocation())
 end
 
@@ -202,7 +202,7 @@ function attemptDeployBlight(newLocation)
         FailedBlightDrawAttempt = FailedBlightDrawAttempt + 1
         if FailedBlightDrawAttempt < 3 then
             printToAll('Drawing a new map card.', stringColorToRGB('Green'))
-            drawCard({ Target = 'Discard', Type = 'Map' })
+            Utility.Draw.Card({ Target = 'Discard', Type = 'Map' })
             return deployBlight(newLocation)
         else
             printToAll('Three map cards have been drawn with no available blight tokens. Create a blight of your choice.', stringColorToRGB('Yellow'))

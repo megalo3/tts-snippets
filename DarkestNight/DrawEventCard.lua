@@ -1,5 +1,5 @@
 function drawEvent(o, color, a)
-    local card = drawCard({ Target = 'Discard', Type = 'Event', Color = color })
+    local card = Utility.Draw.Card({ Target = 'Discard', Type = 'Event', Color = color })
     fate = Events[card.getName()].FateValue
     if fate == -1 then
         printToAll('The Renewal event was drawn. Reshuffling deck.', stringColorToRGB('Yellow'))
@@ -18,7 +18,7 @@ function omenDraw(o, color, a, firstDrawnCardGuid)
     -- FirstDrawnCard will only exist if the second drawn card caused a reshuffle
     local card1
     if firstDrawnCardGuid == nil then
-        card1 = drawCard({ Target = 'Discard', Type = 'Event', Color = color })
+        card1 = Utility.Draw.Card({ Target = 'Discard', Type = 'Event', Color = color })
     else
         card1 = getObjectFromGUID(firstDrawnCardGuid)
         card1.setLock(false)
@@ -34,7 +34,7 @@ function omenDraw(o, color, a, firstDrawnCardGuid)
         return false
     end
 
-    local card2 = drawCard({ Target = 'Discard', Type = 'Event', Color = color })
+    local card2 = Utility.Draw.Card({ Target = 'Discard', Type = 'Event', Color = color })
     local fate2 = Events[card2.getName()].FateValue
     if fate2 == -1 then
         card1.setLock(true)

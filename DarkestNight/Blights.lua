@@ -8,7 +8,7 @@ Blights = {
     end,
 
     tryCreateStartingBlights =     function(n)
-        drawCard({ Target = 'Discard', Type = 'Map' })
+        Utility.Draw.Card({ Target = 'Discard', Type = 'Map' })
 
         Wait.time(function()
             local guid = Blights.getTopMapDiscardGuid()

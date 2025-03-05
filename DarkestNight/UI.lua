@@ -138,3 +138,6 @@ function decreaseDarknessUI() Darkness.Move.Darkness(-1) end
 function increaseCluesUI() Darkness.Move.Clues(1) end
 function decreaseCluesUI() Darkness.Move.Clues(-1) end
 function necroIncreaseDarknessUI() Darkness.increaseDarknessConsideringBlights() end
+function drawArtifactUI(o, c, a) Utility.Draw.Card({ Target = 'Player', Type = 'Artifact', Color = c }) end
+function drawMapUI(o, c, a) Utility.Draw.Card({ Target = 'Discard', Type = 'Map' }) end
+function drawMysteryUI(o, c, a) Utility.Draw.Card({ Target = 'Player', Type = 'Mystery', Color = c }) end
