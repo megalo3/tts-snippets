@@ -27,7 +27,7 @@ function moveDarkness(amount)
     print('Moving darkness to level ' .. nextLevel .. '.')
 
     local darknessIndex = getDarknessCardIndex(nextLevel, darknessCardLevels)
-    if darknessIndex ~= false then
+    if darknessIndex ~= false and canDrawDarknessCard(darknessIndex) then
         print('Drawing a Darkness card for darkness level ' .. nextLevel ..'.')
         drawDarknessCard(darknessIndex)
     end
@@ -104,12 +104,22 @@ function getDarknessCardIndex(number, levels)
     return false
 end
 
+function canDrawDarknessCard(n)
+    local drawnCardsZone = getObjectsWithAllTags({'DrawnDarknessCards', 'Zone'})[1];
+    local drawnCardCount = #(drawnCardsZone.getObjects())
+    if n <= drawnCardCount then
+        return false
+    end
+    return true
+end
+
 function drawDarknessCard(n)
     local zone = getObjectsWithAllTags({'Darkness', 'Zone'})[1];
     local deck = getDeckFromZone(zone)
     local position = deck.getPosition()
     local xPos = position[1] + 2.5 * n
-    deck.takeObject({ position = {xPos, 2, position[3]}, flip = true })
+    local card = deck.takeObject({ position = {xPos, 2, position[3]}, flip = true })
+    card.addTag('DrawnDarknessCards')
 end
 
 function getTrackLevel(pType)
