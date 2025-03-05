@@ -6,7 +6,7 @@ function returnItem(object)
     end
 
     if object.hasTag("Blight") then
-        returnBlight(object)
+        Blights.returnBlight(object)
         return true
     end
     if object.hasTag("Spark") then

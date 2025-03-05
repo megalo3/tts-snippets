@@ -42,7 +42,7 @@ function setMapDeckUI()
     local startingBlights = 0
     if blightDm == 0 then startingBlights = 1 end
     if blightDm == 3 then startingBlights = 2 end
-    createStartingBlights(startingBlights)
+    Blights.createStartingBlights(startingBlights)
     Settings.started = true
 end
 
@@ -120,16 +120,16 @@ end
 
 function addQuestTimersUI() Quests.addaddQuestTimers() end
 function rollQuestUI() Quests.rollQuest() end
-function createBlightMountainsUI(o, c, a) createBlight('Mountains') end
-function createBlightCastleUI(o, c, a) createBlight('Castle') end
-function createBlightVillageUI(o, c, a) createBlight('Village') end
-function createBlightSwampUI(o, c, a) createBlight('Swamp') end
-function createBlightForestUI(o, c, a) createBlight('Forest') end
-function createBlightRuinsUI(o, c, a) createBlight('Ruins') end
-function createBlightMonasteryUI(o, c, a) createBlight('Monastery') end
-function getItemMountainsUI(o, c, a) getItem('Mountains',c) end
-function getItemCastleUI(o, c, a) getItem('Castle',c) end
-function getItemSwampUI(o, c, a) getItem('Swamp',c) end
-function getItemForestUI(o, c, a) getItem('Forest',c) end
-function getItemRuinsUI(o, c, a) getItem('Ruins',c) end
-function getItemMonasteryUI(o, c, a) getItem('Monastery',c) end
+function createBlightMountainsUI(o, c, a) Blights.createBlight('Mountains') end
+function createBlightCastleUI(o, c, a) Blights.createBlight('Castle') end
+function createBlightVillageUI(o, c, a) Blights.createBlight('Village') end
+function createBlightSwampUI(o, c, a) Blights.createBlight('Swamp') end
+function createBlightForestUI(o, c, a) Blights.createBlight('Forest') end
+function createBlightRuinsUI(o, c, a) Blights.createBlight('Ruins') end
+function createBlightMonasteryUI(o, c, a) Blights.createBlight('Monastery') end
+function getItemMountainsUI(o, c, a) Blights.getItem('Mountains',c) end
+function getItemCastleUI(o, c, a) Blights.getItem('Castle',c) end
+function getItemSwampUI(o, c, a) Blights.getItem('Swamp',c) end
+function getItemForestUI(o, c, a) Blights.getItem('Forest',c) end
+function getItemRuinsUI(o, c, a) Blights.getItem('Ruins',c) end
+function getItemMonasteryUI(o, c, a) Blights.getItem('Monastery',c) end

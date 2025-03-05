@@ -11,7 +11,7 @@ function decreaseClues() moveClues(-1) end
 
 function necroIncreaseDarkness()
     -- Move darkness for each Desecration Blight out
-    local desecrations = blightCount('Desecration')
+    local desecrations = Blights.count('Desecration')
     if desecrations > 0 then
         printToAll('Adding ' .. desecrations .. ' extra darkness from Desecration blight(s).', stringColorToRGB('Yellow'))
     end

@@ -36,7 +36,7 @@ function rollNecroDie(location)
 end
 
 function moveNecromancer(dieValue, location)
-    local gateCount = blightCount('Gate')
+    local gateCount = Blights.count('Gate')
     local dieRollMessage = 'The Necromancer rolls a ' .. dieValue .. '.'
     local detectedDieValue = dieValue
     if gateCount > 0 then
@@ -196,7 +196,7 @@ function deployBlight(newLocation)
 end
 
 function attemptDeployBlight(newLocation)
-    local didDeploy = createBlight(newLocation)
+    local didDeploy = Blights.createBlight(newLocation)
 
     if didDeploy == false then
         FailedBlightDrawAttempt = FailedBlightDrawAttempt + 1
