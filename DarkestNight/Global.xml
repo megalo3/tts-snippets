@@ -511,11 +511,11 @@
             <Button
                 class="NecroTurnButton"
                 text="1. Add Darkness"
-                onClick="necroIncreaseDarkness"></Button>
+                onClick="necroIncreaseDarknessUI"></Button>
             <Button
                 class="NecroTurnButton"
                 text="2. Add Quest Timers"
-                onClick="addQuestTimers"></Button>
+                onClick="addQuestTimersUI"></Button>
             <Button
                 class="NecroTurnButton"
                 text="3. Move"

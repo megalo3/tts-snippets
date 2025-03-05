@@ -1,7 +1,70 @@
--- type: Event, Artifact, Quest, Mystery, Map
+
+
+
 
 Utility = {
     Draw = {
+        -- type: Event, Artifact, Quest, Mystery, Map
+        Event = function(o, color, a)
+            local card = Utility.Draw.Card({ Target = 'Discard', Type = 'Event', Color = color })
+            fate = Events[card.getName()].FateValue
+            if fate == -1 then
+                printToAll('The Renewal event was drawn. Reshuffling deck.', stringColorToRGB('Yellow'))
+                Wait.time(function()
+                    Utility.resupplyDeck('Event')
+                    Wait.time(function() Utility.Draw.Event(o, color) end, 1.3)
+                end, 1.3)
+                return false
+            end
+
+            printToColor('Drew event (' .. card.getName() .. ').', color)
+            card.deal(1, color)
+        end,
+
+        OmenEvent = function(o, color, a, firstDrawnCardGuid)
+            -- FirstDrawnCard will only exist if the second drawn card caused a reshuffle
+            local card1
+            if firstDrawnCardGuid == nil then
+                card1 = Utility.Draw.Card({ Target = 'Discard', Type = 'Event', Color = color })
+            else
+                card1 = getObjectFromGUID(firstDrawnCardGuid)
+                card1.setLock(false)
+            end
+
+            fate1 = Events[card1.getName()].FateValue
+            if fate1 == -1 then
+                printToAll('The Renewal event was drawn. Reshuffling deck.', stringColorToRGB('Yellow'))
+                Wait.time(function()
+                    Utility.resupplyDeck('Event')
+                    Wait.time(function() Utility.Draw.OmenEvent(o, color) end, 1.3)
+                end, 1.3)
+                return false
+            end
+
+            local card2 = Utility.Draw.Card({ Target = 'Discard', Type = 'Event', Color = color })
+            local fate2 = Events[card2.getName()].FateValue
+            if fate2 == -1 then
+                card1.setLock(true)
+                local pos = card1.getPosition()
+                card1.setPosition({-10.91, 3, pos[3]})
+                printToAll('The Renewal event was drawn. Reshuffling deck.', stringColorToRGB('Yellow'))
+                Wait.time(function()
+                    Utility.resupplyDeck('Event')
+                    Wait.time(function() Utility.Draw.OmenEvent(o, color, a, card1.guid) end, 1.5)
+                end, 1.3)
+                return false
+            end
+
+            local keep = card2
+            local discard = card1
+            if fate1 >= fate2 then
+                keep = card1
+                discard = card2
+            end
+            printToColor('Drawing two events and keeping the one with the higher fate value (' .. keep.getName() .. ').', color)
+            keep.deal(1, color)
+        end,
+
         -- { Target = 'Player' | 'Discard', Type = 'Artifact', Color = 'Blue' }
         Card = function(input)
             if Utility.isDeckEmpty(input.Type) == true then

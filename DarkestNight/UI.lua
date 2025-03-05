@@ -158,3 +158,6 @@ function getWaystone(o,c) Utility.Draw.Item({ItemName = 'Waystone', Color = c}) 
 
 function getMystery(o,c) Utility.Draw.Item({ItemName = 'Mystery', Color = c}) end
 function getRevelation(o,c) Utility.Draw.Item({ItemName = 'Revelation', Color = c}) end
+
+function drawEventUI(o, c, a) Utility.Draw.Event(o, c, a) end
+function omenDrawUI(o, c, a) Utility.Draw.OmenEvent(o, c, a) end
