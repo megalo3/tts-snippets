@@ -19,6 +19,8 @@ function getBlightBoard()
     return getObjectFromGUID('2f4bb6')
 end
 
+Data = {}
+
 Settings = {
     difficultyOptions = {0,0,0,0,0,0,0,0},
     heroTurnPanelClosedBy = {"Nobody"},
@@ -60,5 +62,3 @@ Players = {
     Purple = {23.22, 25.69, 28.13, 30.63},
 }
 SecrecyPositions = {.90, .73, .55, .38, .2, .02, -0.15, -0.33, -0.51, -0.68}
-
-Data = {}
