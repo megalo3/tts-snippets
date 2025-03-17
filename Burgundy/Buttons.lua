@@ -75,3 +75,20 @@ function createVictoryTrackButtons(input, p)
         })
     end
 end
+
+function createVineyardFlipButton(object)
+    object.clearButtons()
+    object.createButton({
+        click_function = "flipDoubleHex",
+        function_owner = Global,
+        position       = {-0.9,0.1,0},
+        rotation       = {0, 0, 0},
+        width          = 300,
+        height         = 200,
+        color          = {0,0,0,0.8},
+        hover_color    = {1,1,1,0.5},
+        font_color     = {1,1,1},
+        label          = 'Flip',
+        tooltip        = 'Flip the hex 180 degrees'
+    })
+end
