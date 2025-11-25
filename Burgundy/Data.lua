@@ -83,7 +83,7 @@ Guids = {
         whitecastle4 = '1276a4',
         whitecastle5 = 'ed3b0c',
         whitecastle6 = '3ab130',
-        crane = 'e24eaa',
+        crane = '4a97d9',
         monastery27 = '786989',
         monastery28 = 'b2387b'
     },

@@ -13,7 +13,7 @@ function onLoad(saveState)
     if settings.setupComplete == false then
         setupMenu('true')
 
-        yellowPrint('Hidden zone opacity can be changed in Menu -> Configuration -> Interface -> Misc. Settings -> Hidden Zone Hide Opacity.')
+        yellowPrint('Hidden zone opacity can be changed in Menu -> Configuration -> Interface -> Misc. settings -> Hidden Zone Hide Opacity.')
         print('Players may choose a specific Enchantment card and place it in the Enchantment card slot. If not, an Enchantment card will be randomly selected.')
     else
         gatherItemsMenu('true')
@@ -40,60 +40,6 @@ function onPlayerTurn(player, previous_player)
         end
     else
         settings.changingTurns = false
-    end
-end
-
-function setupMenu(value)
-    UI.setAttribute('optionsMenu1', 'active', value)
-    UI.setAttribute('optionsMenu2', 'active', value)
-    UI.setAttribute('optionsMenu3', 'active', value)
-end
-
-function updateStartingPlayerMenu()
-    local nonSeated = {table.unpack(getSeatedPlayerColors())}
-    local name = 'StartingPlayer-'
-    if has_value(nonSeated, 'White') then
-        name = name .. 'w'
-        settings.playerTurn = 'White'
-    end
-    if has_value(nonSeated, 'Pink') then
-        name = name .. 'p'
-        if settings.playerTurn == '' then settings.playerTurn = 'Pink' end
-    end
-    if has_value(nonSeated, 'Orange') then
-        name = name .. 'o'
-        if settings.playerTurn == '' then settings.playerTurn = 'Orange' end
-    end
-    if has_value(nonSeated, 'Yellow') then name = name .. 'y' end
-    UI.setAttribute(name, 'active', 'true')
-end
-
-function startingPlayerMenu(value)
-    if value == 'true' then updateStartingPlayerMenu() end
-    UI.setAttribute('startPlayerMenu', 'active', value)
-    UI.setAttribute('startPlayerMenuButtons', 'active', value)
-end
-
-function gatherItemsMenu(value)
-    UI.setAttribute('gatherItemsMenu', 'active', 'true')
-end
-
-function scorePadMenu(value)
-    setAllTotals()
-    UI.setAttribute('ScorepadMenu', 'active', 'true')
-end
-
-function uiToggle(player, value, id)
-    if id == 'beginner' or id == 'intermediate' or id == 'advanced' then
-        if value == 'True' then
-            settings.difficulty = id
-        end
-    else
-        if value == 'True' then
-            settings[id] = true
-        else
-            settings[id] = false
-        end
     end
 end
 
@@ -640,17 +586,4 @@ function moveTokensLeft(color)
             slot = slot + 1
         end
     end
-end
-
-function round(number, places)
-    local mult = 10^(places or 0)
-    return math.floor(number * mult + 0.5) / mult
-end
-
-function scoreChange(player, value, id)
-    scoreChange({ id = id, value = value })
-end
-
-function yellowPrint(message)
-    printToAll(message, stringColorToRGB('Yellow'))
 end

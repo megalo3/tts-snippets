@@ -267,6 +267,10 @@ function removePlayerDuchy(color)
         item.setLock(false)
         SetupBag.putObject(item)
     end
+    for _, item in ipairs(getObjectsWithAllTags({'soldtradegoods', color})) do
+        item.setLock(false)
+        SetupBag.putObject(item)
+    end
 end
 
 function setPlayerBoardDuchyButtons()

@@ -1550,7 +1550,7 @@ Cards['Entangling Roots'] = {
 
 - The Potion of Dreams functions in the normal manner.]]
 }
-Cards["Season' Turn"] = {
+Cards["Seasons' Turn"] = {
     Number = 4,
     Game = 'Path of Destiny',
     Description = [[- At the end of the round, if a player's energy reserve contains all four types of energy (water, earth, fire and wind), the player gains 4 crystals.

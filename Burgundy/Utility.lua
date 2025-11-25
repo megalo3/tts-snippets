@@ -200,3 +200,23 @@ end
 function raisePosition(pos)
     return {pos[1], pos[2]+1, pos[3]}
 end
+
+function getTokensAbovePointByTag(pos, tag)
+    local hitList = Physics.cast({
+        origin       = pos,
+        direction    = {0,1,0},
+        type         = 3,
+        size         = { 1.3, 1, 3.10},
+        max_distance = 1
+    })
+
+    local tokens = {}
+
+    for key, value in ipairs(hitList) do
+        if value.hit_object.hasTag(tag) then
+            table.insert(tokens, value.hit_object)
+        end
+    end
+
+    return tokens
+end

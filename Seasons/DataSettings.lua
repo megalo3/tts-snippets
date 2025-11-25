@@ -2,6 +2,7 @@ WorkshopId = '3035709037'
 
 settings = {
     difficulty = 'advanced',
+    scorePadPanelClosedBy = {"Nobody"},
     enchantedKingdom = true,
     pathOfDestiny = true,
     promos = false,

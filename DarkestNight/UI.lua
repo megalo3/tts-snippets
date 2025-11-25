@@ -37,7 +37,7 @@ function setMapDeckUI()
     Settings.started = true
 end
 
-function mapDeckSelected(player, option, id)
+function mapDeckSelectedUI(player, option, id)
     SelectedMapDeck = MapDecks[option + 1]
 end
 
