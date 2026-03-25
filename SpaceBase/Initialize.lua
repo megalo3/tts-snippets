@@ -178,8 +178,12 @@ function start()
     if (settings.lightSpeed == true) then
         UI.setAttribute('FirstPlayerPanelText', 'fontSize', 16)
         UI.setAttributes('FirstPlayerPanelText', {
-        text = 'Each player may spend money to buy as many cards as they can afford. Any unspent money is kept. Set the player with the highest remaining money as the starting player. Ties are broken with the highest sector card. If still tied, roll dice.'
-    })
+            text = 'Each player may spend money to buy as many cards as they can afford. Any unspent money is kept. Set the player with the highest remaining money as the starting player. Ties are broken with the highest sector card. If still tied, roll dice.'
+        })
+        for _, seatedColor in ipairs(getSeatedPlayers()) do
+            settings.Points[seatedColor].Income = 1
+            moveTrack('Income', seatedColor)
+        end
     end
 
     -- Show set starting player
@@ -229,7 +233,6 @@ function dealStartingCards()
             dealCard(Positions.Starters[color], 2, 5)
             dealCard(Positions.Starters[color], 2, 6)
 
-            -- Update to 15 credits. The lightspeed / Terra Proxima income will add later
             settings.Points[color].Credits = 15
             moveTrack('Credits', color)
         end
@@ -422,24 +425,29 @@ function SetStartingPlayer()
 end
 
 function setStartingResources(turnOrder)
+
+    local extraStartingResources = {
+        TerraProxima = {
+            Credits = {0,1,2,3,3,4,4},
+            Income = {0,0,0,0,0,0,0}
+        },
+        Base = {
+            Credits = {0,1,2,0,0,0,0},
+            Income = {0,0,0,1,1,1,1}
+        }
+    }
     for index, color in ipairs(turnOrder) do
 
-        -- CREDITS
         local startingCredits = 0
-        if (index == 2) then
-            startingCredits = startingCredits + 1
-        end
-        if (index == 3) then
-            startingCredits = startingCredits + 2
-        end
-
-        -- INCOME
         local startingIncome = 0
-        if (settings.terraProxima == true or settings.lightSpeed == true) then
-            startingIncome = startingIncome + 1
-        end
-        if (index > 3) then
-            startingIncome = startingIncome + 1
+        if (settings.lightSpeed == true) then
+            if (settings.terraProxima == true) then
+                startingCredits = extraStartingResources.TerraProxima.Credits[index]
+                startingIncome = extraStartingResources.TerraProxima.Income[index]
+            else
+                startingCredits = extraStartingResources.Base.Credits[index]
+                startingIncome = extraStartingResources.Base.Income[index]
+            end
         end
 
         local playerOrder = 'First'
@@ -456,7 +464,7 @@ function setStartingResources(turnOrder)
         end
 
         if startingCredits > 0 then
-            settings.Points[color].Credits = startingCredits
+            settings.Points[color].Credits = settings.Points[color].Credits + startingCredits
             moveTrack('Credits', color)
             table.insert(messages, startingCredits .. ' credit')
             if startingCredits > 1 then table.insert(messages, 's') end
@@ -465,7 +473,7 @@ function setStartingResources(turnOrder)
             table.insert(messages, ' and ')
         end
         if startingIncome > 0 then
-            settings.Points[color].Income = startingIncome
+            settings.Points[color].Income = settings.Points[color].Income + startingIncome
             moveTrack('Income', color)
             table.insert(messages, startingIncome .. ' income')
         end

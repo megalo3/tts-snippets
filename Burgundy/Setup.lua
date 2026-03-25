@@ -1,6 +1,10 @@
 function setup()
-    setupMenu('false')
     local playerCount = #(getSeatedPlayers())
+    if playerCount == 0 then
+        broadcastToAll('Everyone must select their player color before starting.')
+        return
+    end
+    setupMenu('false')
     if settings.playstyle == 'ai' and playerCount < 4 then
         playerCount = playerCount + 1
     end
