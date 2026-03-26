@@ -227,11 +227,12 @@ function dealStartingCards()
         dealCard(Positions.Starters[color], 1, 1)
         if (settings.lightSpeed == true) then
             -- Give out more cards
-            dealCard(Positions.Starters[color], 1, 2)
-            dealCard(Positions.Starters[color], 1, 3)
-            dealCard(Positions.Starters[color], 1, 4)
-            dealCard(Positions.Starters[color], 2, 5)
-            dealCard(Positions.Starters[color], 2, 6)
+            Wait.time(function() dealCard(Positions.Starters[color], 1, 2) end, 0.2)
+            Wait.time(function() dealCard(Positions.Starters[color], 1, 3) end, 0.4)
+            Wait.time(function() dealCard(Positions.Starters[color], 1, 4) end, 0.6)
+            Wait.time(function() dealCard(Positions.Starters[color], 2, 5) end, 0.8)
+            Wait.time(function() dealCard(Positions.Starters[color], 2, 6) end, 1.0)
+
 
             settings.Points[color].Credits = 15
             moveTrack('Credits', color)
