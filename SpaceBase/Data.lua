@@ -10,6 +10,7 @@ settings = {
     johnDClaire = false,
     deadReckoning = false,
     worldEater = false,
+    velocity = false,
     started = false,
     Points = {
         Red = {Credits = 5, Income = 0, Victory = 0},
@@ -254,9 +255,10 @@ Guids = {
         Taller = {'3a3ad8', 'e540c8', '5aa245', '52d0f8', 'e27613',
         -- 6/7 player start cards
         '65d15a', 'd1d0ea', '11d1fc', 'eb14a4', '3a81fe', '66ac96', '233671', '1aa4c6',
-        '8fadea', '1bc92b', 'ce3512', 'd0a0ae', 'f0d126', '26f271'
+        '8fadea', '1bc92b', 'ce3512', 'd0a0ae', 'f0d126', '26f271',
         },
-        Tall2 = {'36ddd9', '82370d', '71c3e0', 'a8cb0f', '4cde5d', 'f1df7e', '8669dd', 'd02079', '5c9d9b', '80ce3d', 'dbb1b2', '734b3c', 'dce6d9', 'c58ec7', '397d1b'}
+        Tall2 = {'36ddd9', '82370d', '71c3e0', 'a8cb0f', '4cde5d', 'f1df7e', '8669dd', 'd02079', '5c9d9b', '80ce3d', 'dbb1b2', '734b3c', 'dce6d9',
+        'c58ec7', '397d1b', 'e02d53'}
     },
     Decks = {
         Sectors = {'0124ec', 'e5c908', '0ed9c0'}
@@ -275,6 +277,7 @@ Guids = {
     },
     Expansions = {
         DreadnaughtDeck = 'fd5137',
+        VelocityDeck = '23da1a',
         ShyPluto = {
             RedBag = '9c8343',
             PinkBag = 'd9970b',

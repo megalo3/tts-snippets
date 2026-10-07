@@ -1,5 +1,6 @@
 function addSelectedExpansions()
     addDreadnaught()
+    addVelocity()
     addShyPluto()
     addBiodome()
     addTerraProxima()
@@ -25,7 +26,8 @@ function getExpansion(name)
         genesis = 'a5ceaa',
         terraProxima = '9e7285',
         shyPluto = 'cef3c4',
-        dreadnaught = 'fd5137'
+        dreadnaught = 'fd5137',
+        velocity = '23da1a'
     }
     return getObjectFromGUID(Guids.Bags.Expansions).takeObject({
         guid = guids[name]
@@ -37,6 +39,14 @@ function addDreadnaught()
         print('Adding Dreadnaught.')
         expansion = getExpansion('dreadnaught');
         addDecktoDeck(getObjectFromGUID(Guids.Decks.Sectors[2]), expansion.guid)
+    end
+end
+
+function addVelocity()
+    if settings.velocity == true then
+        print('Adding Velocity.')
+        expansion = getExpansion('velocity');
+        addDecktoDeck(getObjectFromGUID(Guids.Decks.Sectors[3]), expansion.guid)
     end
 end
 
@@ -257,6 +267,12 @@ function removeUnusedExpansions()
         print('Removing Dreadnaught.')
         -- Deck, Title
         removeMultiple({ Guids.Expansions.DreadnaughtDeck, '8c072f' })
+    end
+
+    if (settings.velocity == false) then
+        print('Removing Velocity.')
+        -- Deck, Title
+        removeMultiple({ Guids.Expansions.VelocityDeck })
     end
 
     if (settings.shyPluto == false and settings.worldEater == false) then

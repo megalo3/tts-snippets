@@ -149,7 +149,7 @@
     id="optionsMenu1"
     active="true"
     rectAlignment="LowerRight"
-    offsetXY="0 440"
+    offsetXY="0 460"
     height="60"
     width="300"
     rowBackgroundColor="rgba(0, 0.39, 0.65)">
@@ -166,7 +166,7 @@
     active="true"
     rectAlignment="LowerRight"
     offsetXY="0 0"
-    height="460"
+    height="480"
     width="300"
     cellPadding="24 12 12 12"
     cellBackgroundColor="clear"
@@ -216,7 +216,7 @@
             </VerticalLayout>
         </Cell>
     </Row>
-    <Row preferredHeight="120">
+    <Row preferredHeight="140">
         <Cell>
             <VerticalLayout>
                 <Text
@@ -235,6 +235,10 @@
                         isOn="False"
                         onValueChanged="uiToggle"
                         id="deadReckoning">Dead Reckoning</Toggle>
+                    <Toggle
+                        isOn="False"
+                        onValueChanged="uiToggle"
+                        id="velocity">Velocity</Toggle>
                 </VerticalLayout>
             </VerticalLayout>
         </Cell>
